@@ -1,0 +1,39 @@
+//This file is the database structure for iTravel
+//1. User
+[{
+  "_id": "",
+  "name":"",
+  "password":"",
+  "lastLoginTime":"",
+  "dob":"",
+  "phone":"",
+  "email":""
+},
+//2. City
+{
+  "_id":"",
+  "name":"",
+  "tag":[],
+  "description":"",
+  "travel":"",
+  "currency":"",
+  "map":"",
+  "sites":{
+    "_id":"",
+    "tag":"",
+    "description":"",
+    "tips":[]
+  },
+  "food":{
+    "_id":"",
+    "description":"",
+    "type":"",
+    "pics":[]
+  },
+  "shopping":{
+    "_id":"",
+    "description":"",
+    "type":""
+  }
+
+}]
