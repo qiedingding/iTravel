@@ -12,7 +12,7 @@
     "image": "",
     "password": "",
     "lastLoginTime": "",
-  //"friends": []
+    "friends": []
   },
   //2. City
   {
@@ -29,8 +29,11 @@
     "sites": [],
     "food": [],
     "shopping": [],
-  //"blogs": "",  
-  //"rate": ""
+    "rate": [{
+      "userId":"",
+      "score":"",
+      "comment":""
+    }]
   },
   //3. sites
   {
@@ -48,8 +51,8 @@
     "description": "",
     "mainImage": "",
     "type": "",
-    "pics": []
-   //"cityId": ""
+    "pics": [],
+    "cityId": ""
   },
   //5. shopping
   {
@@ -58,7 +61,7 @@
     "mainImage": "",
     "type": ""
    //"averageConsumptionLevel": "",
-   //"cityId": "" 
+    "cityId": "" 
   },
   //6.blog
   {
@@ -70,23 +73,22 @@
     "mainImage": "",
     "photos": "",
     "conclusions": "",
-    "tag": []
-  //"userId": "",
-  //"siteId": ""  
+    "tag": [],
+    "siteId": [] 
   },
   //6. image
   {
     "_id": "",//imageId
     "location": "",
     "type": "",
-    "belongTo": "",//"siteId": "",
+    "belongTo": "",
     "date": "",
     "uploder": ""
   },
   //7. comment
   {
     "_id": "",//commentId
-  //"userId": "",  
+    "userId": "",  
     "comment": "",
     "up": "",
     "down": "",
