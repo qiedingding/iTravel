@@ -2,20 +2,21 @@
 //1. User
 [
   {
-    "_id": "",
+    "_id": "",//userId
     "name": "",
-    "description": "",
-    "image": "",
     "gender": "",
+    "dob": "",
+    "description": "",//interests || introduction
+    "phone": "",
+    "email": "",
+    "image": "",
     "password": "",
     "lastLoginTime": "",
-    "dob": "",
-    "phone": "",
-    "email": ""
+  //"friends": []
   },
   //2. City
   {
-    "_id": "",
+    "_id": "",//cityId
     "name": "",
     "location": "",
     "tag": [],
@@ -27,11 +28,13 @@
     "mapImage": "",
     "sites": [],
     "food": [],
-    "shopping": []
+    "shopping": [],
+  //"blogs": "",  
+  //"rate": ""
   },
   //3. sites
   {
-    "_id": "",
+    "_id": "",//siteId
     "cityId": "",
     "mainImage": "",
     "type": "",
@@ -41,22 +44,25 @@
   },
   //4. food
   {
-    "_id": "",
+    "_id": "",//foodId
     "description": "",
     "mainImage": "",
     "type": "",
     "pics": []
+   //"cityId": ""
   },
   //5. shopping
   {
-    "_id": "",
-    "description": "",
+    "_id": "",//shoppingId
+    "description": "",//recommendation
     "mainImage": "",
     "type": ""
+   //"averageConsumptionLevel": "",
+   //"cityId": "" 
   },
   //6.blog
   {
-    "_id": "",
+    "_id": "",//blogId
     "name": "",
     "userId": "",
     "type": "",
@@ -65,19 +71,22 @@
     "photos": "",
     "conclusions": "",
     "tag": []
+  //"userId": "",
+  //"siteId": ""  
   },
   //6. image
   {
-    "_id": "",
+    "_id": "",//imageId
     "location": "",
     "type": "",
-    "belongTo": "",
+    "belongTo": "",//"siteId": "",
     "date": "",
     "uploder": ""
   },
   //7. comment
   {
-    "_id": "",
+    "_id": "",//commentId
+  //"userId": "",  
     "comment": "",
     "up": "",
     "down": "",
@@ -85,7 +94,7 @@
   },
   //8. type
   {
-    "_id": "",
+    "_id": "",//typeId
     "TypeName": ""
   }
 ]
