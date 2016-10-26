@@ -1,39 +1,91 @@
 //This file is the database structure for iTravel
 //1. User
-[{
-  "_id": "",
-  "name":"",
-  "password":"",
-  "lastLoginTime":"",
-  "dob":"",
-  "phone":"",
-  "email":""
-},
-//2. City
-{
-  "_id":"",
-  "name":"",
-  "tag":[],
-  "description":"",
-  "travel":"",
-  "currency":"",
-  "map":"",
-  "sites":{
-    "_id":"",
-    "tag":"",
-    "description":"",
-    "tips":[]
+[
+  {
+    "_id": "",
+    "name": "",
+    "description": "",
+    "image": "",
+    "gender": "",
+    "password": "",
+    "lastLoginTime": "",
+    "dob": "",
+    "phone": "",
+    "email": ""
   },
-  "food":{
-    "_id":"",
-    "description":"",
-    "type":"",
-    "pics":[]
+  //2. City
+  {
+    "_id": "",
+    "name": "",
+    "location": "",
+    "tag": [],
+    "description": "",
+    "traffic": "",
+    "history": "",
+    "culture": "",
+    "currency": "",
+    "mapImage": "",
+    "sites": [],
+    "food": [],
+    "shopping": []
   },
-  "shopping":{
-    "_id":"",
-    "description":"",
-    "type":""
+  //3. sites
+  {
+    "_id": "",
+    "cityId": "",
+    "mainImage": "",
+    "type": "",
+    "tag": [],
+    "description": "",
+    "tips": []
+  },
+  //4. food
+  {
+    "_id": "",
+    "description": "",
+    "mainImage": "",
+    "type": "",
+    "pics": []
+  },
+  //5. shopping
+  {
+    "_id": "",
+    "description": "",
+    "mainImage": "",
+    "type": ""
+  },
+  //6.blog
+  {
+    "_id": "",
+    "name": "",
+    "userId": "",
+    "type": "",
+    "routes": "",
+    "mainImage": "",
+    "photos": "",
+    "conclusions": "",
+    "tag": []
+  },
+  //6. image
+  {
+    "_id": "",
+    "location": "",
+    "type": "",
+    "belongTo": "",
+    "date": "",
+    "uploder": ""
+  },
+  //7. comment
+  {
+    "_id": "",
+    "comment": "",
+    "up": "",
+    "down": "",
+    "date": "date"
+  },
+  //8. type
+  {
+    "_id": "",
+    "TypeName": ""
   }
-
-}]
+]
