@@ -1,4 +1,3 @@
-
 "use strict";
 const dbConnection = require("./mongoConnection");
 /*
@@ -25,6 +24,10 @@ let getCollectionFn = (collection) => {
 
 /* Now, you can list your collections here: */
 module.exports = {
-    recipe : getCollectionFn("recipe")
+    cities : getCollectionFn("cities");
+    sites : getCollectionFn("sites");
+    food : getCollectionFn("food");
+    users : getCollectoinFn("users");
+    blogs : getCollectionFn("blogs");
 };
 
