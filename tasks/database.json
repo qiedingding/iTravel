@@ -12,7 +12,8 @@
     "image": "",
     "password": "",
     "lastLoginTime": "",
-    "friends": []
+    "friends": [],
+    "type",""
   },
   //2. City
   {
