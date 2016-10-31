@@ -1,104 +1,107 @@
-//This file is the database structure for iTravel
+//This file is the database structure for iTravel(Collections)
 //1. User
 [
   {
-    "_id": "",//userId
-    "name": "",
+    "_id": "",
+    "username": "",
+    "pwd": "",
+    "nickname": "",
     "gender": "",
     "dob": "",
-    "description": "",//interests || introduction
+    "description": "",
     "phone": "",
     "email": "",
     "image": "",
-    "password": "",
+    "registerTime": "",
     "lastLoginTime": "",
-    "friends": [],
-    "type",""
+    "type": "",
+    "tag": []
   },
   //2. City
   {
-    "_id": "",//cityId
+    "_id": "",
     "name": "",
-    "location": "",
-    "tag": [],
+    "location": "",//parameters for google map API    
     "description": "",
     "traffic": "",
+    "weather": "",
     "history": "",
     "culture": "",
     "currency": "",
-    "mapImage": "",
-    "sites": [],
-    "food": [],
-    "shopping": [],
-    "rate": [{
-      "userId":"",
-      "score":"",
-      "comment":""
-    }]
-  },
-  //3. sites
-  {
-    "_id": "",//siteId
-    "cityId": "",
     "mainImage": "",
-    "type": "",
     "tag": [],
-    "description": "",
-    "tips": []
   },
-  //4. food
+  //3. Site
   {
-    "_id": "",//foodId
+    "_id": "",
+    "name": "",
+    "location": "",
+    "address": "",
+    "commute": "",
+    "price": "",
+    "closingTime": "",
+    "phone": "",
+    "website": "",
     "description": "",
     "mainImage": "",
-    "type": "",
-    "pics": [],
+    "type": "",       
+    "tips": [],
+    "tag": [], 
     "cityId": ""
   },
-  //5. shopping
+  //4. Food
   {
-    "_id": "",//shoppingId
-    "description": "",//recommendation
-    "mainImage": "",
-    "type": ""
-   //"averageConsumptionLevel": "",
-    "cityId": "" 
-  },
-  //6.blog
-  {
-    "_id": "",//blogId
+    "_id": "",
     "name": "",
-    "userId": "",
-    "type": "",
-    "routes": "",
+    "description": "",
+    "location": "",
+    "address": "",
+    "price": "",
+    "closingTime": "",
+    "phone": "",
+    "website": "",
     "mainImage": "",
-    "photos": "",
+    "type": "",
+    "cityId": ""
+  },
+  //6.Blog
+  {
+    "_id": "",
+    "title": "",
+    "content": "",
+    "createTime": "",    
+    "mainImage": "",
     "conclusions": "",
+    "type": "",
     "tag": [],
+    "userId": "",
     "siteId": [] 
   },
-  //6. image
+  //6. Image
   {
-    "_id": "",//imageId
-    "location": "",
-    "type": "",
-    "belongTo": "",
-    "date": "",
-    "uploder": ""
+    "_id": "",
+    "name": "",
+    "address": "",     
+    "createTime": "",
+    "type": "",    
+    "userId": "",
+    "blogId": "",
+    "siteId": "",
+    "cityId": ""
   },
-  //7. comment
+  //7. Comment
   {
-    "_id": "",//commentId
-    "userId": "",  
-    "comment": "",
-    "up": "",
-    "down": "",
-    "date": "date"
+    "_id": "",
+    "content": "",
+    "createTime": "",
+    "stars": "", 
+    "userId": "",
+    "target": "",
   },
-  //8. type
-  // this collction store some main key-value pair for our system. Such as user Type or image type.
+  //8. Type
+  // this collction store some main key-value pair for our system. Such as user Type or image type or comment type etc.
   {
-    "_id": "",//typeId
+    "_id": "",
     "TypeName": ""
   }
 ]
