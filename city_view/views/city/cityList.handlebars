@@ -1,0 +1,9 @@
+<!--排序？-->
+<section>
+  <h1>City List</h1>
+  {{#each list}}
+    <article class="city">
+      <h6><a href="/city/id/{{this._id}}">{{this.name}}, {{this.province}}, China</a></h6>
+    </article>
+  {{/each}}
+</section>

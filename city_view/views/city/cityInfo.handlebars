@@ -1,0 +1,40 @@
+<section>
+  <h1>City Info</h1>
+    <article class="city">
+      <h3>{{city.name}}, {{city.province}}, China</h3>
+      
+      <h6>province:</h6>
+      <p><a href="/city/province/{{city.province}}">{{city.province}}</a></p>
+
+      <h6>description:</h6>
+      <p>{{city.description}}</p>
+      
+      <h6>traffic:</h6>
+      <p>{{city.traffic}}</p>
+      
+      <h6>weather:</h6>
+      <p>{{city.weather}}</p>
+
+      <h6>history:</h6>
+      <p>{{city.history}}</p>
+
+      <h6>culture:</h6>
+      <p>{{city.culture}}</p>
+      
+      <h6>currency:</h6>
+      <p>{{city.currency}}</p>
+      
+      <h6>mainImage:</h6>
+      <p>{{city.mainImage}}</p>
+      
+      {{#if city.tag.length}}
+        <h6>tag</h6>
+        <ul>
+            {{#each city.tag}}
+                <li><a href="/city/tag/{{this}}">{{this}}</a></li>
+            {{/each}}
+        </ul>
+      {{/if}}
+      
+    </article>
+</section>
