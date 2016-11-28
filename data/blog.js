@@ -26,7 +26,7 @@ const uuid = require('node-uuid');
  */
 
 let exportedMethods = {
-    getAllCities() {
+    getAllBlogs() {
         return blog().then((blogCollection) => {
             return blogCollection.find({}).toArray();
         });
