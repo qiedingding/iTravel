@@ -5,12 +5,12 @@
  CWID:10409939
  Email: xli100@stevens.edu
  */
-const MongoClient = require("mongodb").MongoClient;;
+const MongoClient = require("mongodb").MongoClient;
 
 const settings = {
     mongoConfig: {
         serverUrl: "mongodb://localhost:27017/",
-        database: "iTravel"
+        database: "ITravel"
     }
 };
 
