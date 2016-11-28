@@ -1,21 +1,56 @@
 "use strict";
 /*
- Created by lx on 2016/10/19
+ Created by lx on 2016/11/17
  Name: Xuan Li
  CWID:10409939
  Email: xli100@stevens.edu
  */
-// listen to a location , like a transfer department
 
-const recipesRoutes = require("./recipes");
-const commentsRoutes = require("./comments");
+const passport = require('passport');
+const express = require('express');
+const router = express.Router();
+const userRoutes = require('./user');
+const cityRoutes = require('./city');
+const xss = require('xss');
 
 const constructorMethod = (app) => {
-    app.use("/recipes", recipesRoutes);
-    app.use("/comments", commentsRoutes);
-    app.use("*", (req, res) => {
-        res.sendStatus(404);
+    passport.serializeUser(function(user, done) {
+        done(null, user);
     });
+
+    passport.deserializeUser(function(user, done) {
+        done(null, user);
+    });
+    /* ***************** user *****************     */
+    app.use("/user", userRoutes);
+
+    /* ***************** city *****************     */
+    app.use("/city", cityRoutes);
+    /* ***************** site *****************     */
+
+    /* ***************** food *****************     */
+
+    /* ***************** blog *****************     */
+
+    /* ***************** image ****************     */
+
+    /* ***************** Comment **************     */
+
+    /* ***************** Type *****************     */
+
+
+    /* ***************** passport *****************     */
+    function isLoggedIn(req, res, next) {
+        console.log("isLoggedIn function begin");
+        // if user is authenticated in the session, carry on
+        if (req.isAuthenticated()){
+            console.log("authenticated success");
+            return next();
+        }
+        // if they aren't redirect them to the home page
+        console.log("authenticated fail go to login page");
+        res.redirect('/login');
+    }
 };
 
 module.exports = constructorMethod;
