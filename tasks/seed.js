@@ -71,4 +71,3 @@ dbConnection().then(db => {
      console.error(error);
 };
 
-module.exports = router;
