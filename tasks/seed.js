@@ -5,6 +5,9 @@
  */
 const dbConnection = require("../config/mongoConnection");
 const uuid = require("node-uuid");
+const data = require("../data/");
+const sites = data.site;
+const food = data.food;
 
 dbConnection().then(db => {
     return db.collection("city").drop().then(function() {
