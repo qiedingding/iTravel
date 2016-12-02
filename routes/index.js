@@ -11,14 +11,16 @@ const express = require('express');
 const router = express.Router();
 const userRoutes = require('./user');
 const cityRoutes = require('./city');
+const siteRoutes = require("./site");
+const foodRoutes = require("./food");
 const xss = require('xss');
 
 const constructorMethod = (app) => {
-    passport.serializeUser(function(user, done) {
+    passport.serializeUser(function (user, done) {
         done(null, user);
     });
 
-    passport.deserializeUser(function(user, done) {
+    passport.deserializeUser(function (user, done) {
         done(null, user);
     });
     /* ***************** user *****************     */
@@ -27,9 +29,9 @@ const constructorMethod = (app) => {
     /* ***************** city *****************     */
     app.use("/city", cityRoutes);
     /* ***************** site *****************     */
-
+    app.use("/site", siteRoutes);
     /* ***************** food *****************     */
-
+    app.use("/food", foodRoutes);
     /* ***************** blog *****************     */
 
     /* ***************** image ****************     */
@@ -43,7 +45,7 @@ const constructorMethod = (app) => {
     function isLoggedIn(req, res, next) {
         console.log("isLoggedIn function begin");
         // if user is authenticated in the session, carry on
-        if (req.isAuthenticated()){
+        if (req.isAuthenticated()) {
             console.log("authenticated success");
             return next();
         }

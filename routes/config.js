@@ -11,8 +11,6 @@ const UserData = require('../data/users');
 const bcrypt = require("bcrypt-nodejs");
 
 module.exports = function (passport) {
-
-
     passport.use('local-register', new LocalStrategy({
             usernameField: 'username',
             passwordField: 'password',
@@ -21,26 +19,17 @@ module.exports = function (passport) {
         function (req, username, password, done) {
             console.log("username = " + username);
             console.log("password = " + password);
-            process.nextTick(function () {
-                UserData.findOne(username).then((user)=> {
-                    console.log(user);
-                    if (err)
-                        return done(err);
-                    if (user) {
-                        return done(null, false, req.flash('error', 'That username is already taken.'));
-                    } else {
+            UserData.getUserByName(username).then((user) => {
+                if (user != null) {
+                    return done(null, false, req.flash('error', 'That username is already taken.'));
+                } else {
+                    let newUser = UserData.register(username, password);
+                    return newUser.then((newUser) => {
                         console.log(123);
-                        var newUser = register(username, password);
-                        return newUser.then((newUser)=> {
-                            console.log(123);
-                            return done(null, newUser);
-                        });
-                    }
-
-                });
-
+                        return done(null, newUser);
+                    });
+                }
             });
-
         }));
 
     passport.use('local-login', new LocalStrategy({
@@ -50,22 +39,13 @@ module.exports = function (passport) {
         },
         function (req, username, password, done) {
             console.log("loginBegin" + username + " pwd = " + password);
-            UserData.findByUserName(username).then((user)=> {/*
-             var u = JSON.stringify(user);
-             console.log("UserData.findByUserName success" + u);
-             */
+            UserData.getUserByName(username).then((user) => {
+                console.log(user);
                 if (!user) {
-                    console.log("findByUserName !user--------------------");
                     return done(null, false, {message: 'Incorrect username and password.'});
                 }
-                var userJSON = JSON.parse(user);
-
-                console.log("UserData.findByUserName success      password =  " + userJSON.password);
-
-                // let compare = bcrypt.compareSync(userJSON.password, userJSON.password); // true
-                return bcrypt.compare(password, userJSON.password, function (error, res) {
+                return bcrypt.compare(password, user.pwd, function (error, res) {
                     if (res === true) {
-                        console.log("maches the hash");
                         return done(null, user);
                     } else {
                         console.log("not maches the hash");
