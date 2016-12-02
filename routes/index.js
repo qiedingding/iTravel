@@ -29,7 +29,7 @@ const constructorMethod = (app) => {
     /* ***************** city *****************     */
     app.use("/city", cityRoutes);
     /* ***************** site *****************     */
-    app.use("/sites", siteRoutes);
+    app.use("/site", siteRoutes);
     /* ***************** food *****************     */
     app.use("/food", foodRoutes);
     /* ***************** blog *****************     */
