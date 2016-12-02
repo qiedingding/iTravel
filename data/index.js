@@ -1,11 +1,11 @@
-//"use strict";
+"use strict";
 const userData = require("./users");
 const cityData = require("./city");
 const siteData = require("./site");
 const foodData = require("./food");
 const blogData = require("./blog");
-const imageData = require("./image");
-const commentData = require("./comment");
+//const imageData = require("./image");
+//const commentData = require("./comment");
 const typeData = require("./type");
 module.exports = {
     user: userData,
@@ -13,7 +13,7 @@ module.exports = {
     site: siteData,
     food: foodData,
     blog: blogData,
-    image: imageData,
-    comment: commentData,
+    // image: imageData,
+    //  comment: commentData,
     type: typeData
 };
