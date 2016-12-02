@@ -13,7 +13,7 @@ const configRoutes = require("./routes");
 
 const exphbs = require('express-handlebars');
 const passport = require('passport');
-var cookieParser	= require('cookie-parser')
+const cookieParser	= require('cookie-parser');
 const session = require('express-session');
 const flash = require('express-flash');
 const Handlebars = require('handlebars');
