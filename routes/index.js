@@ -11,6 +11,8 @@ const express = require('express');
 const router = express.Router();
 const userRoutes = require('./user');
 const cityRoutes = require('./city');
+const siteRoutes = require("./site");
+const foodRoutes = require("./food");
 const xss = require('xss');
 
 const constructorMethod = (app) => {
@@ -27,9 +29,9 @@ const constructorMethod = (app) => {
     /* ***************** city *****************     */
     app.use("/city", cityRoutes);
     /* ***************** site *****************     */
-
+    app.use("/sites", siteRoutes);
     /* ***************** food *****************     */
-
+    app.use("/food", foodRoutes);
     /* ***************** blog *****************     */
 
     /* ***************** image ****************     */
