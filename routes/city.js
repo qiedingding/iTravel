@@ -29,8 +29,7 @@ router.get("/tags/", (req, res) => {
 // get-2: Return all the cities(name, province, country), such as "Wuhan, Hubei, China".
 router.get("/", (req, res) => {
     cityData.getAllCities().then((cityList) => {
-        res.render('city/cityList', { list: cityList });
-        // res.json(cityInfo);
+        res.json(cityList);
     }, () => {
         res.sendStatus(500);
     });
