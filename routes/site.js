@@ -1,3 +1,6 @@
+/*
+ Created by Yiran Li on 2016/12/01
+ */
 "use strict";
 
 const mongoCollections = require("../config/mongoCollections");
