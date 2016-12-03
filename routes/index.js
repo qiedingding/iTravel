@@ -11,6 +11,7 @@ const express = require('express');
 const router = express.Router();
 const userRoutes = require('./user');
 const cityRoutes = require('./city');
+const blogRoutes = require('./blog');
 const xss = require('xss');
 
 const constructorMethod = (app) => {
@@ -29,9 +30,9 @@ const constructorMethod = (app) => {
     /* ***************** site *****************     */
 
     /* ***************** food *****************     */
-
+    
     /* ***************** blog *****************     */
-
+    app.use("/blog", blogRoutes);
     /* ***************** image ****************     */
 
     /* ***************** Comment **************     */
