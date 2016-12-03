@@ -49,9 +49,9 @@ let exportedMethods = {
         if (!title) return Promise.reject ("You must provide a blog title.");
 
         return blog().then((blogCollection) => {
-            return blogCollection.find({ title: title }).toArray().then((blogList) => {
-                if (!blogList) return Promise.reject (`blog title ${name} is not found.`);
-                return blogList;
+            return blogCollection.findOne({ title: title }).then((blog) => {
+                if (!blog) return Promise.reject (`blog title ${name} is not found.`);
+                return blog;
             });
         });
     },

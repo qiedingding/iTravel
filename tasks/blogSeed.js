@@ -18,6 +18,7 @@ dbConnection().then(db => {
         console.log("create blog collection!")
         return db.createCollection("blog");
     }).then(function(blogCollection) {
+        console.log(blogCollection);
         console.log("in blogCollection");
         //blogData.addBlog(title, content, createTime, mainImage, conclusions, type, tag, userId, siteId)
         var createBlog = function(title, content, mainImage, conclusions,type, tag, userId, siteId){
@@ -38,23 +39,27 @@ dbConnection().then(db => {
 
         var list = [];
         // blog_1 Beijing
-        var blog1 = createBlog("blog1", "content1",tag = ["tag1","tag2"]);
+        var blog1 = createBlog("blog1", "content1", {tag: ["tag1","tag2"]});
 
         // blog_2 Shanghai
-        var blog2 = createBlog("blog2", "content2",tag = ["tag1","tag2"]);
+        var blog2 = createBlog("blog2", "content2", {tag:["tag1","tag2"]});
 
         // blod_3 Shenzhen
-        var blog3 = createBlog("blog3", "content3",tag = ["tag1","tag2"]);
+        var blog3 = createBlog("blog3", "content3", {tag:["tag1","tag2"]});
 
         list.push(blog1, blog2, blog3);
-        console.log(list);
         return blogCollection.insertMany(list).then(() => {
             console.log("insertMany");
             return blogCollection.find().toArray();
         });
     })
-    .then(list=>{
-    console.log(list);
-});
+    .then((list)=>{
+        console.log("list stored in collection: ")
+        console.log(list);
+    })
+    .catch(error=>{
+        console.log("Error here: ");
+        console.log(error);
+    });
 });
 

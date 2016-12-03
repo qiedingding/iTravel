@@ -11,7 +11,7 @@ const blogData = data.blog;
 
 router.get("/", (req, res) => {
     blogData.getAllBlogs().then((blogList) => {
-        res.render('blog/blogList', { list: blogList });
+        res.render('blog/blogList', { blogList: blogList });
         // res.json(blogInfo);
     }, () => {
         res.sendStatus(500);
@@ -20,9 +20,10 @@ router.get("/", (req, res) => {
 
 
 router.get("/:title", (req, res) => {
-    blogData.getBlogByTitle(req.params.title).then((blogList) => {
-        res.render('blog/blogList', { list: blogList });
-        // res.json(blogList);
+    //console.log("title: ",req.params.title);
+    blogData.getBlogByTitle(req.params.title).then((blog) => {
+        //console.log(blog);
+        res.render('blog/blogInfo', { blog: blog });
     }).catch(() => {
         res.status(404).json({ error: "blog not found." });
     });
@@ -39,7 +40,7 @@ router.get("/id/:id", (req, res) => {
 
 router.get("/userId/:userId", (req, res) => {
     blogData.getBlogByUserId(req.params.userId).then((blogList) => {
-        res.render('blog/blogList', { list: blogList });
+        res.render('blog/blogList', { blogList: blogList });
         // res.json(blogInfo);
     }, (error) => {
         res.sendStatus(404);
@@ -48,7 +49,7 @@ router.get("/userId/:userId", (req, res) => {
 
 router.get("/type/:type", (req, res) => {
     blogData.getBlogByType(req.params.tag).then((blogList) => {
-        res.render('blog/blogList', { list: blogList });
+        res.render('blog/blogList', { blogList: blogList });
         // res.json(blogInfo);
     }).catch(() => {
         res.status(404).json({ error: "blog not found." });
