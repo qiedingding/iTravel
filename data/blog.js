@@ -12,18 +12,18 @@ const uuid = require('node-uuid');
 /*
  The blog data structure
  5.Blog
-  {
-    "_id": "",
-    "title": "",
-    "content": "",
-    "createTime": "",    
-    "mainImage": "",
-    "conclusions": "",
-    "type": "",
-    "tag": [],
-    "userId": "",
-    "siteId": [] 
-  }
+ {
+ "_id": "",
+ "title": "",
+ "content": "",
+ "createTime": "",
+ "mainImage": "",
+ "conclusions": "",
+ "type": "",
+ "tag": [],
+ "userId": "",
+ "siteId": []
+ }
  */
 
 let exportedMethods = {
@@ -49,9 +49,9 @@ let exportedMethods = {
         if (!title) return Promise.reject ("You must provide a blog title.");
 
         return blog().then((blogCollection) => {
-            return blogCollection.find({ title: title }).toArray().then((blogList) => {
-                if (!blogList) return Promise.reject (`blog title ${name} is not found.`);
-                return blogList;
+            return blogCollection.findOne({ title: title }).then((blog) => {
+                if (!blog) return Promise.reject (`blog title ${name} is not found.`);
+                return blog;
             });
         });
     },
@@ -64,7 +64,7 @@ let exportedMethods = {
                 if (!blogList) return Promise.reject (`blog with userId of ${userId} is not found.`);
                 return blogList;
             });
-        }); 
+        });
     },
 
     getBlogByType(type) {
@@ -123,7 +123,7 @@ let exportedMethods = {
                     throw (`Could not delete blog with id of ${id}.`);
                 } else {
                     return {"message":"remove success!"};
-                 }
+                }
             });
         });
     },

@@ -70,7 +70,7 @@ dbConnection().then(db => {
         listOfUsers.push(test1,test2,test3,test4);
         // add user into our database
         return userCollection.insertMany(listOfUsers).then(() => {
-            return userCollection.find().toArray();
+            db.close();
         });
     });
 });
