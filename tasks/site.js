@@ -5,7 +5,7 @@ const sites = data.site;
 
 dbConnection().then((db) => {
 	return db.collection("site").drop().then(() => {
-		return dbConnection;
+		return db;
 	}).then((db) => {
 		return sites.addSite("QianFoMountain", "N36°E117°", "JingShi road, JiNan, ShanDong", "Bus", "30￥", "6:00PM", "2016681367", "www.qianfoshan.com", "qianfoshan", "1.png", 1, ["climb","cable"],["mountain", "famous", "JiNan"], "fk_city");
 	}).then((addedSite) => {

@@ -5,7 +5,7 @@ const food = data.food;
 
 dbConnection().then((db) => {
 	return db.collection("food").drop().then(() => {
-		return dbConnection;
+		return db;
 	}).then((db) => {
 		return food.addFood("BaZiRou", "bengrouganfan", "N36°E117°", "YaoShan", "20￥", "9:30PM", "18615213327", "www.bazirou.com", "4.png", 2, "fk_city");
 	}).then((addedFood) => {
