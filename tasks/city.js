@@ -44,7 +44,8 @@ dbConnection().then(db => {
         listOfCities.push(BeijingCity, ShanghaiCity, ShenzhenCity);
 
         return cityCollection.insertMany(listOfCities).then(() => {
-            return cityCollection.find().toArray();
+            console.log("Done seeding databse!");
+            db.close();
         });
     });
 });
