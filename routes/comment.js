@@ -14,8 +14,8 @@ const commentData = data.comment;
 // get-1: Return all the comments
 router.get("/", (req, res) => {
     commentData.getAllComments().then((commentList) => {
-        res.render('comment/commentList', { list: commentList });
-        // res.json(commentInfo);
+        //res.render('comment/commentList', { list: commentList });
+         res.json(commentList);
     }, () => {
         res.sendStatus(500);
     });
@@ -23,9 +23,9 @@ router.get("/", (req, res) => {
 
 // get-2: Return the comment information of the given comment name.
 router.get("/:name", (req, res) => {
-    commentData.getCommentByName(req.params.name).then((commentList) => {
-        res.render('comment/commentList', { list: commentList });
-        // res.json(commentList);
+    commentData.getCommentByName(req.params.name).then((comment) => {
+        //res.render('comment/commentList', { list: commentList });
+         res.json(comment);
     }).catch(() => {
         res.status(404).json({ error: "comment not found." });
     });
@@ -34,8 +34,8 @@ router.get("/:name", (req, res) => {
 // get-3: Return the comment information of the given comment id.
 router.get("/id/:id", (req, res) => {
     commentData.getCommentById(req.params.id).then((comment) => {
-        res.render('comment/commentInfo', { comment: comment });
-        // res.json(comment);
+        //res.render('comment/commentInfo', { comment: comment });
+         res.json(comment);
     }).catch(() => {
         res.status(404).json({ error: "comment not found." });
     });
@@ -43,9 +43,9 @@ router.get("/id/:id", (req, res) => {
 
 // get-4: Return all the comment information of the given user id
 router.get("/userId/:userId", (req, res) => {
-    commentData.getCommentByUserId(req.params.province).then((commentList) => {
-        res.render('comment/commentList', { list: commentList });
-        // res.json(commentInfo);
+    commentData.getCommentByUserId(req.params.userId).then((commentList) => {
+        //res.render('comment/commentList', { list: commentList });
+         res.json(commentList);
     }, (error) => {
         res.sendStatus(404);
     });
@@ -53,9 +53,11 @@ router.get("/userId/:userId", (req, res) => {
 
 // get-5: Return all the comment information of the given blog id
 router.get("/blogId/:blogId", (req, res) => {
+
     commentData.getCommentByBlogId(req.params.blogId).then((commentList) => {
-        res.render('comment/commentList', { list: commentList });
-        // res.json(commentInfo);
+        //res.render('comment/commentList', { list: commentList });
+        console.log(commentList)
+        res.json(commentList);
     }).catch(() => {
         res.status(404).json({ error: "comment not found." });
     });

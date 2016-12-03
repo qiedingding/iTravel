@@ -55,9 +55,9 @@ let exportedMethods = {
     
     getCommentByBlogId(blogId) {
         if (!blogId) return Promise.reject ("You must provide a blogId.");
-
+        console.log(blogId);
         return comment().then((commentCollection) => {
-            return imageCollection.find({ "blogId": blogId }).toArray().then((commentList) => {
+            return commentCollection.find({ "blogId": blogId }).toArray().then((commentList) => {
                 if (!commentList) return Promise.reject ('comment with blogId of ${blogId} is not found.');
                 return commentList;
             });
@@ -98,7 +98,7 @@ let exportedMethods = {
             return commentCollection.removeOne({ _id: id }).then((deletionInfo) => {
                 if (deletionInfo.deletedCount === 0) {
                     throw ('Could not delete comment with id of ${id}.');
-                } else {"message":"remove comment success!"}
+                } else {"message","remove comment success!"}
             });
         });
     },

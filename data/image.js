@@ -34,11 +34,11 @@ let exportedMethods = {
 
     getImageById(id) {
         if (!id) return Promise.reject ("You must provide an id.");
-
+        console.log(id);
         return image().then((imageCollection) => {
             return imageCollection.findOne({ _id: id }).then((image) => {
-                if (!image) return Promise.reject (`image with id: ${id} is not found.`);
 
+                if (!image) return Promise.reject (`image with id: ${id} is not found.`);
                 return image;
             });
         });

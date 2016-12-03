@@ -11,8 +11,7 @@ const imageData = data.image;
 // get-1: Return all the images
 router.get("/", (req, res) => {
     imageData.getAllImages().then((imageList) => {
-        res.render('image/imageList', { list: imageList });
-        // res.json(imageInfo);
+         res.json(imageList);
     }, () => {
         res.sendStatus(500);
     });
@@ -20,29 +19,33 @@ router.get("/", (req, res) => {
 
 // get-2: Return the image information of the given image name.
 router.get("/:name", (req, res) => {
-    imageData.getImageByName(req.params.name).then((imageList) => {
-        res.render('image/imageList', { list: imageList });
-        // res.json(imageList);
-    }).catch(() => {
+    imageData.getImageByName(req.params.name).then((image) => {
+        //res.render('image/imageList', { list: imageList });
+         res.json(image);
+    }).catch((err) => {
+        console.log(err);
         res.status(404).json({ error: "image not found." });
     });
 });
 
 // get-3: Return the image information of the given image id.
 router.get("/id/:id", (req, res) => {
+    console.log("id");
     imageData.getImageById(req.params.id).then((image) => {
-        res.render('image/imageInfo', { image: image });
-        // res.json(image);
+        console.log("1111111111111111111111")
+         res.json(image);
     }).catch(() => {
+        console.log(err);
         res.status(404).json({ error: "image not found." });
     });
 });
 
 // get-4: Return all the image information of the given user id
 router.get("/userId/:userId", (req, res) => {
-    imageData.getImageByUserId(req.params.province).then((imageList) => {
-        res.render('image/imageList', { list: imageList });
-        // res.json(imageInfo);
+    imageData.getImageByUserId(req.params.userId).then((imageList) => {
+        console.log("1111111111111")
+        //res.render('image/imageList', { list: imageList });
+        res.json(imageList);
     }, (error) => {
         res.sendStatus(404);
     });
@@ -51,8 +54,8 @@ router.get("/userId/:userId", (req, res) => {
 // get-5: Return all the image information of the given blog id
 router.get("/blogId/:blogId", (req, res) => {
     imageData.getImageByBlogId(req.params.blogId).then((imageList) => {
-        res.render('image/imageList', { list: imageList });
-        // res.json(imageInfo);
+        //res.render('image/imageList', { list: imageList });
+         res.json(imageList);
     }).catch(() => {
         res.status(404).json({ error: "image not found." });
     });
