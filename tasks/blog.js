@@ -55,7 +55,7 @@ dbConnection().then(db => {
     })
     .then((list)=>{
         console.log("list stored in collection: ")
-        console.log(list);
+        //console.log(list);
         db.close();
     })
     .catch(error=>{
