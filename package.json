@@ -6,19 +6,20 @@
   "scripts": {
     "start": "node app.js"
   },
-  "author": "XuanLi,XinyuGe",
+  "author": "XuanLi,XinyuGe,YiranLi,ZihaoZhao,QingzhengLiu",
   "license": "MIT",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
+    "date-and-time": "^0.4.0",
     "express": "^4.14.0",
     "express-flash": "0.0.2",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.14.2",
-    "handlebars": "^4.0.5",
-    "mongodb": "^2.2.10",
+    "handlebars": "^4.0.6",
+    "mongodb": "^2.2.12",
     "node-uuid": "^1.4.7",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",

@@ -1,0 +1,38 @@
+
+<div class="zhuce_body">
+<!--	<div class="logo"><a href="#"><img src="../../public/images/logo.png" width="114" height="54" border="0"></a></div>
+  -->  <div class="zhuce_kong login_kuang">
+    	<div class="zc">
+        	<div class="bj_bai">
+            <h3>Login</h3>
+                {{#if message }}
+                    <p style="color: red">{{message }}</p>
+                {{/if}}
+                <form id="form-signin_v1" name="form-signin_v1" action="/user/login" method="POST">
+                    <label>
+                        Username
+                        <input name="username" class="kuang_txt" type="text" data-validation="[NOTEMPTY]">
+                    </label>
+                    <label>
+                        Password
+                        <input name="password" class="kuang_txt" type="password" data-validation="[NOTEMPTY]">
+                    </label>
+                    <input type="submit" class="btn_zhuce" value="Login">
+                   Don't have account？<a href="http://localhost:3000/user/register">Register</a>
+                </form>
+            </div>
+        	<div class="bj_right">
+            	<p>Login with other account</p>
+                <a href="#" class="zhuce_qq">QQ</a>
+                <a href="#" class="zhuce_wb">Weibo</a>
+                <a href="#" class="zhuce_wx">Wechat</a>
+            
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $('#form-signin_v1').validate();
+</script>
