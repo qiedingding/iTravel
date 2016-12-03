@@ -45,8 +45,8 @@ let exportedMethods = {
         });
     },
 
-    getBlogByTitle(name) {
-        if (!name) return Promise.reject ("You must provide a blog title.");
+    getBlogByTitle(title) {
+        if (!title) return Promise.reject ("You must provide a blog title.");
 
         return blog().then((blogCollection) => {
             return blogCollection.find({ title: title }).toArray().then((blogList) => {
@@ -78,7 +78,7 @@ let exportedMethods = {
         });
     },
 
-    addBlog(title, content, createTime, mainImage, conclusions, type, tag, userId, siteId) {
+    addBlog(title, content, mainImage, conclusions, type, tag, userId, siteId) {
         // check title and content
         if (!title) return Promise.reject ("You must provide a title of the blog.");
         if (!content) return Promise.reject("You must provide content of the blog.")
@@ -87,7 +87,7 @@ let exportedMethods = {
                 _id: uuid.v4(),
                 title: title,
                 content: content,
-                createTime: createTime,
+                createTime: new Date("<YYYY-mm-dd>"),
                 mainImage: mainImage,
                 conclusions: conclusions,
                 type: type,
@@ -114,7 +114,7 @@ let exportedMethods = {
         });
     },
 
-    removeblog(id) {
+    removeBlog(id) {
         if (!id) return Promise.reject ("You must provide an id.");
 
         return blog().then((blogCollection) => {
@@ -128,7 +128,7 @@ let exportedMethods = {
         });
     },
 
-    removeblogTag(id, TagToRemove) {
+    removeBlogTag(id, TagToRemove) {
         if (!id) return Promise.reject("You must provide a blog id.");
         if (!TagToRemove) return Promise.reject("You must provide tag to remove.");
 
@@ -139,7 +139,7 @@ let exportedMethods = {
         });
     },
 
-    updateblog(id, updatedblog) {
+    updateBlog(id, updatedblog) {
         if (!id) return Promise.reject ("You must provide an id.");
 
         return blog().then((blogCollection) => {

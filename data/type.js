@@ -4,7 +4,6 @@
  Created by Zihao on 2016/11/28
  Name: Zihao Zhao
  */
-
 const mongoCollections = require("../config/mongoCollections");
 const type = mongoCollections.type;
 const uuid = require('node-uuid');
@@ -18,7 +17,6 @@ const uuid = require('node-uuid');
     "TypeName": ""
   }
  */
-
 
 let exportedMethods = {
     getTypeById(id) {

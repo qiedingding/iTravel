@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-sm-9">
+        <h2>all blog</h2>
+        {{#each blogList}}
+        <div class="panel panel-default">
+            <a href="/blog/id/{{_id}}" >Title: {{title}}</a>
+            <h3>time:</h3>
+            <p>{{{createTime}}}</p>
+            <h3>type:</h3>
+            <p>{{{type}}}</p> 
+        </div>
+        {{/each}}
+    </div>
+    <div id="new-content">
+    </div>
+</div>

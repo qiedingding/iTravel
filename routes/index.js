@@ -13,6 +13,7 @@ const userRoutes = require('./user');
 const cityRoutes = require('./city');
 const siteRoutes = require("./site");
 const foodRoutes = require("./food");
+const blogRoutes = require("./blog");
 const xss = require('xss');
 
 const constructorMethod = (app) => {
@@ -31,9 +32,10 @@ const constructorMethod = (app) => {
     /* ***************** site *****************     */
     app.use("/site", siteRoutes);
     /* ***************** food *****************     */
+
     app.use("/food", foodRoutes);
     /* ***************** blog *****************     */
-
+    app.use("/blog", blogRoutes);
     /* ***************** image ****************     */
 
     /* ***************** Comment **************     */
