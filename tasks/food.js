@@ -4,9 +4,11 @@ const data = require("../data/");
 const food = data.food;
 
 dbConnection().then((db) => {
-	return db.collection("food").drop().then(() => {
+	return db.collection("food").drop().then(function () {
 		return db;
-	}).then((db) => {
+	}, function () {
+		return db;
+	}).then((addeddb) => {
 		return food.addFood("BaZiRou", "bengrouganfan", "N36°E117°", "YaoShan", "20￥", "9:30PM", "18615213327", "www.bazirou.com", "4.png", 2, "fk_city");
 	}).then((addedFood) => {
 		return food.addFood("TianMo", "salty vegetable porridge", "N36°E117°", "XiaoTan", "1.5￥", "10:00AM", "18615213327", "www.tianmo.com", "5.png", 2, "fk_city");
