@@ -21,7 +21,8 @@ const uuid = require('node-uuid');
     "userId": "",
     "blogId": "",
     "siteId": "",
-    "cityId": ""
+    "cityId": "",
+    "foodId": ""
   }
  */
 
@@ -29,6 +30,7 @@ let exportedMethods = {
     getAllImages() {
         return image().then((imageCollection) => {
             return imageCollection.find({}).toArray();
+            console.log(imageCollection)
         });
     },
 
@@ -75,8 +77,50 @@ let exportedMethods = {
                 return imageList;
             });
         }); 
-    },    
-    
+    },
+
+    getImageBySiteId(siteId) {
+        if (!siteId) return Promise.reject ("You must provide a siteId.");
+
+        return image().then((imageCollection) => {
+            return imageCollection.find({ "siteId": siteId }).toArray().then((imageList) => {
+                if (!imageList) return Promise.reject (`image with siteId of ${siteId} is not found.`);
+                return imageList;
+            });
+        });
+    },
+
+    getImageByCityId(cityId) {
+        if (!cityId) return Promise.reject ("You must provide a cityId.");
+
+        return image().then((imageCollection) => {
+            return imageCollection.find({ "cityId": cityId }).toArray().then((imageList) => {
+                if (!imageList) return Promise.reject (`image with cityId of ${cityId} is not found.`);
+                return imageList;
+            });
+        });
+    },
+
+    getImageByFoodId(foodId) {
+        if (!foodId) return Promise.reject ("You must provide a foodId.");
+console.log("1111111111")
+        return image().then((imageCollection) => {
+            return imageCollection.find({ "foodId": foodId }).toArray().then((imageList) => {
+                if (!imageList) return Promise.reject (`image with foodId of ${foodId} is not found.`);
+                // console.log(imageList)
+                let blogImages = [];
+                if(imageList.length >= 3){
+                    blogImages.push(imageList[0]);
+                    blogImages.push(imageList[1]);
+                    blogImages.push(imageList[2]);
+                    console.log(blogImages);
+                    return blogImages;
+                }else{
+                    return imageList;
+                }
+            });
+        });
+    },
 
     addImage(name, address, createTime, type, userId, blogId, siteId, cityId) {
         // check name

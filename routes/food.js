@@ -9,7 +9,7 @@ const foodData = data.food;
 
 router.get("/", (req, res) => {
     foodData.getAllFood().then((foodList) => {
-        res.json(foodList);
+        res.json("aa");
     }).catch((e) => {
         res.status(500).json({error: e});
     });

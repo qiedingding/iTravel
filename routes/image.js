@@ -12,8 +12,8 @@ const imageData = data.image;
 router.get("/", (req, res) => {
     imageData.getAllImages().then((imageList) => {
          res.json(imageList);
-    }, () => {
-        res.sendStatus(500);
+    }).catch((e) => {
+        res.status(500).json({error: e});
     });
 });
 
@@ -32,7 +32,7 @@ router.get("/:name", (req, res) => {
 router.get("/id/:id", (req, res) => {
     console.log("id");
     imageData.getImageById(req.params.id).then((image) => {
-        console.log("1111111111111111111111")
+        //console.log("1111111111111111111111")
          res.json(image);
     }).catch(() => {
         console.log(err);
@@ -43,7 +43,6 @@ router.get("/id/:id", (req, res) => {
 // get-4: Return all the image information of the given user id
 router.get("/userId/:userId", (req, res) => {
     imageData.getImageByUserId(req.params.userId).then((imageList) => {
-        console.log("1111111111111")
         //res.render('image/imageList', { list: imageList });
         res.json(imageList);
     }, (error) => {
@@ -56,6 +55,36 @@ router.get("/blogId/:blogId", (req, res) => {
     imageData.getImageByBlogId(req.params.blogId).then((imageList) => {
         //res.render('image/imageList', { list: imageList });
          res.json(imageList);
+    }).catch(() => {
+        res.status(404).json({ error: "image not found." });
+    });
+});
+
+// get-6: Return all the image information of the given site id
+router.get("/siteId/:siteId", (req, res) => {
+    imageData.getImageBySiteId(req.params.siteId).then((imageList) => {
+        //res.render('image/imageList', { list: imageList });
+        res.json(imageList);
+    }).catch(() => {
+        res.status(404).json({ error: "image not found." });
+    });
+});
+
+// get-7: Return all the image information of the given city id
+router.get("/cityId/:cityId", (req, res) => {
+    imageData.getImageByCityId(req.params.cityId).then((imageList) => {
+        //res.render('image/imageList', { list: imageList });
+        res.json(imageList);
+    }).catch(() => {
+        res.status(404).json({ error: "image not found." });
+    });
+});
+
+// get-8: Return all the image information of the given food id
+router.get("/foodId/:foodId", (req, res) => {
+    imageData.getImageByFoodId(req.params.foodId).then((imageList) => {
+        //res.render('image/imageList', { list: imageList });
+        res.json(imageList);
     }).catch(() => {
         res.status(404).json({ error: "image not found." });
     });

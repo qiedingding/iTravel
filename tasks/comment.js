@@ -6,55 +6,15 @@
 const dbConnection = require("../config/mongoConnection");
 const uuid = require("node-uuid");
 const data = require("../data/");
-const sites = data.site;
-const food = data.food;
 
 dbConnection().then(db => {
-    return db.collection("image").drop().then(function() {
+    return db.collection("comment").drop().then(function() {
         return db;
     }, function() {
         return db;
     }).then((db) => {
-        return db.createCollection("image");
-    }).then(function(imageCollection) {
-
-        var createImage = (name, address, createTime, type, userId, blogId, siteId, imageId) => {
-            return {
-                _id: uuid.v4(),
-                name: name,
-                address: address,
-                createTime: createTime,
-                type: type,
-                userId: userId,
-                blogId: blogId,
-                siteId: siteId,
-                imageId: imageId
-            }
-        }
-
-        var listOfImages = [];
-
-        // image_1 Beijing
-
-        var BeijingImage = createImage("Beijing", "Beijing", "2016/12/01", "landscape", "usr1", "blog1", "site1", "image1");
-
-        // image_2 Shanghai
-        var ShanghaiImage = createImage("Shanghai", "Shanghai", "2016/12/02", "landscape", "usr2", "blog2", "site2", "image2");
-
-        // image_3 Shenzhen
-        var ShenzhenImage = createImage("Shenzhen", "Shenzhen", "2016/12/03", "landscape", "usr3", "blog3", "site3", "image3");
-
-        //
-        listOfImages.push(BeijingImage, ShanghaiImage, ShenzhenImage);
-
-        return imageCollection.insertMany(listOfImages).then(() => {
-            return imageCollection.find().toArray();
-        });
-    }).then(() => {
-        return db.collection("comment").drop();
-    }).then(() => {
         return db.createCollection("comment");
-    }).then(function(commentCollection){
+    }).then(function(commentCollection) {
 
         var createComment = (content, createTime, stars, userId, target, blogId, siteId, cityId) => {
             return {
@@ -88,7 +48,6 @@ dbConnection().then(db => {
             console.log("Done seeding database!");
             db.close();
         });
-
     });
 }), (error) => {
     console.error(error);
