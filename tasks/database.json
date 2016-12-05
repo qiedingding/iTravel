@@ -29,7 +29,7 @@
     "culture": "",
     "currency": "",
     "mainImage": "",
-    "tag": [],
+    "tag": []
   },
   //3. Site
   {
@@ -83,6 +83,7 @@
     "name": "",
     "address": "",     
     "createTime": "",
+    "path":"",
     "type": "",    
     "userId": "",
     "blogId": "",
@@ -96,7 +97,7 @@
     "createTime": "",
     "stars": "", 
     "userId": "",
-    "target": "",
+    "target": ""
   },
   //8. Type
   // this collction store some main key-value pair for our system. Such as user Type or image type or comment type etc.
