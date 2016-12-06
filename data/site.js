@@ -36,6 +36,15 @@ let exportedMethods = {
 		});
 	},
 
+	getSitesByCityId(cityId) {
+		if(!cityId) reject("You must provide a correct id to search for!");
+		return sites().then((siteCollection) => {
+			return siteCollection.find({cityId: parseInt(cityId)}).toArray().then((siteArr) => {
+				return siteArr;
+			});
+		});
+	},
+
 	addSite(name, location, address, commute, price, closingTime, phone, website, description, mainImage, type, tips, tag, cityId) {
 		if(!name || typeof name !== "string") reject("You must provide a correct name for the site!");
 		if(!location) reject("You must provide the correct location for the site!");

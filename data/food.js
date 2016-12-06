@@ -36,6 +36,15 @@ let exportedMethods = {
 		});
 	},
 
+	getFoodByCityId(cityId) {
+		if(!cityId) reject("You must provide a correct id to search for!");
+		return food().then((foodCollection) => {
+			return foodCollection.find({cityId: parseInt(cityId)}).toArray().then((foodArr) => {
+				return foodArr;
+			});
+		});
+	},
+
 	addFood(name, description, location, address, price, closingTime, phone, website, mainImage, type, cityId) {
 		if(!name || typeof name !== "string") reject("You must provide a correct name for the food!");
 		if(!description || typeof description !== "string") reject("You must provide the correct description for the food!");
