@@ -30,6 +30,24 @@ const constructorMethod = (app) => {
     passport.deserializeUser(function (user, done) {
         done(null, user);
     });
+
+
+    /* ***************** user *****************     */
+    app.use("/user", userRoutes);
+
+    /* ***************** city *****************     */
+    app.use("/city", cityRoutes);
+    /* ***************** site *****************     */
+    app.use("/site", siteRoutes);
+    /* ***************** food *****************     */
+    app.use("/food", foodRoutes);
+    /* ***************** blog *****************     */
+    app.use("/blog", blogRoutes);
+    /* ***************** image ****************     */
+    app.use("/image", imageRoutes);
+    /* ***************** Comment **************     */
+    app.use("/comment", commentRoutes);
+    /* ***************** MainPage **************     */
     app.use("/", (req, res) => {
         let returnValue = [];
         cityData.getAllCities().then((citylist) => {
@@ -73,23 +91,6 @@ const constructorMethod = (app) => {
             });
         });
     });
-
-    /* ***************** user *****************     */
-    app.use("/user", userRoutes);
-
-    /* ***************** city *****************     */
-    app.use("/city", cityRoutes);
-    /* ***************** site *****************     */
-    app.use("/site", siteRoutes);
-    /* ***************** food *****************     */
-    app.use("/food", foodRoutes);
-    /* ***************** blog *****************     */
-    app.use("/blog", blogRoutes);
-    /* ***************** image ****************     */
-    app.use("/image", imageRoutes);
-    /* ***************** Comment **************     */
-    app.use("/comment", commentRoutes);
-
     /* ***************** not found *****************     */
     app.use("*", (req, res) => {
         res.sendStatus(404);
