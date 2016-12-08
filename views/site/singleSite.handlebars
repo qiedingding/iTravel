@@ -1,0 +1,92 @@
+<div class="grid_3 grid_5 wow fadeInUp animated" data-wow-delay=".5s">
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/city/id/{{site.cityId}}">City</a></li>
+        <li class="active">Site</li>
+    </ol>
+</div>
+
+<div class="about">
+    <div class="about-heading">
+        <div class="container">
+            <h2 class="wow fadeInDown animated" data-wow-delay=".5s">{{site.name}}</h2>
+            <p class="wow fadeInUp animated" data-wow-delay=".5s">{{site.description}}</p>
+        </div>
+    </div>
+    <div class="about-top">
+        <div class="container">
+            <div class="about-bottom">
+                <img class="wow fadeInUp animated" data-wow-delay=".5s" src="../..{{siteMainImage.path}}" alt="" />
+                <table class="wow fadeInUp animated" data-wow-delay=".5s">
+                    <tbody>
+                        <tr>
+                            <td>Location</td>
+                            <td>{{site.location}}</td>
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td>{{site.address}}</td>
+                        </tr>
+                        <tr>
+                            <td>Commute</td>
+                            <td>{{site.commute}}</td>
+                        </tr>
+                        <tr>
+                            <td>Price</td>
+                            <td>{{site.price}}</td>
+                        </tr>
+                        <tr>
+                            <td>Closing Time</td>
+                            <td>{{site.closingTime}}</td>
+                        </tr>
+                        <tr>
+                            <td>Phone</td>
+                            <td>{{site.phone}}</td>
+                        </tr>
+                        <tr>
+                            <td>Website</td>
+                            <td>{{site.website}}</td>
+                        </tr>
+                        <tr>
+                            <td>Tips</td>
+                            <td>{{site.tips}}</td>
+                        </tr>
+                         <tr>
+                            <td>Tag</td>
+                            <td>{{site.tag}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="team">
+        <div class="container">
+            <div class="popular-heading team-heading">
+                <h3 class="wow fadeInUp animated" data-wow-delay=".5s">More Pictures</h3>
+            </div>
+            <div class="team-grids">
+                <div class="col-md-4 team-grid wow fadeInLeft animated" data-wow-delay=".5s">
+                    <img src="images/t1.jpg" alt="" />
+        
+                    <p>Posted on {{siteMainImage.createTime}}</p>
+
+                </div>
+
+                <div class="col-md-4 team-grid wow fadeInUp animated" data-wow-delay=".5s">
+                    <img src="images/t2.jpg" alt="" />
+                
+                    <p>Posted on {{siteMainImage.createTime}}</p>
+                </div>
+
+                <div class="col-md-4 team-grid wow fadeInRight animated" data-wow-delay=".5s">
+                    <img src="images/t3.jpg" alt="" />
+                   
+                    <p>Posted on {{siteMainImage.createTime}}</p>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+</div>

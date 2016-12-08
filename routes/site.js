@@ -6,6 +6,7 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const siteData = data.site;
+const imageData = data.image;
 
 router.get("/", (req, res) => {
     siteData.getAllSites().then((siteList) => {
@@ -17,7 +18,9 @@ router.get("/", (req, res) => {
 
 router.get("/siteId/:id", (req, res) => {
     siteData.getSiteById(req.params.id).then((site) => {
-        res.json(site);
+        imageData.getImageById(site.mainImage).then((siteMainImage) => {
+            res.render("site/singleSite", {site: site, siteMainImage: siteMainImage});
+        })
     }).catch(() => {
         res.status(404).json({error: "Site not found!"});
     });
