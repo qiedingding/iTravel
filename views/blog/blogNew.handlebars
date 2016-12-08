@@ -1,0 +1,40 @@
+<div class="col-sm-12">
+    <form id="new-blog-form" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="title">blog Title</label>
+            <input type="text" id="new-blog-title" name="title" placeholder="blog Title" value="" required>
+        </div>
+        {{!--<div class="form-group">
+            <label for="new-blog-content">blog content</label>
+            <input type="text" id="new-blog-content" name="new-blog-content" placeholder="new-blog-content" value="" required>
+        </div>--}}
+        {{!--<div class="form-group">
+            <label for="new-blog-date">blog created Date</label>
+            <input type="date" id="new-blog-date" name="new-blog-date" required>
+        </div>--}}
+        <div class="form-group">
+            <label for="content">blog Body</label>
+            <textarea id="new-blog-content" name="content" required> </textarea>
+        </div>
+        <div class="form-group">
+            <input id="upload-blog-picture" type="file" name="images" />
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="create new blog"/>
+        </div>
+    </form>
+    <div>
+        <a href="/blog" class="btn btn-default" role="button">blog List</a>
+    </div>
+    <div class="alert alert-success hidden" id="upload-success" >
+       <strong>success!</strong> 
+    </div>
+    <div class="alert alert-warning hidden" id="upload-alert" >
+       <strong>Warning!</strong> Form cannot be empty
+    </div>
+</div>
+
+<script src="../../public/js/blog.js"></script>
+
+
+
