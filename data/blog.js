@@ -22,6 +22,7 @@ const uuid = require('node-uuid');
  "type": "",
  "tag": [],
  "userId": "",
+ "cityId": "",
  "siteId": []
  }
  */
@@ -44,7 +45,7 @@ let exportedMethods = {
             });
         });
     },
-
+    
     getBlogByTitle(title) {
         if (!title) return Promise.reject ("You must provide a blog title.");
 
@@ -66,7 +67,6 @@ let exportedMethods = {
             });
         });
     },
-
     getBlogByType(type) {
         if (!type) return Promise.reject ("You must provide a type.");
 
@@ -78,28 +78,40 @@ let exportedMethods = {
         });
     },
 
-    addBlog(title, content, mainImage, conclusions, type, tag, userId, siteId) {
+    addBlog(blogInfo) {
+        //title, content, mainImage, conclusions, type, tag, userId, cityId, siteId
         // check title and content
-        if (!title) return Promise.reject ("You must provide a title of the blog.");
-        if (!content) return Promise.reject("You must provide content of the blog.")
+        if (!blogInfo.title) return Promise.reject ("You must provide a title of the blog.");
+        if (!blogInfo.content) return Promise.reject("You must provide content of the blog.")
+        if (!blogInfo.mainImage)  blogInfo.mainImage =null;
+        if (!blogInfo.conclusions)  blogInfo.conclusions =null;
+        if (!blogInfo.type)  blogInfo.type =null;
+        if (!blogInfo.tag)  blogInfo.tag =null;
+        if (!blogInfo.userId)  blogInfo.userId =null;
+        if (!blogInfo.cityId)  blogInfo.cityId =null;
+        if (!blogInfo.siteId)  blogInfo.siteId =null;
+        
         return blog().then((blogCollection) => {
             let newblog = {
                 _id: uuid.v4(),
-                title: title,
-                content: content,
-                createTime: new Date("<YYYY-mm-dd>"),
-                mainImage: mainImage,
-                conclusions: conclusions,
-                type: type,
-                tag: tag,
-                userId: userId,
-                siteId: siteId
+                title: blogInfo.title,
+                content: blogInfo.content,
+                createTime: new Date(),
+                mainImage: blogInfo.mainImage,
+                conclusions: blogInfo.conclusions,
+                type: blogInfo.type,
+                tag: blogInfo.tag,
+                userId: blogInfo.userId,
+                cityId: blogInfo.cityId,
+                siteId: blogInfo.siteId
             };
-
+                
             return blogCollection.insertOne(newblog).then((newInsertInformation) => {
                 return newInsertInformation.insertedId;
             }).then((newId) => {
-                return this.getblogById(newId);
+                return this.getBlogById(newId);
+            }).catch(function(e) {
+                console.log(e);  // "oh, no!"
             });
         });
     },
@@ -109,7 +121,7 @@ let exportedMethods = {
         if (!newTag) return Promise.reject("You must provide a tag.");
         return blog().then((blogCollection) => {
             return blogCollection.update({ _id: id }, { $addToSet: { "tag": newTag } }).then((result) => {
-                return this.getblogById(id);
+                return this.getBlogById(id);
             });
         });
     },
@@ -171,6 +183,10 @@ let exportedMethods = {
             // tag
             if (updatedblog.tag) {
                 updatedblogData.tag = updatedblog.tag;
+            }
+            // siteId
+            if (updatedblog.cityId) {
+                updatedblogData.cityId = updatedblog.cityId;
             }
             // siteId
             if (updatedblog.siteId) {

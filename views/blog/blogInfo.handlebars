@@ -1,11 +1,17 @@
-<div id="singleNote">
-	<h2 id="noteTitle">blog info</h2>
+<div id="singleBlog">
+	<h2 id="blog-title">blog info</h2>
 	<ul>
 		<li>title: {{{blog.title}}}</li>
 		<li>content: {{{blog.content}}}</li>
 		<li>createTime: {{{blog.createTime}}}</li>
 		<li>conclusions: {{{blog.conclusions}}}</li>
-		<li>conclusions: {{{blog.conclusions}}}</li>
+		<li>{{#if blog.mainImage}}
+			   <img src="/public/uploads/{{blog.mainImage}}" alt="blog image" style="width:304px;height:300px;">
+			{{else}}
+				No images for this blog
+			{{/if}}
+	    </li>
 		<li>tag: {{{blog.tag}}}</li>
 	</ul>
 </div>
+

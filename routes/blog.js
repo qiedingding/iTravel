@@ -6,8 +6,38 @@ const express = require('express');
 const router = express.Router();
 const data = require("../data");
 const blogData = data.blog;
+const uuid = require('node-uuid');
+const bodyParser = require("body-parser");
+var path = require('path'),fs = require('fs');
+var multer  = require('multer')
 
 
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      //console.log(__dirname);
+      cb(null, path.join(__dirname,'/..','/public/uploads')); // get the right path!
+  },
+  filename: function (req, file, cb) {
+    //console.log("file@@@",file);
+    let idx =file.mimetype.indexOf('/')
+    let type = file.mimetype.substring(idx+1);
+    type = type.toLowerCase();
+    
+    cb(null, uuid.v1()+ '.' + type);
+  }
+})
+
+function fileFilter (req,file,cb){
+    var type = file.mimetype;
+    var typeArray = type.split("/");
+    if (typeArray[0] == "video" || typeArray[0] == "image") {
+        cb(null, true);
+    }else {
+        cb(null, false);
+    }
+}
+
+var upload = multer({ storage: storage, dest:"public/uploads", fileFilter:fileFilter});
 
 router.get("/", (req, res) => {
     blogData.getAllBlogs().then((blogList) => {
@@ -18,6 +48,49 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/new", (req,res)=>{
+    res.render('blog/blogNew', {});
+});
+
+router.post("/new",upload.single('images'),(req,res)=>{
+    console.log("POST /blog/new!");
+    console.log(req.body); //get all text content
+    console.log(req.file); // get all files content
+    let blogInfo = req.body;
+    if (!blogInfo) {
+        res.status(400).json({ error: "You must provide data to create a new blog." });
+        return;
+    }
+
+    if (!blogInfo.title) {
+        res.status(400).json({ error: "You must at least provide title of the blog." });
+        return;
+    }
+
+    if (!blogInfo.content) {
+        res.status(400).json({ error: "You must at least provide content of the blog." });
+        return;
+    }
+       
+    blogData.addBlog(blogInfo)
+        .then((newblog) => {
+            return newblog._id;
+        })
+        .then((id)=>{
+           let updatedblog = {}
+           updatedblog.mainImage = req.file.filename;
+           return blogData.updateBlog(id,updatedblog);
+        })
+        .then((blogInfo)=>{
+            console.log(blogInfo);
+            res.status(200).json(blogInfo);
+        })
+        .catch(function(e) {
+            console.log(e); // "oh, no!"
+            res.status(400).json(e);
+        });
+   // res.status(200).json({"success":"success!"});
+});
 
 router.get("/:title", (req, res) => {
     //console.log("title: ",req.params.title);
@@ -31,8 +104,8 @@ router.get("/:title", (req, res) => {
 
 router.get("/id/:id", (req, res) => {
     blogData.getBlogById(req.params.id).then((blog) => {
+        console.log(blog);
         res.render('blog/blogInfo', { blog: blog });
-        // res.json(blog);
     }).catch(() => {
         res.status(404).json({ error: "blog not found." });
     });
@@ -157,3 +230,19 @@ router.delete("/tag/:id", (req, res) => {
 });
 
 module.exports = router;
+
+
+// { fieldname: 'images',
+//   originalname: '3a954c74df5a72e424bde752408074c4.jpg',
+//   encoding: '7bit',
+//   mimetype: 'image/jpeg',
+//   destination: 'public/uploads/',
+//   filename: 'f22de968cc5fef6c9593fae541755704',
+//   path: 'public/uploads/f22de968cc5fef6c9593fae541755704',
+//   size: 8054 }
+// router.post('/upload', upload.single('images'), function (req, res) {
+//     console.log("/blog/upload!")
+//     console.log(req.file)
+//     //var ext = path.extname(req.file.mimetype).toLowerCase()
+//     res.status(200).json({"success":"success!"});
+// });
