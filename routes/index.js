@@ -85,7 +85,7 @@ const constructorMethod = (app) => {
                         }));
                     }
                     Promise.all(promises).then(() => returnValue.push({"blist": blist})).then(() => {
-                        res.json(returnValue);
+                        res.render("index", {returnValue: returnValue});
                     });
                 });
             });

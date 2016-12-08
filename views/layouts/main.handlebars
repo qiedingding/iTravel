@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <title>My Site</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-        crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="../../public/css/main.css">
+    <title>ITravel, a travel website recommend for travelling in China</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Around Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- bootstrap-css -->
+    <link href="../../public/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <!--// bootstrap-css -->
+    <!-- css -->
+    <link rel="stylesheet" href="../../public/css/style.css" type="text/css" media="all" />
+    <!--// css -->
+    <!-- font-awesome icons -->
+    <link href="../../public/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!-- font -->
+    <!-- //font -->
+    <script src="../../public/js/jquery-1.11.1.min.js"></script>
+    <script src="../../public/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../public/js/move-top.js"></script>
+    <script type="text/javascript" src="../../public/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
+    </script>
+    <!--animate-->
+    <link href="../../public/css/animate.css" rel="stylesheet" type="text/css" media="all">
+    <script src="../../public/js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <!--//end-animate-->
 </head>
 
-<body>
-    <main class="container">
-        <div class="jumbotron">
-            <h1>iTraval!</h1>
-            <p>This is a CS546 project! </p> 
-        </div>
-        <div>
                {{{body}}}
-        </div>
-    </main>
 
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-        crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/public/js/total11y.min.js"></script>
-    <script src="/public/js/basic_ajax_with_jquery.js"></script>
-
-</body>
 
 </html>
 

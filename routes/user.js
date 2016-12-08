@@ -20,15 +20,15 @@ router.get("/", isLoggedIn, function (req, res, next) {
 });
 // redirect to login page
 router.get("/login", (req, res) => {
-    res.render("layouts/login", {message: req.flash('error')});
+    res.render("user/login", {message: req.flash('error')});
 });
 // register to register page
-router.get("/register", (req, res) => {
-    res.render("layouts/register", {message: req.flash('error')});
+router.get("/signup", (req, res) => {
+    res.render("user/signup", {message: req.flash('error')});
 });
 //user send login request
 router.post('/login', passport.authenticate('local-login', {
-    successRedirect: '/user/private', // redirect to the secure profile section
+    successRedirect: '/index', // redirect to the secure profile section
     failureRedirect: '/user/login', // redirect back to the login page if there is an error
     failureFlash: true // allow flash messages
 }));
