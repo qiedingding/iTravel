@@ -49,24 +49,25 @@ const constructorMethod = (app) => {
     app.use("/comment", commentRoutes);
     /* ***************** MainPage **************     */
     app.use("/", (req, res) => {
-        let returnValue = [];
+        let returnValue ={};
         cityData.getAllCities().then((citylist) => {
             let clist = [];
-            let createCityDTO = (id, name, mainImage) => {
+            let createCityDTO = (id, name, mainImage,description) => {
                 return {
                     _id: id,
                     mainImage: mainImage,
+                    description: description,
                     name: name
                 }
             };
             let promises = [];
             for (let i = 0, len = citylist.length; i < len; i++) {
                 promises.push(imageData.getImageById(citylist[i].mainImage).then((image) => {
-                    let c = createCityDTO(citylist[i]._id, citylist[i].name, image);
+                    let c = createCityDTO(citylist[i]._id, citylist[i].name, image,citylist[i].description);
                     clist.push(c);
                 }));
             }
-            Promise.all(promises).then(() => returnValue.push({"clist": clist})).then(() => {
+            Promise.all(promises).then(() => returnValue.clist = clist).then(() => {
                 blogData.getAllBlogs().then((bloglist) => {
                     let blist = [];
                     let createBlogDTO = (id, title, mainImage) => {
@@ -81,10 +82,9 @@ const constructorMethod = (app) => {
                         promises.push(imageData.getImageById(bloglist[i].mainImage).then((image) => {
                             let c = createBlogDTO(bloglist[i]._id, bloglist[i].title, image);
                             blist.push(c);
-
                         }));
                     }
-                    Promise.all(promises).then(() => returnValue.push({"blist": blist})).then(() => {
+                    Promise.all(promises).then(() => returnValue.blist = blist).then(() => {
                         res.render("index", {returnValue: returnValue});
                     });
                 });

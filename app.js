@@ -17,6 +17,7 @@ const cookieParser	= require('cookie-parser');
 const session = require('express-session');
 const flash = require('express-flash');
 const Handlebars = require('handlebars');
+const path = require("path");
 
 const handlebarsInstance = exphbs.create({
     defaultLayout: 'main',
@@ -61,6 +62,15 @@ require('./routes/config')(passport); // pass passport for configuration
 require('./routes/index.js')(app, passport);
 
 app.engine('handlebars', handlebarsInstance.engine);
+
+/*
+let views = [
+    path.join(__dirname, 'views'),
+];
+*/
+
+//app.set('views', views);
+
 app.set('view engine', 'handlebars');
 
 

@@ -34,7 +34,7 @@ router.post('/login', passport.authenticate('local-login', {
 }));
 //user send login request
 router.post('/register', passport.authenticate('local-register', {
-    successRedirect: '/user/private', // redirect to the secure profile section
+    successRedirect: '/index', // redirect to the secure profile section
     failureRedirect: '/user/register', // redirect back to the login page if there is an error
     failureFlash: true // allow flash messages
 }));
