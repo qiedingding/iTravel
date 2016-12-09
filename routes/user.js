@@ -38,6 +38,11 @@ router.post('/register', passport.authenticate('local-register', {
     failureRedirect: '/user/register', // redirect back to the login page if there is an error
     failureFlash: true // allow flash messages
 }));
+
+router.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+});
 // show user information, need check if user has login
 router.get("/private", isLoggedIn, function (req, res, next) {
     console.log("login success, go to the private page");
@@ -45,10 +50,6 @@ router.get("/private", isLoggedIn, function (req, res, next) {
     res.render("layouts/private", {"user": user});
 });
 
-router.get('/logout', function(req, res){
-    req.logout();
-    res.redirect('/');
-});
 // middleware, to check if user has login
 function isLoggedIn(req, res, next) {
     console.log("isLoggedIn function begin");
