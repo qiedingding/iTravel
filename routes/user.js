@@ -67,7 +67,7 @@ function isLoggedIn(req, res, next) {
         console.log("authenticated success");
         return next();
     }
-    // if they aren't redirect them to the home page
+    // if they aren't redirect them tggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggo the home page
     console.log("authenticated fail go to login page");
     res.redirect('/user/login');
 }
