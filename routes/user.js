@@ -58,7 +58,13 @@ router.get("/profile", isLoggedIn, function (req, res, next) {
     let user = req.user;
     res.render("user/profile", {"user": user});
 });
+router.get('/isLoggedIn', function(req, res){
 
+    if (req.isAuthenticated()) {
+        console.log("login");
+        res.json({user:req.user});
+    }
+});
 // middleware, to check if user has login
 function isLoggedIn(req, res, next) {
     console.log("isLoggedIn function begin");
@@ -67,7 +73,7 @@ function isLoggedIn(req, res, next) {
         console.log("authenticated success");
         return next();
     }
-    // if they aren't redirect them tggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggo the home page
+    // if they aren't redirect them  the home page
     console.log("authenticated fail go to login page");
     res.redirect('/user/login');
 }

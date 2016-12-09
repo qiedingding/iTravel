@@ -28,6 +28,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="../../public/js/bootstrap.js"></script>
     <script type="text/javascript" src="../../public/js/move-top.js"></script>
     <script type="text/javascript" src="../../public/js/easing.js"></script>
+
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
             $(".scroll").click(function (event) {
@@ -54,25 +55,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="top-header-left wow fadeInLeft animated" data-wow-delay=".5s">
                     <p>More than 10 new destinations for your trip in China{{req}}</p>
                 </div>
-                <div class="top-header-right wow fadeInRight animated" data-wow-delay=".5s">
-                    {{#if req.user}}
-                        123
-                    {{else}}
-                        <div class="top-header-right-info">
+                <div class="top-header-right wow fadeInRight animated" data-wow-delay=".5s" id="userInformation">
+                        <div class="top-header-right-info" >
                             <ul>
                                 <li><a href="/user/login">Login</a></li>
                                 <li><a href="/user/signup">Sign up</a></li>
                             </ul>
                         </div>
-                        <div class="social-icons">
-                            <ul>
-                                <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a class="twitter facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a class="twitter google" href="#"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
-                        </div>
+                    <div class="social-icons">
+                        <ul>
+                            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a class="twitter facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a class="twitter google" href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
                         <div class="clearfix"></div>
-                    {{/if}}
+
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -160,6 +158,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 <!-- //footer -->
+<script type="text/javascript" src="../../public/js/main.js"></script>
 </body>
 
 </html>

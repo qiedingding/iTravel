@@ -98,8 +98,6 @@ const constructorMethod = (app) => {
 
     /* ***************** passport *****************     */
     function isLoggedIn(req, res, next) {
-        console.log("isLoggedIn function begin");
-        // if user is authenticated in the session, carry on
         if (req.isAuthenticated()) {
             console.log("authenticated success");
             return next();
