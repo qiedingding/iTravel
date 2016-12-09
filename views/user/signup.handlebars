@@ -7,14 +7,22 @@
                 <h1>Sign up</h1>
             </div>
             <div class="login-info">
-                <form>
-                    <input type="text" class="user" name="email" placeholder="Name" required="">
-                    <input type="text" class="user" name="email" placeholder="Email" required="">
-                    <input type="password" name="password" class="lock" placeholder="Password">
-                    <input type="password" name="password" class="lock" placeholder="Confirm Password">
+                <form id="signupForm" name="signupForm">
+                    <input type="text" class="user" name="username" id="username" placeholder="Name" required="">
+                    <input type="text" class="email" name="email" id="email" placeholder="Email" required="">
+                    <input type="password" name="password1" id="password1" class="lock" placeholder="Password">
+                    <input type="password" name="password2" id="password2"  class="lock" placeholder="Confirm Password">
+                    {{#if message }}
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Oh snap!</strong> {{message }}
+                        </div>
+                    {{/if}}
+                    <div class="alert alert-danger hidden" role="alert" id="form-alert">
+                        123
+                    </div>
                     <input type="submit" name="Sign In" value="Sign up">
                     <div class="signup-text">
-                        <a href="login.html">Already have an account? Login here.</a>
+                        <a href="/user/login">Already have an account? Login here.</a>
                     </div>
                 </form>
             </div>
@@ -22,3 +30,4 @@
     </div>
 </div>
 <!-- //login -->
+<script src="../../public/js/signup.js"></script>

@@ -52,11 +52,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
             <div class="top-header-info">
                 <div class="top-header-left wow fadeInLeft animated" data-wow-delay=".5s">
-                    <p>More than 10 new destinations for your trip in China</p>
+                    <p>More than 10 new destinations for your trip in China{{req}}</p>
                 </div>
                 <div class="top-header-right wow fadeInRight animated" data-wow-delay=".5s">
-                    {{#if author}}
-
+                    {{#if req.user}}
+                        123
                     {{else}}
                         <div class="top-header-right-info">
                             <ul>
@@ -81,7 +81,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="bottom-header">
         <div class="container">
             <div class="logo wow fadeInDown animated" data-wow-delay=".5s">
-                <h1><a href="/"><img src="../public/images/logo.png" alt=""/></a></h1>
+                <h1><a href="/"><img src="/../public/images/logo.png" alt=""/></a></h1>
             </div>
             <div class="top-nav wow fadeInRight animated" data-wow-delay=".5s">
                 <nav class="navbar navbar-default">
@@ -93,8 +93,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><a href="index.html" class="active">Home</a></li>
-                            <li><a href="about.html">About</a></li>
+                            <li><a href="/" class="active">Home</a></li>
+                            <li><a href="about.html">Cities</a></li>
                             <li><a href="codes.html">Codes</a></li>
                             <li><a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown"
                                    role="button" aria-haspopup="true" aria-expanded="false">Gallery<span
@@ -105,7 +105,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </ul>
                             </li>
                             <li><a href="blog.html">Blog</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="contact.html">About</a></li>
                         </ul>
                         <div class="clearfix"></div>
                     </div>
@@ -125,10 +125,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-3 footer-nav wow fadeInLeft animated" data-wow-delay=".5s">
                 <h4>Navigation</h4>
                 <ul>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="gallery1.html">Gallery</a></li>
                     <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="contact.html">About</a></li>
                 </ul>
             </div>
             <div class="col-md-5 footer-nav wow fadeInUp animated" data-wow-delay=".5s">
@@ -155,7 +155,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="clearfix"></div>
         </div>
         <div class="copyright wow fadeInUp animated" data-wow-delay=".5s">
-            <p>© 2016 ITravel . All Rights Reserved . Design by Xuan Li</p>
+            <p align="center">© 2016 ITravel . All Rights Reserved . Design by Xuan Li</p>
         </div>
     </div>
 </div>

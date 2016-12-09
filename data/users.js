@@ -80,9 +80,9 @@ let exportedMethods = {
             });
         });
     },
-    register(username, password) {
+    register(username, password,email) {
         return user().then((userCollection) => {
-            if (!username || username === undefined || password === undefined || !password)
+            if (!username || username === undefined || password === undefined || !password ||email === undefined || !email)
                 return Promise.reject("You must provide enough parameter to add a user");
             let now1 = new Date();
             let now2 = date.format(now1, 'YYYY/MM/DD HH:mm:ss');
@@ -96,7 +96,7 @@ let exportedMethods = {
                 dob: "",
                 description: "",
                 phone: "",
-                email: "",
+                email: email,
                 image: "",
                 registerTime: now2,
                 lastLoginTime: now2,

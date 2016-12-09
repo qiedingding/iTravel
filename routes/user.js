@@ -32,22 +32,31 @@ router.post('/login', passport.authenticate('local-login', {
     failureRedirect: '/user/login', // redirect back to the login page if there is an error
     failureFlash: true // allow flash messages
 }));
-//user send login request
-router.post('/register', passport.authenticate('local-register', {
-    successRedirect: '/index', // redirect to the secure profile section
-    failureRedirect: '/user/register', // redirect back to the login page if there is an error
-    failureFlash: true // allow flash messages
-}));
+//user send register request
+router.post('/register', function(req, res){
+    userData.getUserByName(req.body.username).then((user) => {
+        console.log(req.body.username + " "+req.body.password+" "+req.body.email);
+        if (user != null) {
+            return done(null, false, req.flash('error', 'That username has been taken.'));
+        } else {
+            let newUser = UserData.register(req.body.username, req.body.password,req.body.email);
+            return newUser.then((newUser) => {
+                console.log(123);
+                return done(null, newUser);
+            });
+        }
+    });
+});
 
 router.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
 });
 // show user information, need check if user has login
-router.get("/private", isLoggedIn, function (req, res, next) {
+router.get("/profile", isLoggedIn, function (req, res, next) {
     console.log("login success, go to the private page");
     let user = req.user;
-    res.render("layouts/private", {"user": user});
+    res.render("user/profile", {"user": user});
 });
 
 // middleware, to check if user has login
