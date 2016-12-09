@@ -83,9 +83,35 @@ router.get("/:name", (req, res) => {
 
 // get-4: Return the city information of the given city id.
 router.get("/id/:id", (req, res) => {
-    cityData.getCityById(req.params.id).then((city) => {
-        res.render('city/singleCity', { city: city });
-        // res.json(city);
+    let cityItem = {};
+    cityData.getCityById(parseInt(req.params.id)).then((city) => {
+        cityItem.city = city;
+    }).then(() => {
+        imageData.getImageById(cityItem.city.mainImage).then((image) => {
+                cityItem.city.image = image;
+        }).then(() => {
+            siteData.getSitesByCityId(cityItem.city._id).then((siteList) => {
+                cityItem.site = siteList;
+            }).then(() => {
+                cityItem.site.forEach((site) => {
+                    imageData.getImageById(site.mainImage).then((image) => {
+                        site.image = image;
+                    });
+                });
+            }).then(() => {
+                foodData.getFoodByCityId(cityItem.city._id).then((foodList) => {
+                    cityItem.food = foodList;
+                }).then(() => {
+                    cityItem.food.forEach((food) => {
+                        imageData.getImageById(food.mainImage).then((image) => {
+                            food.image =image;
+                        });
+                    });
+                    res.render('city/singleCity', { cityItem: cityItem });
+                });
+            });
+        });
+    // res.json(cityList);
     }).catch(() => {
         res.status(404).json({ error: "City not found." });
     });
