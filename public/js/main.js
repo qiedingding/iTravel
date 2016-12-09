@@ -6,7 +6,11 @@ $(document).ready(function(){
     };
     $.ajax(requestConfig).then(function (responseMessage) {
         if(responseMessage.user){
-            userInformation.html("<span style='color: #c7254e'>welcome </span><b style='color: white;'>"+responseMessage.user.username +"</b> " );
+            userInformation.html(
+                " <div class='top-header-right-info' ><ul><li><span style='color:white; '>" +
+            "welcome </span><b style='color: #c7254e;'>" +
+            responseMessage.user.username +"</b></li><li><a href='user/logout'>Logout</a></li> </ul> </div>"
+            );
         }
     })
 });
