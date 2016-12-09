@@ -33,7 +33,13 @@ const foodData = data.food;
 // get-2: Return all the cities(name, province, country), such as "Wuhan, Hubei, China".
 router.get("/", (req, res) => {
     cityData.getAllCities().then((cityList) => {
-        res.json(cityList);
+        cityList.forEach((city) => {
+            imageData.getImageById(city.mainImage).then((image) => {
+                city.image = image;
+            });
+        });
+        res.render('city/listCity', { cityList: cityList });
+        // res.json(cityList);
     }, () => {
         res.sendStatus(500);
     });

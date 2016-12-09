@@ -34,50 +34,49 @@
     </div>
     
     <!-- Sites -->
+    {{#if cityItem.site.length}}
+    <ul>
     <div class="team">
         <div class="container">
             <div class="popular-heading team-heading">
                 <h3 class="wow fadeInUp animated" data-wow-delay=".5s">Sites in {{cityItem.city.name}}</h3>
                 <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Welcome to {{cityItem.city.name}}</h2>
             </div>
+            {{#each cityItem.site}}
             <div class="col-md-4 team-grid wow fadeInLeft animated" data-wow-delay=".5s">
-                {{#if cityItem.site.length}}
-                <ul>
-                    {{#each cityItem.site}}
-                    <img src="../..{{this.image.path}}" alt="" />
-                    <h4><a href="/site/siteId/{{this._id}}">{{this.name}}</a></h4>
-                    <p>{{this.address}}</p>
-                    {{/each}}
-                </ul>
-                {{/if}}
+                <img src="../..{{this.image.path}}" alt="" />
+                <h4><a href="/site/siteId/{{this._id}}">{{this.name}}</a></h4>
+                <p>{{this.address}}</p>
             </div>
+            {{/each}}
         </div>
     </div>
+    </ul>
+    {{/if}}
     <!-- //Sites -->
     <br>
     <br>
     <br>
-    <br>
     <!-- Food -->
+    {{#if cityItem.food.length}}
+    <ul>
     <div class="team">
         <div class="container">
             <div class="popular-heading team-heading">
                 <h3 class="wow fadeInUp animated" data-wow-delay=".5s">Food in {{cityItem.city.name}}</h3>
                 <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Welcome to {{cityItem.city.name}}</h2>
             </div>
+            {{#each cityItem.food}}
             <div class="col-md-4 team-grid wow fadeInLeft animated" data-wow-delay=".5s">
-                {{#if cityItem.food.length}}
-                <ul>
-                    {{#each cityItem.food}}
                     <img src="../..{{this.image.path}}" alt="" />
                     <h4><a href="/food/foodId/{{this._id}}">{{this.name}}</a></h4>
                     <p>{{this.address}}</p>
-                    {{/each}}
-                </ul>
-                {{/if}}
             </div>
+            {{/each}}
         </div>
+    </ul>
     </div>
+    {{/if}}
     <!-- //Food -->
     <br>
     <br>
