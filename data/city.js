@@ -11,17 +11,17 @@ const uuid = require('node-uuid');
 /*
  The city data structure
  {
- "_id":	"",
- "name":	"",
- "location":	"",
- "description":	"",
- "traffic":	"",
- "weather":	"",
- "history":	"",
- "culture":	"",
- "currency":	"",
- "mainImage":	"",
- "tag":	[],
+ "_id": "",
+ "name":    "",
+ "location":    "",
+ "description": "",
+ "traffic": "",
+ "weather": "",
+ "history": "",
+ "culture": "",
+ "currency":    "",
+ "mainImage":   "",
+ "tag": [],
  }
  */
 
@@ -48,9 +48,9 @@ let exportedMethods = {
         if (!name) return Promise.reject ("You must provide a city name.");
 
         return city().then((cityCollection) => {
-            return cityCollection.find({ name: name }).toArray().then((cityList) => {
-                if (!cityList) return Promise.reject (`City named ${name} is not found.`);
-                return cityList;
+            return cityCollection.findOne({ name: name }).then((city) => {
+                if (!city) return Promise.reject (`City named ${name} is not found.`);
+                return city;
             });
         });
     },

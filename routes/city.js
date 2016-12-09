@@ -7,24 +7,28 @@ const express = require('express');
 const router = express.Router();
 const data = require("../data");
 const cityData = data.city;
+const siteData = data.site;
+const imageData = data.image;
+const foodData = data.food;
+
 // router get 顺序？
 
-// get-1: Return all the tags of all cities.
-router.get("/tags/", (req, res) => {
-    cityData.getAllCities().then((cityList) => {
-        let tags = [];
-        cityList.forEach((city) => {
-            city.tag.forEach((tag) => {
-                tags.push(tag);
-            })
-        })
-        // 如何输出tag不重复？
-        res.render('city/tagList', { list: tags });
-        // res.json(tags);
-    }, () => {
-        res.sendStatus(500);
-    });
-});
+// // get-1: Return all the tags of all cities.
+// router.get("/tags/", (req, res) => {
+//     cityData.getAllCities().then((cityList) => {
+//         let tags = [];
+//         cityList.forEach((city) => {
+//             city.tag.forEach((tag) => {
+//                 tags.push(tag);
+//             })
+//         })
+//         // 如何输出tag不重复？
+//         res.render('city/tagList', { list: tags });
+//         // res.json(tags);
+//     }, () => {
+//         res.sendStatus(500);
+//     });
+// });
 
 // get-2: Return all the cities(name, province, country), such as "Wuhan, Hubei, China".
 router.get("/", (req, res) => {
@@ -37,9 +41,35 @@ router.get("/", (req, res) => {
 
 // get-3: Return the city information of the given city name.
 router.get("/:name", (req, res) => {
-    cityData.getCityByName(req.params.name).then((cityList) => {
-        res.render('city/cityList', { list: cityList });
-        // res.json(cityList);
+    let cityItem = {};
+    cityData.getCityByName(req.params.name).then((city) => {
+        cityItem.city = city;
+    }).then(() => {
+        imageData.getImageById(cityItem.city.mainImage).then((image) => {
+                cityItem.city.image = image;
+        }).then(() => {
+            siteData.getSitesByCityId(cityItem.city._id).then((siteList) => {
+                cityItem.site = siteList;
+            }).then(() => {
+                cityItem.site.forEach((site) => {
+                    imageData.getImageById(site.mainImage).then((image) => {
+                        site.image = image;
+                    });
+                });
+            }).then(() => {
+                foodData.getFoodByCityId(cityItem.city._id).then((foodList) => {
+                    cityItem.food = foodList;
+                }).then(() => {
+                    cityItem.food.forEach((food) => {
+                        imageData.getImageById(food.mainImage).then((image) => {
+                            food.image =image;
+                        });
+                    });
+                    res.render('city/singleCity', { cityItem: cityItem });
+                });
+            });
+        });
+    // res.json(cityList);
     }).catch(() => {
         res.status(404).json({ error: "City not found." });
     });
@@ -48,7 +78,7 @@ router.get("/:name", (req, res) => {
 // get-4: Return the city information of the given city id.
 router.get("/id/:id", (req, res) => {
     cityData.getCityById(req.params.id).then((city) => {
-        res.render('city/cityInfo', { city: city });
+        res.render('city/singleCity', { city: city });
         // res.json(city);
     }).catch(() => {
         res.status(404).json({ error: "City not found." });
