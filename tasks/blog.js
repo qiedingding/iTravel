@@ -38,13 +38,15 @@ dbConnection().then(db => {
 
         var list = [];
         // blog_1 Beijing
-        var blog1 = createBlog("blog1", "content1", null,null,null,["tag1","tag2"]);
+        var content =`Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit estibulum aliquam neque nibh, sed accumsan nulla ornare sit amet`;
+
+        var blog1 = createBlog("blog1", content, "public/images/g1.jpg",null,null,["tag1","tag2"]);
 
         // blog_2 Shanghai
-        var blog2 = createBlog("blog2", "content2", null,null,null,["tag1","tag2"]);
+        var blog2 = createBlog("blog2", content, "public/images/g2.jpg",null,null,["tag1","tag2"]);
 
         // blod_3 Shenzhen
-        var blog3 = createBlog("blog3", "content3", null,null,null,["tag1","tag2"]);
+        var blog3 = createBlog("blog3", content, "public/images/g3.jpg",null,null,["tag1","tag2"]);
 
         list.push(blog1, blog2, blog3);
         return blogCollection.insertMany(list).then(() => {

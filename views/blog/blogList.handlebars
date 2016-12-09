@@ -1,16 +1,42 @@
-<div class="row">
-    <div class="col-sm-9">
-        <h2>all blog</h2>
-        {{#each blogList}}
-        <div class="panel panel-default">
-            <a href="/blog/id/{{_id}}" >Title: {{title}}</a>
-            <h3>time:</h3>
-            <p>{{{createTime}}}</p>
-            <h3>type:</h3>
-            <p>{{{type}}}</p> 
-        </div>
-        {{/each}}
-    </div>
-    <div id="new-content">
-    </div>
+<!-- Bar -->
+<div class="container">
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog/">All Blogs</a></li>
+    </ol>
 </div>
+<!-- blog -->
+<div class="blog">
+    <!-- container -->
+    <div class="container">
+        <div class="blog-heading">
+            <h2 class="wow fadeInDown animated" data-wow-delay=".5s">Blog</h2>
+            <p class="wow fadeInUp animated" data-wow-delay=".5s">Vivamus efficitur scelerisque nulla nec lobortis. Nullam ornare metus vel dolor feugiat maximus.Aenean nec nunc et metus volutpat dapibus ac vitae ipsum. Pellentesque sed rhoncus nibh</p>
+        </div>
+        <div class="blog-top-grids">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8 blog-top-left-grid">
+                <div class="left-blog">
+                    {{#each blogList}}
+                    <div class="blog-left">
+                        <div class="blog-left-left wow fadeInUp animated" data-wow-delay=".5s">
+                            <a href="/blog/id/{{_id}}"><img src="../../{{mainImage}}" alt="blog main Image" /></a>
+                        </div>
+                        <div class="blog-left-right wow fadeInUp animated" data-wow-delay=".5s">
+                            <a href="/blog/id/{{_id}}">{{title}} </a>
+                            <p>{{content}}</p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!-- //container -->
+</div>
+<!-- //blog -->
+	
+

@@ -1,17 +1,70 @@
-<div id="singleBlog">
-	<h2 id="blog-title">blog info</h2>
-	<ul>
-		<li>title: {{{blog.title}}}</li>
-		<li>content: {{{blog.content}}}</li>
-		<li>createTime: {{{blog.createTime}}}</li>
-		<li>conclusions: {{{blog.conclusions}}}</li>
-		<li>{{#if blog.mainImage}}
-			   <img src="/public/uploads/{{blog.mainImage}}" alt="blog image" style="width:304px;height:300px;">
-			{{else}}
-				No images for this blog
-			{{/if}}
-	    </li>
-		<li>tag: {{{blog.tag}}}</li>
-	</ul>
+<!-- Bar -->
+<div class="container">
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog/">All Blogs</a></li>
+        <li><a href="/blog/{{blog._id}}">{{blog.title}}</a></li>
+    </ol>
 </div>
+<!-- //Bar -->
+<!-- Main -->
+<div class="about">
+    <div class="about-heading">
+        <div class="container">
+            <h2 class="wow fadeInDown animated" data-wow-delay=".5s">{{blog.title}}</h2>
+            {{!--<h3 class="wow fadeInUp animated" data-wow-delay=".5s">{{blog.createTime}}</h3>--}}
+        </div>
+    </div>
+    <div class="about-top">
+        <div class="container">
+            <div class="about-bottom">
+                <img class="wow fadeInUp animated" data-wow-delay=".5s" src="../../{{blog.mainImage}}" alt="blog image" />
+                <br>
+                <br>
+                <br>
+				<p>{{{blog.content}}}</p>
+                <ul class="wow fadeInUp animated" data-wow-delay=".5s">
+					<li>createTime: {{{blog.createTime}}}</li>
+					<li>conclusions: {{{blog.conclusions}}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <!-- Comments -->
+    <div class="response wow fadeInUp animated" data-wow-delay=".5s">
+        <div class="container">
+            <h3>Comments</h3>
+            <div class="media response-info">
+                {{#each siteComments}}
+                    <div class="media-left response-text-left">
+                        <img class="media-object" src="../../public/images/user.png" alt="Figure" style="width:50px; height:50px;">
+                        <h5>{{userId}}</h5>
+                    </div>
 
+                    <div class="media-body response-text-right">
+                        <p class="well">{{content}}</p>
+                        <ul>
+                            <li>{{createTime}}</li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="opinion">
+            <div class="container">
+                <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Leave Your Comment</h2>
+				<span id="blog-info-id" class="hidden">{{{blog._id}}}</span>
+                <form id="blog-info-comment-form"> 
+                    <input class="wow fadeInLeft animated" data-wow-delay=".5s" type="text" placeholder="Name" required="">
+                    <textarea class="wow fadeInLeft animated" data-wow-delay=".5s" placeholder="Message" required=""></textarea>
+                    <input class="wow fadeInRight animated" data-wow-delay=".5s" type="submit" value="SEND">
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- //Comments -->
+</div>
+<!-- // Main -->

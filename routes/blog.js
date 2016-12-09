@@ -41,6 +41,7 @@ var upload = multer({ storage: storage, dest:"public/uploads", fileFilter:fileFi
 
 router.get("/", (req, res) => {
     blogData.getAllBlogs().then((blogList) => {
+        console.log(blogList);
         res.render('blog/blogList', { blogList: blogList });
         // res.json(blogInfo);
     }, () => {
