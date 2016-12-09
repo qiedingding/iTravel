@@ -14,13 +14,15 @@
                         <div class="forgot-grid">
                             <ul>
                                 <li>
-                                    <div id="wrong message">123</div>
+                                    {{#if message }}
+                                    <div class="alert alert-danger" role="alert">
+                                        <strong>Oh snap!</strong> {{message }}
+                                    </div>
+                                {{/if}}
                                 </li>
                             </ul>
                         </div>
-                        <div class="forgot">
-                            <a href="#">Forgot password?</a>
-                        </div>
+
                         <div class="clearfix"> </div>
                     </div>
                     <input type="submit" name="Sign In" value="Login">

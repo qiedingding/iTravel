@@ -45,6 +45,10 @@ router.get("/private", isLoggedIn, function (req, res, next) {
     res.render("layouts/private", {"user": user});
 });
 
+router.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+});
 // middleware, to check if user has login
 function isLoggedIn(req, res, next) {
     console.log("isLoggedIn function begin");
