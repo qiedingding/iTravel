@@ -52,6 +52,17 @@ let exportedMethods = {
             });
         });
     },
+
+    getCommentBySiteId(siteId) {
+        if (!siteId) return Promise.reject ("You must provide a siteId.");
+
+        return comment().then((commentCollection) => {
+            return commentCollection.find({ siteId: siteId }).toArray().then((commentList) => {
+                if (!commentList) return Promise.reject ('comment named ${userId} is not found.');
+                return commentList;
+            });
+        });
+    },
     
     getCommentByBlogId(blogId) {
         if (!blogId) return Promise.reject ("You must provide a blogId.");

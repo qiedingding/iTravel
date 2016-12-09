@@ -1,9 +1,11 @@
 <div class="grid_3 grid_5 wow fadeInUp animated" data-wow-delay=".5s">
-    <ol class="breadcrumb">
-        <li><a href="/">Home</a></li>
-        <li><a href="/city/id/{{site.cityId}}">City</a></li>
-        <li class="active">Site</li>
-    </ol>
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li><a href="/city/id/{{site.cityId}}">City</a></li>
+            <li class="active">Site</li>
+        </ol>
+    </div>
 </div>
 
 <div class="about">
@@ -13,79 +15,116 @@
             <p class="wow fadeInUp animated" data-wow-delay=".5s">{{site.description}}</p>
         </div>
     </div>
+
     <div class="about-top">
         <div class="container">
             <div class="about-bottom">
-                <img class="wow fadeInUp animated" data-wow-delay=".5s" src="../..{{siteMainImage.path}}" alt="" />
-                <table class="wow fadeInUp animated" data-wow-delay=".5s">
-                    <tbody>
-                        <tr>
-                            <td>Location</td>
-                            <td>{{site.location}}</td>
-                        </tr>
-                        <tr>
-                            <td>Address</td>
-                            <td>{{site.address}}</td>
-                        </tr>
-                        <tr>
-                            <td>Commute</td>
-                            <td>{{site.commute}}</td>
-                        </tr>
-                        <tr>
-                            <td>Price</td>
-                            <td>{{site.price}}</td>
-                        </tr>
-                        <tr>
-                            <td>Closing Time</td>
-                            <td>{{site.closingTime}}</td>
-                        </tr>
-                        <tr>
-                            <td>Phone</td>
-                            <td>{{site.phone}}</td>
-                        </tr>
-                        <tr>
-                            <td>Website</td>
-                            <td>{{site.website}}</td>
-                        </tr>
-                        <tr>
-                            <td>Tips</td>
-                            <td>{{site.tips}}</td>
-                        </tr>
-                         <tr>
-                            <td>Tag</td>
-                            <td>{{site.tag}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="col-md-6 gallery-grid wow fadeInUp animated" data-wow-delay=".5s">
+                    <div class="grid">
+                        <figure class="effect-apollo">
+                            <a class="example-image-link" href="../..{{siteMainImage.path}}" data-lightbox="example-set" data-title="">
+                                <img src="../..{{siteMainImage.path}}" alt="Main Image" />
+                                <figcaption>
+                                    <h3>Australia</h3>
+                                    <p>Proin vitae luctus dui, sit amet ultricies leo</p>
+                                </figcaption>   
+                            </a>
+                        </figure>
+                    </div>
+                </div>
+
+                <div>
+                    <p>Address:<span>{{site.address}}</span></p>
+                    <p>Location:</p>
+                    <p id="map"></p>
+                    <script>
+                      function initMap() {
+                        var uluru = {lat: {{site.locationlat}}, lng: {{site.locationlnt}} };
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                          zoom: 4,
+                          center: uluru
+                        });
+                        var marker = new google.maps.Marker({
+                          position: uluru,
+                          map: map
+                        });
+                      }
+                    </script>
+                    <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeLcZ63IBMrSqJlZ2umjdSnfi7AfwHirw&callback=initMap">
+                    </script>
+                </div>
             </div>
         </div>
     </div>
-    
-    <div class="team">
+
+    <div class="bs-docs-example wow fadeInUp animated" data-wow-delay=".5s">
+        <div class="container">    
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Commute: </td>
+                        <td>{{site.commute}}</td>
+                    </tr>
+                    <tr>
+                        <td>Price: </td>
+                        <td>{{site.price}}</td>
+                    </tr>
+                    <tr>
+                        <td>ClosingTime: </td>
+                        <td>{{site.closingTime}}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone: </td>
+                        <td>{{site.phone}}</td>
+                    </tr>
+                    <tr>
+                        <td>Website: </td>
+                        <td><a href="{{site.website}}">{{site.website}}</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>    
+    </div>
+
+    <div class="bs-docs-example wow fadeInUp animated" data-wow-delay=".5s">
         <div class="container">
-            <div class="popular-heading team-heading">
-                <h3 class="wow fadeInUp animated" data-wow-delay=".5s">More Pictures</h3>
+            <div class="alert alert-warning" role="alert">           
+                <strong>Tips!</strong>
+                <p>{{site.tips}}</p>
             </div>
-            <div class="team-grids">
-                <div class="col-md-4 team-grid wow fadeInLeft animated" data-wow-delay=".5s">
-                    <img src="images/t1.jpg" alt="" />
+        </div>
+    </div>
+
+    <div class="response wow fadeInUp animated" data-wow-delay=".5s">
+        <div class="container">
+            <h3>Comments</h3>
+            <div class="media response-info">
+                {{#each siteComments}}
+                    <div class="media-left response-text-left">
+                        <img class="media-object" src="../../public/images/user.png" alt="Figure" style="width:50px; height:50px;">
+                        <h5>{{userId}}</h5>
+                    </div>
+
+                    <div class="media-body response-text-right">
+                        <p class="well">{{content}}</p>
+                        <ul>
+                            <li>{{createTime}}</li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                {{/each}}
+            </div>
+        </div>
         
-                    <p>Posted on {{siteMainImage.createTime}}</p>
-
-                </div>
-
-                <div class="col-md-4 team-grid wow fadeInUp animated" data-wow-delay=".5s">
-                    <img src="images/t2.jpg" alt="" />
-                
-                    <p>Posted on {{siteMainImage.createTime}}</p>
-                </div>
-
-                <div class="col-md-4 team-grid wow fadeInRight animated" data-wow-delay=".5s">
-                    <img src="images/t3.jpg" alt="" />
-                   
-                    <p>Posted on {{siteMainImage.createTime}}</p>
-                </div>
-                <div class="clearfix"> </div>
+        <div class="opinion">
+            <div class="container">
+                <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Leave Your Comment</h2>
+                <form>
+                    <input class="wow fadeInLeft animated" data-wow-delay=".5s" type="text" placeholder="Name" required="">
+                    <textarea class="wow fadeInLeft animated" data-wow-delay=".5s" placeholder="Message" required=""></textarea>
+                    <input class="wow fadeInRight animated" data-wow-delay=".5s" type="submit" value="SEND">
+                </form>
             </div>
         </div>
     </div>

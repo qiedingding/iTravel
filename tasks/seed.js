@@ -163,7 +163,7 @@ dbConnection().then(db => {
                         let ShanghaiImage = createImage(900002, "Shanghai", "Shanghai", "2016/12/02", "/public/images/shanghai.jpg", 200009,"landscape", "usr2", "blog2", "site2", "shanghai", "food1");
 
                         // image_3 Shenzhen
-                        let ShenzhenImage = createImage(900003, "Shenzhen", "Shenzhen", "2016/12/03", "/public/images/shenzhen.jpg",200009, "landscape", "usr3", "blog3", "site3", "shenzhen", "food1");
+                        let ShenzhenImage = createImage(900003, "Shenzhen", "Shenzhen", "2016/12/03", "/public/images/shenszhen.jpg",200009, "landscape", "usr3", "blog3", "site3", "shenzhen", "food1");
                         // food1
                         let foodImage1 = createImage(900011, "food1", "Beijing", "2016/12/01", "/public/images/food1.jpg",200009, "food", "usr1", "blog1", "site1", "beijing", "food1");
                         // food2
@@ -221,11 +221,11 @@ dbConnection().then(db => {
                                     }, function () {
                                         return db;
                                     }).then((addeddb) => {
-                                        return site.addSite("QianFoMountain", "N36°E117°", "JingShi road, JiNan, ShanDong", "Bus", "30￥", "6:00PM", "2016681367", "www.qianfoshan.com", "qianfoshan", 900011, 1, ["climb", "cable"], ["mountain", "famous", "JiNan"], 60020);
+                                        return site.addSite("QianFoMountain", 36, 117, "JingShi road, JiNan, ShanDong", "Bus", "30￥", "6:00PM", "2016681367", "www.qianfoshan.com", "qianfoshan", 900011, 1, ["climb", "cable"], ["mountain", "famous", "JiNan"], 60020);
                                     }).then((addedSite) => {
-                                        return site.addSite("DaMingLake", "N50°E120°", "MingHu road, JiNan, ShanDong", "Bus", "60￥", "6:00PM", "2016681367", "www.daminghu.com", "daminghu", 900012, 1, ["boat", "landscape"], ["lake", "famous", "JiNan", "XiaYuHe"], 60021);
+                                        return site.addSite("DaMingLake", 35, 120, "MingHu road, JiNan, ShanDong", "Bus", "60￥", "6:00PM", "2016681367", "www.daminghu.com", "daminghu", 900012, 1, ["boat", "landscape"], ["lake", "famous", "JiNan", "XiaYuHe"], 60021);
                                     }).then((addedSite) => {
-                                        return site.addSite("BaoTuFountain", "N45°E116°", "XiMen road, JiNan, ShanDong", "Bus", "50￥", "6:00PM", "2016681367", "www.baotuquan.com", "baotuquan", 900013, 1, ["seal", "tea"], ["fountain", "famous", "JiNan"], 60022);
+                                        return site.addSite("BaoTuFountain", 45, 116, "XiMen road, JiNan, ShanDong", "Bus", "50￥", "6:00PM", "2016681367", "www.baotuquan.com", "baotuquan", 900013, 1, ["seal", "tea"], ["fountain", "famous", "JiNan"], 60022);
                                     }).then((added) => {
                                         console.log("Done seeding for site!");
                                         return db.collection("blog").drop().then(function () {

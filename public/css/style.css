@@ -18,6 +18,11 @@ html, body{
 	background: #F4F7F9;
 }
 /*-- header --*/
+#map {
+  float:right;
+  height: 300px;
+  width: 50%;
+}
 .header{
 	position:relative;
 }
