@@ -2,21 +2,24 @@
 <div class="col-md-8">
     <form id="new-blog-form" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="title">blog Title</label>
+            <label for="title">Title</label>
             <br>
             <input type="text" id="new-blog-title" name="title" placeholder="blog Title" value="" required>
         </div>
         
         <div class="form-group">
-            <label for="content">blog Content</label>
+            {{!--<label for="content">blog Content</label>--}}
+            <label for="content" class="wow fadeInUp animated" data-wow-delay=".5s">Content</label>
             <br>
-            <textarea id="new-blog-content" name="content" rows="20" cols="50" required> </textarea>
+            <textarea id="new-blog-content" name="content" class="wow fadeInLeft animated" rows="20" cols="50" data-wow-delay=".5s" placeholder="Message" required=""></textarea>
+            {{!--<textarea id="new-blog-content" name="content" rows="20" cols="50" required> </textarea>--}}
         </div>
         <div class="form-group">
             <input id="upload-blog-picture" type="file" name="images" required>
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="create new blog">
+            <input class="wow fadeInRight animated" data-wow-delay=".5s" type="submit" value="Submit">
+            {{!--<input type="submit" class="btn btn-primary" value="create new blog">--}}
         </div>
     </form>
     <div>  
