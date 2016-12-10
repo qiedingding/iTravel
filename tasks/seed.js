@@ -163,7 +163,9 @@ dbConnection().then(db => {
                         let ShanghaiImage = createImage("900002", "Shanghai", "Shanghai", "2016/12/02", "/public/images/shanghai.jpg", "200009","landscape", "usr2", "blog2", "site2", "shanghai", "food1");
 
                         // image_3 Shenzhen
+
                         let ShenzhenImage = createImage("900003", "Shenzhen", "Shenzhen", "2016/12/03", "/public/images/shenszhen.jpg","200009", "landscape", "usr3", "blog3", "site3", "shenzhen", "food1");
+
                         // food1
                         let foodImage1 = createImage("900011", "food1", "Beijing", "2016/12/01", "/public/images/food1.jpg","200009", "food", "usr1", "blog1", "site1", "beijing", "food1");
                         // food2

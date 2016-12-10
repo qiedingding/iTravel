@@ -7,8 +7,8 @@
             </div>
             <div class="login-info">
                 <form name="loginForm" id="loginForm" method="post" action="/user/login">
-                    <input type="text" class="user" name="username" placeholder="username" required>
-                    <input type="password" name="password" class="lock" placeholder="Password" required>
+                    <input type="text" class="user" name="username" id="username" placeholder="username" >
+                    <input type="password" name="password" class="lock" id="password" placeholder="Password" required>
                     <div class="forgot-top-grids">
                         <div class="forgot-grid">
                             {{#if message }}
@@ -23,7 +23,7 @@
 
                         <div class="clearfix"></div>
                     </div>
-                    <input type="submit" name="Sign In" value="Login">
+                    <input type="submit" name="Sign In" value="Login" id="submitBtn">
                     <div class="signup-text">
                         <a href="/user/signup">Don't have an account? Create one now</a>
                     </div>

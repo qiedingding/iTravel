@@ -35,14 +35,14 @@ router.post('/login', passport.authenticate('local-login', {
 //user send register request
 router.post('/register', function(req, res){
     userData.getUserByName(req.body.username).then((user) => {
-        console.log(req.body.username + " "+req.body.password+" "+req.body.email);
+        console.log(req.body.username + "1 "+req.body.password+" 1"+req.body.email);
+        console.log(user);
         if (user != null) {
-            return done(null, false, req.flash('error', 'That username has been taken.'));
+           res.json({message:"username has been token"});
         } else {
-            let newUser = UserData.register(req.body.username, req.body.password,req.body.email);
+            let newUser = userData.register(req.body.username, req.body.password,req.body.email);
             return newUser.then((newUser) => {
-                console.log(123);
-                return done(null, newUser);
+                res.json({status:"success"});
             });
         }
     });
@@ -58,7 +58,13 @@ router.get("/profile", isLoggedIn, function (req, res, next) {
     let user = req.user;
     res.render("user/profile", {"user": user});
 });
+router.get('/isLoggedIn', function(req, res){
 
+    if (req.isAuthenticated()) {
+        console.log("login");
+        res.json({user:req.user});
+    }
+});
 // middleware, to check if user has login
 function isLoggedIn(req, res, next) {
     console.log("isLoggedIn function begin");
@@ -67,7 +73,7 @@ function isLoggedIn(req, res, next) {
         console.log("authenticated success");
         return next();
     }
-    // if they aren't redirect them tggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggo the home page
+    // if they aren't redirect them  the home page
     console.log("authenticated fail go to login page");
     res.redirect('/user/login');
 }

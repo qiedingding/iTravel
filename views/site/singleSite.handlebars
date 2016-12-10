@@ -1,11 +1,9 @@
-<div class="grid_3 grid_5 wow fadeInUp animated" data-wow-delay=".5s">
-    <div class="container">
-        <ol class="breadcrumb">
+<div class="container">
+    <ol class="breadcrumb">
             <li><a href="/">Home</a></li>
             <li><a href="/city/id/{{site.cityId}}">City</a></li>
             <li class="active">Site</li>
-        </ol>
-    </div>
+    </ol>
 </div>
 
 <div class="about">
@@ -99,7 +97,7 @@
     <div class="response wow fadeInUp animated" data-wow-delay=".5s">
         <div class="container">
             <h3>Comments</h3>
-            <div class="media response-info">
+            <div id="commentContainer" class="media response-info">
                 {{#each siteComments}}
                     <div class="media-left response-text-left">
                         <img class="media-object" src="../../public/images/user.png" alt="Figure" style="width:50px; height:50px;">
@@ -120,12 +118,20 @@
         <div class="opinion">
             <div class="container">
                 <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Leave Your Comment</h2>
-                <form>
-                    <input class="wow fadeInLeft animated" data-wow-delay=".5s" type="text" placeholder="Name" required="">
-                    <textarea class="wow fadeInLeft animated" data-wow-delay=".5s" placeholder="Message" required=""></textarea>
-                    <input class="wow fadeInRight animated" data-wow-delay=".5s" type="submit" value="SEND">
+
+                <div id="idHidden">
+                    {{site._id}}
+                </div>
+
+                <form id="comment-Form">
+                    <textarea id="siteComment" class="wow fadeInLeft animated" data-wow-delay=".5s" placeholder="Message" required=""></textarea>
+                    <input class="wow fadeInRight animated" data-wow-delay=".5s" type="submit" value="Submit">
                 </form>
+
+                <div class="alert alert-danger hidden" id="form-alert">
+                </div>
             </div>
         </div>
     </div>
+    <script src="../../public/js/site.js"></script>
 </div>
