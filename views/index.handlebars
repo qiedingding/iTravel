@@ -93,9 +93,11 @@
         <div class="information-grids">
             <div class="col-md-4 information-grid wow fadeInLeft animated" data-wow-delay=".5s">
                 <div class="information-info">
+                    {{#if returnValue.clist.0.mainImage}}
                     <div class="information-grid-img">
                         <img src="../..{{returnValue.clist.0.mainImage.path}}" alt="" />
                     </div>
+                    {{/if}}
                     <div class="information-grid-info">
                         <a href="city/id/{{returnValue.clist.0._id}}"><h4>{{returnValue.clist.0.name}} </h4></a>
                         <p>{{returnValue.clist.0.description}}.</p>
@@ -109,17 +111,23 @@
                         <a href="city/id/{{returnValue.clist.1._id}}"><h4>{{returnValue.clist.1.name}} </h4></a>
                         <p>{{returnValue.clist.1.description}}.</p>
                     </div>
+                    {{#if returnValue.clist.1.mainImage}}
                     <div class="information-grid-img">
                         <img src="../..{{returnValue.clist.1.mainImage.path}}" alt="" />
                     </div>
+                    {{else}}
+                        image error!! {{returnValue.clist.1.mainImage}}
+                    {{/if}}
                 </div>
             </div>
             <!-- city three -->
             <div class="col-md-4 information-grid wow fadeInRight animated" data-wow-delay=".5s">
                 <div class="information-info">
+                    {{#if returnValue.clist.2.mainImage}}
                     <div class="information-grid-img">
                         <img src="../..{{returnValue.clist.2.mainImage.path}}" alt="" />
                     </div>
+                    {{/if}}
                     <div class="information-grid-info">
                         <a href="city/id/{{returnValue.clist.2._id}}"><h4>{{returnValue.clist.2.name}} </h4></a>
                         <p>{{returnValue.clist.2.description}}.</p>

@@ -102,27 +102,19 @@ dbConnection().then(db => {
                 let admin_lxTag = ["team member", "admin"];
                 let admin_lxPwd = bcrypt.hashSync("xuanli9939");
                 let admin_lx = createUser("5622121","admin_lx", admin_lxPwd, "PenguingXuan", "male", "1993/09/21",
-<<<<<<< HEAD
                     "admin", "5512477786", "xli100@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", "100009", admin_lxTag);
-=======
-                    "admin", "5512477786", "xli100@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100009, admin_lxTag);
->>>>>>> zihao#4
-
                 // username admin_lyr
                 let admin_lyrTag = ["team member", "admin"];
                 let admin_lyrPwd = bcrypt.hashSync("yiranli6200");
                 let admin_lyr = createUser("5622122","admin_lyr", admin_lyrPwd, "liyiran", "male", "1992/01/11",
-<<<<<<< HEAD
+
                     "admin", "5512477786", "yli@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", "100009", admin_lyrTag);
-=======
-                    "admin", "5512477786", "yli@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100009, admin_lyrTag);
->>>>>>> zihao#4
+
 
                 // username testUser
                 let testTag = ["test user", "test"];
                 let testPwd = bcrypt.hashSync("test12345");
                 let test1 = createUser("5622123","test1", testPwd, "test1", "male", "1992/01/11",
-<<<<<<< HEAD
                     "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", "100001", testTag);
 
                 let test2 = createUser("5622124","test2", testPwd, "test2", "male", "1992/01/11",
@@ -133,18 +125,7 @@ dbConnection().then(db => {
 
                 let test4 = createUser("5622126","test4", testPwd, "test4", "male", "1992/01/11",
                     "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", "100001", testTag);
-=======
-                    "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100001, testTag);
 
-                let test2 = createUser("5622124","test2", testPwd, "test2", "male", "1992/01/11",
-                    "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100001, testTag);
-
-                let test3 = createUser("5622125","test3", testPwd, "test3", "male", "1992/01/11",
-                    "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100001, testTag);
-
-                let test4 = createUser("5622126","test4", testPwd, "test4", "male", "1992/01/11",
-                    "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100001, testTag);
->>>>>>> zihao#4
 
                 // add user into array
                 listOfUsers.push(admin_lx, admin_lyr);
@@ -254,7 +235,6 @@ dbConnection().then(db => {
                                         return db;
                                     }, function () {
                                         return db;
-<<<<<<< HEAD
                                     }).then((db) => {
                                         return db.createCollection("site");
                                     }).then(function (siteCollection) {
@@ -392,7 +372,7 @@ dbConnection().then(db => {
                                                                 // blod_3 Shenzhen
                                                                 let blog3 = createBlog("50333", "blog3", blogContent, "900023", "conclusions", "300001",["tag1", "tag2"],"5622121");
                                                                 list.push(blog1, blog2, blog3);
-                                                                return blogCollection.insertMany(list).then(() => {
+                                                                return blogCollection.insergtMany(list).then(() => {
                                                                     console.log("Done seeding for blog!");
                                                                     console.log("Done seeding database!");
                                                         
