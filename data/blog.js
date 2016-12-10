@@ -44,12 +44,12 @@ let exportedMethods = {
             return blogCollection.find({}).toArray();
         })
         .then((blogList)=>{
-        var promises = [];
-        var imagesPath = []
+        let promises = [];
+        let imagesPath = [];
         for (let i = 0, len = blogList.length; i < len; i++) {
             promises.push(imageData.getImageById(blogList[i].mainImage).then((image) => {
                 imagesPath[i] = image.path
-            }).catch(e=>{
+            }).catch((e)=>{
                 console.log(e);
                 imagesPath[i] = null; //if not have image, set to null
             }));
