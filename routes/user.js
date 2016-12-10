@@ -35,8 +35,6 @@ router.post('/login', passport.authenticate('local-login', {
 //user send register request
 router.post('/register', function(req, res){
     userData.getUserByName(req.body.username).then((user) => {
-        console.log(req.body.username + "1 "+req.body.password+" 1"+req.body.email);
-        console.log(user);
         if (user != null) {
            res.json({message:"username has been token"});
         } else {

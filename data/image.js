@@ -30,13 +30,11 @@ let exportedMethods = {
     getAllImages() {
         return image().then((imageCollection) => {
             return imageCollection.find({}).toArray();
-            console.log(imageCollection)
         });
     },
 
     getImageById(id) {
         if (!id) return Promise.reject ("You must provide an id.");
-        console.log(id);
         return image().then((imageCollection) => {
             return imageCollection.findOne({ _id: id }).then((image) => {
 

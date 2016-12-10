@@ -25,7 +25,6 @@ module.exports = function (passport) {
                 } else {
                     let newUser = UserData.register(username, password);
                     return newUser.then((newUser) => {
-                        console.log(123);
                         return done(null, newUser);
                     });
                 }
@@ -38,9 +37,7 @@ module.exports = function (passport) {
             passReqToCallback: true // allows us to pass back the entire request to the callback
         },
         function (req, username, password, done) {
-            console.log("loginBegin" + username + " pwd = " + password);
             UserData.getUserByName(username).then((user) => {
-                console.log(user);
                 if (!user) {
                     return done(null, false, {message: 'Incorrect username and password.'});
                 }
@@ -48,7 +45,6 @@ module.exports = function (passport) {
                     if (res === true) {
                         return done(null, user);
                     } else {
-                        console.log("not maches the hash");
                         return done(null, false, {message: 'Incorrect password.'});
                     }
                 });
