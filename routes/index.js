@@ -30,8 +30,10 @@ const constructorMethod = (app) => {
     passport.deserializeUser(function (user, done) {
         done(null, user);
     });
-
-
+    /* ***************** about *****************     */
+    app.use("/about", (req, res) => {
+        res.render("about")
+    });
     /* ***************** user *****************     */
     app.use("/user", userRoutes);
 
@@ -79,7 +81,6 @@ const constructorMethod = (app) => {
         })
         .then(() => {
             blogData.getAllBlogsWithImage().then((bloglist) => {
-                console.log(bloglist);
                 returnValue.blist = bloglist;
             })
         })
@@ -87,7 +88,6 @@ const constructorMethod = (app) => {
               res.render('index',{returnValue:returnValue});
         })
         .catch(e=>{
-            console.log(e);
             res.status(400).json({"error":e});
         });
     });

@@ -98,6 +98,10 @@ html, body{
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
     background: none !important;
 }
+.selfphoto{
+    height: 466px;
+    width: 350px;
+}
 div#bs-example-navbar-collapse-1 {
     padding: 0;
 }
