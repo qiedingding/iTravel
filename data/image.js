@@ -138,7 +138,7 @@ let exportedMethods = {
                 siteId: siteId,
                 cityId: cityId
             };
-
+                
             return imageCollection.insertOne(newImage).then((newInsertInformation) => {
                 return newInsertInformation.insertedId;
             });

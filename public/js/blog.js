@@ -24,9 +24,13 @@
         xhr.responseType = 'text';
         xhr.onreadystatechange = function() {//Call a function when the state changes.
             if(this.readyState == 4 && this.status == 200) {
-                console.log(JSON.parse(this.responseText));
+                let blogInfo = JSON.parse(this.responseText)
+                console.log(blogInfo);
                 uploadAlert.addClass('hidden');
                 uploadSuccess.removeClass('hidden');
+                setTimeout(function(){ 
+                    location.href="/blog/id/"+blogInfo._id; 
+                }, 500);                
             }
             else if(this.readyState == 4 && this.status == 400) {
                 console.log(JSON.parse(this.responseText));
