@@ -6,6 +6,7 @@ const express = require('express');
 const router = express.Router();
 const data = require("../data");
 const blogData = data.blog;
+const imageData = data.image;
 const uuid = require('node-uuid');
 const bodyParser = require("body-parser");
 var path = require('path'),fs = require('fs');
@@ -15,7 +16,7 @@ var multer  = require('multer')
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
       //console.log(__dirname);
-      cb(null, path.join(__dirname,'/..','/public/uploads')); // get the right path!
+      cb(null, path.join(__dirname,'/..','/public/images')); // get the right path!
   },
   filename: function (req, file, cb) {
     //console.log("file@@@",file);
@@ -23,7 +24,7 @@ var storage = multer.diskStorage({
     let type = file.mimetype.substring(idx+1);
     type = type.toLowerCase();
     
-    cb(null, uuid.v1()+ '.' + type);
+    cb(null, 'public/images'+ uuid.v1()+ '.' + type);
   }
 })
 
@@ -42,11 +43,20 @@ var upload = multer({ storage: storage, dest:"public/uploads", fileFilter:fileFi
 router.get("/", (req, res) => {
     blogData.getAllBlogs().then((blogList) => {
         console.log(blogList);
-        res.render('blog/blogList', { blogList: blogList });
+        return (blogList);
+        //res.render('blog/blogList', { blogList: blogList });
         // res.json(blogInfo);
-    }, () => {
-        res.sendStatus(500);
-    });
+    })
+    .then((blogList)=>{
+        var promises = [];
+
+        for (let i = 0, len = blogList.length; i < len; i++) {
+            promises.push(imageData.getImageById(blogList[i].mainImage).then((image) => {
+                
+            }));
+        }
+            Promise.all(promises).then(() => returnValue.clist = clist).then(
+    })
 });
 
 router.get("/new", (req,res)=>{
@@ -79,6 +89,7 @@ router.post("/new",upload.single('images'),(req,res)=>{
         })
         .then((id)=>{
            let updatedblog = {}
+           imageData.addImage(imageInfo.name, imageInfo.address, imageInfo.createTime, imageInfo.type, imageInfo.userId, imageInfo.blogId, imageInfo.siteId, imageInfo.cityId)
            updatedblog.mainImage = req.file.filename;
            return blogData.updateBlog(id,updatedblog);
         })
@@ -107,8 +118,9 @@ router.get("/id/:id", (req, res) => {
     blogData.getBlogById(req.params.id).then((blog) => {
         console.log(blog);
         res.render('blog/blogInfo', { blog: blog });
-    }).catch(() => {
-        res.status(404).json({ error: "blog not found." });
+    }).catch((e) => {
+        console.log(e);
+        res.status(404).json({ error: e });
     });
 });
 

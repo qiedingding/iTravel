@@ -101,28 +101,28 @@ dbConnection().then(db => {
                 // username admin_lx
                 let admin_lxTag = ["team member", "admin"];
                 let admin_lxPwd = bcrypt.hashSync("xuanli9939");
-                let admin_lx = createUser(5622121,"admin_lx", admin_lxPwd, "PenguingXuan", "male", "1993/09/21",
+                let admin_lx = createUser("5622121","admin_lx", admin_lxPwd, "PenguingXuan", "male", "1993/09/21",
                     "admin", "5512477786", "xli100@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100009, admin_lxTag);
 
                 // username admin_lyr
                 let admin_lyrTag = ["team member", "admin"];
                 let admin_lyrPwd = bcrypt.hashSync("yiranli6200");
-                let admin_lyr = createUser(5622122,"admin_lyr", admin_lyrPwd, "liyiran", "male", "1992/01/11",
+                let admin_lyr = createUser("5622122","admin_lyr", admin_lyrPwd, "liyiran", "male", "1992/01/11",
                     "admin", "5512477786", "yli@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100009, admin_lyrTag);
 
                 // username testUser
                 let testTag = ["test user", "test"];
                 let testPwd = bcrypt.hashSync("test12345");
-                let test1 = createUser(5622123,"test1", testPwd, "test1", "male", "1992/01/11",
+                let test1 = createUser("5622123","test1", testPwd, "test1", "male", "1992/01/11",
                     "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100001, testTag);
 
-                let test2 = createUser(5622124,"test2", testPwd, "test2", "male", "1992/01/11",
+                let test2 = createUser("5622124","test2", testPwd, "test2", "male", "1992/01/11",
                     "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100001, testTag);
 
-                let test3 = createUser(5622125,"test3", testPwd, "test3", "male", "1992/01/11",
+                let test3 = createUser("5622125","test3", testPwd, "test3", "male", "1992/01/11",
                     "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100001, testTag);
 
-                let test4 = createUser(5622126,"test4", testPwd, "test4", "male", "1992/01/11",
+                let test4 = createUser("5622126","test4", testPwd, "test4", "male", "1992/01/11",
                     "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100001, testTag);
 
                 // add user into array
@@ -157,20 +157,26 @@ dbConnection().then(db => {
 
                         // image_1 Beijing
 
-                        let BeijingImage = createImage(900001, "Beijing", "Beijing", "2016/12/01", "/public/images/beijing.jpg",200009, "landscape", "usr1", "blog1", "site1", "beijing", "food1");
+                        let BeijingImage = createImage("900001", "Beijing", "Beijing", "2016/12/01", "/public/images/beijing.jpg","200009", "landscape", "usr1", "blog1", "site1", "beijing", "food1");
 
                         // image_2 Shanghai
-                        let ShanghaiImage = createImage(900002, "Shanghai", "Shanghai", "2016/12/02", "/public/images/shanghai.jpg", 200009,"landscape", "usr2", "blog2", "site2", "shanghai", "food1");
+                        let ShanghaiImage = createImage("900002", "Shanghai", "Shanghai", "2016/12/02", "/public/images/shanghai.jpg", "200009","landscape", "usr2", "blog2", "site2", "shanghai", "food1");
 
                         // image_3 Shenzhen
-                        let ShenzhenImage = createImage(900003, "Shenzhen", "Shenzhen", "2016/12/03", "/public/images/shenszhen.jpg",200009, "landscape", "usr3", "blog3", "site3", "shenzhen", "food1");
+                        let ShenzhenImage = createImage("900003", "Shenzhen", "Shenzhen", "2016/12/03", "/public/images/shenszhen.jpg","200009", "landscape", "usr3", "blog3", "site3", "shenzhen", "food1");
                         // food1
-                        let foodImage1 = createImage(900011, "food1", "Beijing", "2016/12/01", "/public/images/food1.jpg",200009, "food", "usr1", "blog1", "site1", "beijing", "food1");
+                        let foodImage1 = createImage("900011", "food1", "Beijing", "2016/12/01", "/public/images/food1.jpg","200009", "food", "usr1", "blog1", "site1", "beijing", "food1");
                         // food2
-                        let foodImage2 = createImage(900012, "food2", "Shenzhen", "2016/12/01", "/public/images/food1.jpg",200009, "food", "usr1", "blog1", "site1", "beijing", "food1");
+                        let foodImage2 = createImage("900012", "food2", "Shenzhen", "2016/12/01", "/public/images/food1.jpg","200009", "food", "usr1", "blog1", "site1", "beijing", "food1");
                         // foo3
-                        let foodImage3 = createImage(900013, "food3", "Shenzhen", "2016/12/01", "/public/images/food1.jpg",200009, "food", "usr1", "blog1", "site1", "beijing", "food1");
-
+                        let foodImage3 = createImage("900013", "food3", "Shenzhen", "2016/12/01", "/public/images/food1.jpg","200009", "food", "usr1", "blog1", "site1", "beijing", "food1");
+                        
+                        let blogImage1 = createImage("900021", "blog1", "Shenzhen", "2016/12/01", "/public/images/g1.jpg","200009", "blog", "usr1", 50331, null, null, null);
+                        
+                        let blogImage2 = createImage("900022", "blog2", "Shenzhen", "2016/12/01", "/public/images/g2.jpg","200009", "blog", "usr1", 50331, null, null, null);
+                        
+                        let blogImage3 = createImage("900023", "blog3", "Shenzhen", "2016/12/01", "/public/images/g3.jpg","200009", "blog", "usr1", 50331, null, null, null);
+                        
                         listOfImages.push(BeijingImage, ShanghaiImage, ShenzhenImage);
                         listOfImages.push(foodImage1, foodImage2, foodImage3);
                         return imageCollection.insertMany(listOfImages).then(() => {
@@ -202,15 +208,15 @@ dbConnection().then(db => {
 
                                 // city_1 Beijing
                                 let BeijingTag = ["capital", "tian'anmen"];
-                                let BeijingCity = createCity(60020, "Beijing", "Beijing", "Beijing Description", "Beijing Traffic", "Beijing Weather", "Beijing History", "Beijing Culture", "RMB", 900001, BeijingTag);
+                                let BeijingCity = createCity("60020", "Beijing", "Beijing", "Beijing Description", "Beijing Traffic", "Beijing Weather", "Beijing History", "Beijing Culture", "RMB", 900001, BeijingTag);
 
                                 // city_2 Shanghai
                                 let ShanghaiTag = ["Shanghai Shibohui", "Dofangmingzhu"];
-                                let ShanghaiCity = createCity(60021, "Shanghai", "Shanghai", "Shanghai Description", "Shanghai Traffic", "Shanghai Weather", "Shanghai History", "Shanghai Culture", "RMB", 900002, ShanghaiTag);
+                                let ShanghaiCity = createCity("60021", "Shanghai", "Shanghai", "Shanghai Description", "Shanghai Traffic", "Shanghai Weather", "Shanghai History", "Shanghai Culture", "RMB", 900002, ShanghaiTag);
 
                                 // city_3 Shenzhen
                                 let ShenzhenTag = ["guandong", "tequ"];
-                                let ShenzhenCity = createCity(60022, "Shenzhen", "Shenzhen", "Shenzhen Description", "Shenzhen Traffic", "Shenzhen Weather", "Shenzhen History", "Shenzhen Culture", "RMB", 900003, ShenzhenTag);
+                                let ShenzhenCity = createCity("60022", "Shenzhen", "Shenzhen", "Shenzhen Description", "Shenzhen Traffic", "Shenzhen Weather", "Shenzhen History", "Shenzhen Culture", "RMB", 900003, ShenzhenTag);
 
                                 //
                                 listOfCities.push(BeijingCity, ShanghaiCity, ShenzhenCity);
@@ -251,14 +257,16 @@ dbConnection().then(db => {
                                             };
 
                                             let list = [];
+                                            var blogContent =`Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit estibulum aliquam neque nibh, sed accumsan nulla ornare sit amet`;
+
                                             // blog_1 Beijing
-                                            let blog1 = createBlog(50331, "blog1", "content1", 900001,"conclusions", 300001,["tag1", "tag2"],5622121);
+                                            let blog1 = createBlog("50331", "blog1", blogContent, "900021","conclusions", "300001",["tag1", "tag2"],"5622121");
 
                                             // blog_2 Shanghai
-                                            let blog2 = createBlog(50332, "blog2", "content2", 900001, "conclusions", 300001,["tag1", "tag2"],5622121);
+                                            let blog2 = createBlog("50332", "blog2", blogContent, "900022", "conclusions", "300001",["tag1", "tag2"],"5622121");
 
                                             // blod_3 Shenzhen
-                                            let blog3 = createBlog(50333, "blog3", "content3", 900001, "conclusions", 300001,["tag1", "tag2"],5622121);
+                                            let blog3 = createBlog("50333", "blog3", blogContent, "900023", "conclusions", "300001",["tag1", "tag2"],"5622121");
 
                                             list.push(blog1, blog2, blog3);
                                             return blogCollection.insertMany(list).then(() => {
@@ -287,11 +295,11 @@ dbConnection().then(db => {
 
                                                     let listOfComments = [];
 
-                                                    let BeijingComment = createComment("good", "2016/12/01", "5", "usr1", "target1", 50331, "site1", "city1");
+                                                    let BeijingComment = createComment("good", "2016/12/01", "5", "usr1", "target1", "50331", "site1", "city1");
 
-                                                    let ShanghaiComment = createComment("just soo", "2016/12/02", "3", "usr2", "target2", 50332, "site2", "city2");
+                                                    let ShanghaiComment = createComment("just soo", "2016/12/02", "3", "usr2", "target2", "50332", "site2", "city2");
 
-                                                    let ShenzhenComment = createComment("boring", "2016/12/03", "1", "usr3", "target3", 50333, "site3", "city3");
+                                                    let ShenzhenComment = createComment("boring", "2016/12/03", "1", "usr3", "target3", "50333", "site3", "city3");
 
                                                     //
                                                     listOfComments.push(BeijingComment, ShanghaiComment, ShenzhenComment);

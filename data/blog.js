@@ -33,14 +33,12 @@ let exportedMethods = {
             return blogCollection.find({}).toArray();
         });
     },
-
     getBlogById(id) {
         if (!id) return Promise.reject ("You must provide an id.");
-
         return blog().then((blogCollection) => {
+            console.log("get blog by id: "+id);
             return blogCollection.findOne({ _id: id }).then((blog) => {
                 if (!blog) return Promise.reject (`blog with id: ${id} is not found.`);
-
                 return blog;
             });
         });
