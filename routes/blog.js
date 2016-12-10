@@ -24,7 +24,7 @@ var storage = multer.diskStorage({
     let type = file.mimetype.substring(idx+1);
     type = type.toLowerCase();
     
-    cb(null, 'public/images'+ uuid.v1()+ '.' + type);
+    cb(null,  uuid.v1()+ '.' + type);
   }
 })
 
@@ -41,8 +41,8 @@ function fileFilter (req,file,cb){
 var upload = multer({ storage: storage, dest:"public/uploads", fileFilter:fileFilter});
 
 router.get("/", (req, res) => {
-    blogData.getAllBlogs().then((blogList) => {
-        console.log(blogList);
+    blogData.getAllBlogsWithImage().then((blogList) => {
+        console.log("all blog: ",blogList);
         res.render('blog/blogList', { blogList: blogList });
     })
     .catch(e=>{
@@ -57,8 +57,8 @@ router.get("/new", (req,res)=>{
 
 router.post("/new",upload.single('images'),(req,res)=>{
     console.log("POST /blog/new!");
-    console.log(req.body); //get all text content
-    console.log(req.file); // get all files content
+    //console.log(req.body); //get all text content
+    //console.log(req.file); // get all files content
     let blogInfo = req.body;
     if (!blogInfo) {
         res.status(400).json({ error: "You must provide data to create a new blog." });
@@ -77,12 +77,22 @@ router.post("/new",upload.single('images'),(req,res)=>{
        
     blogData.addBlog(blogInfo)
         .then((newblog) => {
+            // console.log("add new blog ####",newblog);
             return newblog._id;
         })
         .then((id)=>{
-           let updatedblog = {}
-           imageData.addImage(imageInfo.name, imageInfo.address, imageInfo.createTime, imageInfo.type, imageInfo.userId, imageInfo.blogId, imageInfo.siteId, imageInfo.cityId)
-           updatedblog.mainImage = req.file.filename;
+            let path ='/public/images/'+req.file.filename;
+           return imageData.addImage(req.file.filename,path,new Date(),'blog',"userid",id,null,null).then(image => {
+               var info = [id,image];
+               return info;
+           });
+        })
+        .then(info => {
+            // console.log("info!!!!: ", info)
+            let updatedblog = {};
+            let id = info[0];
+            let imageId= info[1]._id;
+            updatedblog.mainImage = imageId;        
            return blogData.updateBlog(id,updatedblog);
         })
         .then((blogInfo)=>{
@@ -107,7 +117,7 @@ router.get("/:title", (req, res) => {
 });
 
 router.get("/id/:id", (req, res) => {
-    blogData.getBlogById(req.params.id).then((blog) => {
+    blogData.getBlogByIdWithImage(req.params.id).then((blog) => {
         console.log(blog);
         res.render('blog/blogInfo', { blog: blog });
     }).catch((e) => {
