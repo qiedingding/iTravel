@@ -7,6 +7,7 @@ const express = require('express');
 const router = express.Router();
 const data = require("../data");
 const commentData = data.comment;
+const userData = data.user;
 // router get 顺序？
 
 
@@ -20,6 +21,30 @@ router.get("/", (req, res) => {
         res.sendStatus(500);
     });
 });
+
+// post-1: Add a comment(at least provide a comment content ).
+router.post("/", isLoggedIn, (req, res) => {
+    let commentInfo = req.body;
+
+    if (!commentInfo) {
+        res.status(400).json({ error: "You must provide data to create a new comment." });
+        return;
+    }
+    if (!commentInfo.content) {
+        res.status(400).json({ error: "You must at least provide content of the comment." });
+        return;
+    }
+   
+    commentData.addComment(commentInfo.content, commentInfo.createTime, commentInfo.stars, req.user.userId, commentInfo.target, commentInfo.blogId, commentInfo.siteId, commentInfo.cityId)
+        .then((newComment) => {
+            newComment.userId = req.user.username;
+            res.json({success:true, message: newComment});
+        }).catch((e) => {
+            res.json({success:false, message: e});
+            //response.send("<div>" + e + "</div>");
+    });
+});
+
 
 // get-2: Return the comment information of the given comment name.
 router.get("/:name", (req, res) => {
@@ -53,7 +78,6 @@ router.get("/userId/:userId", (req, res) => {
 
 // get-5: Return all the comment information of the given blog id
 router.get("/blogId/:blogId", (req, res) => {
-
     commentData.getCommentByBlogId(req.params.blogId).then((commentList) => {
         //res.render('comment/commentList', { list: commentList });
         console.log(commentList)
@@ -61,26 +85,6 @@ router.get("/blogId/:blogId", (req, res) => {
     }).catch(() => {
         res.status(404).json({ error: "comment not found." });
     });
-});
-
-// post-1: Add a comment(at least provide a comment content ).
-router.post("/", (req, res) => {
-    let commentInfo = req.body;
-
-    if (!commentInfo) {
-        res.status(400).json({ error: "You must provide data to create a new comment." });
-        return;
-    }
-    if (!commentInfo.content) {
-        res.status(400).json({ error: "You must at least provide content of the comment." });
-        return;
-    }
-    commentData.addComment(commentInfo.content, commentInfo.createTime, commentInfo.stars, commentInfo.userId, commentInfo.target, commentInfo.blogId, commentInfo.siteId, commentInfo.cityId)
-        .then((newComment) => {
-            res.json(newComment);
-        }, () => {
-            res.sendStatus(500);
-        });
 });
 
 // put-1: Update comment with the given comment id.
@@ -138,5 +142,17 @@ router.delete("/stars/:id", (req, res) => {
         res.status(404).json({ error: "comment not found." });
     });
 });
+
+function isLoggedIn(req, res, next) {
+    console.log("isLoggedIn function begin");
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated()) {
+        console.log("authenticated success");
+        return next();
+    }
+    // if they aren't redirect them to the home page
+    console.log("authenticated fail go to login page");
+    res.json({success: false});
+}
 
 module.exports = router;

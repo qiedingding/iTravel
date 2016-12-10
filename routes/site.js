@@ -24,6 +24,7 @@ router.get("/siteId/:id", (req, res) => {
             commentData.getCommentBySiteId(req.params.id).then((commentList) => {
                 let promises = [];
                 for (let i = 0, len = commentList.length; i < len; i++) {
+                    console.log(commentList[i].userId);
                     promises.push(userData.getUserById(commentList[i].userId).then((user) => {
                        commentList[i].userId = user.username;
                     }));

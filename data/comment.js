@@ -57,7 +57,7 @@ let exportedMethods = {
         if (!siteId) return Promise.reject ("You must provide a siteId.");
 
         return comment().then((commentCollection) => {
-            return commentCollection.find({ siteId: siteId }).toArray().then((commentList) => {
+            return commentCollection.find({siteId: siteId}).toArray().then((commentList) => {
                 if (!commentList) return Promise.reject ('comment named ${userId} is not found.');
                 return commentList;
             });
@@ -66,7 +66,6 @@ let exportedMethods = {
     
     getCommentByBlogId(blogId) {
         if (!blogId) return Promise.reject ("You must provide a blogId.");
-        console.log(blogId);
         return comment().then((commentCollection) => {
             return commentCollection.find({ "blogId": blogId }).toArray().then((commentList) => {
                 if (!commentList) return Promise.reject ('comment with blogId of ${blogId} is not found.');
