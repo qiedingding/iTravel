@@ -68,7 +68,7 @@ let exportedMethods = {
         if (!id) return Promise.reject ("You must provide a belongToId.");
 
         return comment().then((commentCollection) => {
-            return commentCollection.find({ siteId: siteId }).toArray().then((commentList) => {
+            return commentCollection.find({belongToId: id}).toArray().then((commentList) => {
                 if (!commentList) return Promise.reject ('comment named ${siteId} is not found.');
                 return commentList;
             });
