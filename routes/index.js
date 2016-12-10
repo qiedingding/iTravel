@@ -65,9 +65,19 @@ const constructorMethod = (app) => {
                 promises.push(imageData.getImageById(citylist[i].mainImage).then((image) => {
                     let c = createCityDTO(citylist[i]._id, citylist[i].name, image,citylist[i].description);
                     clist.push(c);
-                }));
-            }
-            Promise.all(promises).then(() => returnValue.clist = clist).then(() => {
+                }))
+                .catch(e=>{
+                    console.log(e);
+                    let c = createCityDTO(citylist[i]._id, citylist[i].name, null,citylist[i].description);
+                    clist.push(c);
+                });
+            };
+            Promise.all(promises).then(() => {
+                returnValue.clist = clist
+                return returnValue
+            });
+        })
+        .then((returnValue) => {
                 blogData.getAllBlogs().then((bloglist) => {
                     let blist = [];
                     let createBlogDTO = (id, title, mainImage) => {
@@ -82,13 +92,24 @@ const constructorMethod = (app) => {
                         promises.push(imageData.getImageById(bloglist[i].mainImage).then((image) => {
                             let c = createBlogDTO(bloglist[i]._id, bloglist[i].title, image);
                             blist.push(c);
+                        }).catch(e=>{
+                            console.log(e);
+                            let c = createBlogDTO(bloglist[i]._id, bloglist[i].title, null);
+                            blist.push(c);
                         }));
                     }
-                    Promise.all(promises).then(() => returnValue.blist = blist).then(() => {
-                        res.render("index", {returnValue: returnValue});
+                    Promise.all(promises).then(() => {
+                        returnValue.blist = blist
+                        return returnValue;
                     });
-                });
-            });
+            })
+        })
+        .then(returnValue=>{
+              res.render('index',{returnValue:returnValue});
+        })
+        .catch(e=>{
+            console.log(e);
+            res.status(400).json({"error":e});
         });
     });
     /* ***************** not found *****************     */

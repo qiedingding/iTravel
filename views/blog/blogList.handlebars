@@ -18,11 +18,13 @@
             </div>
             <div class="col-md-8 blog-top-left-grid">
                 <div class="left-blog">
-                    {{#each blogList}}
+                    {{#each blogList }}
                     <div class="blog-left">
+                        {{#if imagePath}}
                         <div class="blog-left-left wow fadeInUp animated" data-wow-delay=".5s">
-                            <a href="/blog/id/{{_id}}"><img src="../../{{mainImage}}" alt="blog main Image" /></a>
+                            <a href="/blog/id/{{_id}}"><img src="../..{{imagePath}}" alt="blog main Image" /></a>
                         </div>
+                        {{/if}}
                         <div class="blog-left-right wow fadeInUp animated" data-wow-delay=".5s">
                             <a href="/blog/id/{{_id}}">{{title}} </a>
                             <p>{{content}}</p>
