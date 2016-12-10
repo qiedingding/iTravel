@@ -79,6 +79,7 @@ const constructorMethod = (app) => {
         })
         .then(() => {
             blogData.getAllBlogsWithImage().then((bloglist) => {
+                console.log(bloglist);
                 returnValue.blist = bloglist;
             })
         })
