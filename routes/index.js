@@ -60,14 +60,30 @@ const constructorMethod = (app) => {
                     name: name
                 }
             };
+            console.log(citylist);
             let promises = [];
             for (let i = 0, len = citylist.length; i < len; i++) {
+
+                console.log(typeof citylist[i].mainImage)
+                console.log(citylist[i].mainImage)
                 promises.push(imageData.getImageById(citylist[i].mainImage).then((image) => {
+        
                     let c = createCityDTO(citylist[i]._id, citylist[i].name, image,citylist[i].description);
+                    // console.log('city:::::', c);
+                    clist.push(c);
+                })
+                .catch(e=>{
+                    console.log(e);
+                    let c = createCityDTO(citylist[i]._id, citylist[i].name, null,citylist[i].description);
                     clist.push(c);
                 }));
-            }
-            Promise.all(promises).then(() => returnValue.clist = clist).then(() => {
+            };
+            Promise.all(promises).then(() => {
+                returnValue.clist = clist
+                return returnValue
+            });
+        })
+        .then((returnValue) => {
                 blogData.getAllBlogs().then((bloglist) => {
                     let blist = [];
                     let createBlogDTO = (id, title, mainImage) => {
@@ -82,13 +98,25 @@ const constructorMethod = (app) => {
                         promises.push(imageData.getImageById(bloglist[i].mainImage).then((image) => {
                             let c = createBlogDTO(bloglist[i]._id, bloglist[i].title, image);
                             blist.push(c);
+                        }).catch(e=>{
+                            console.log(e);
+                            let c = createBlogDTO(bloglist[i]._id, bloglist[i].title, null);
+                            blist.push(c);
                         }));
                     }
-                    Promise.all(promises).then(() => returnValue.blist = blist).then(() => {
-                        res.render("index", {returnValue: returnValue});
+                    Promise.all(promises).then(() => {
+                        returnValue.blist = blist
+                        return returnValue;
                     });
-                });
-            });
+            })
+        })
+        .then(returnValue=>{
+              console.log("return value to index:  ",returnValue); //???undefined
+              res.render('index',{returnValue:returnValue});
+        })
+        .catch(e=>{
+            console.log(e);
+            res.status(400).json({"error":e});
         });
     });
     /* ***************** not found *****************     */
@@ -98,8 +126,6 @@ const constructorMethod = (app) => {
 
     /* ***************** passport *****************     */
     function isLoggedIn(req, res, next) {
-        console.log("isLoggedIn function begin");
-        // if user is authenticated in the session, carry on
         if (req.isAuthenticated()) {
             console.log("authenticated success");
             return next();

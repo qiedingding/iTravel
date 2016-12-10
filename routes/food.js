@@ -6,6 +6,9 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const foodData = data.food;
+const imageData = data.image;
+const userData = data.user;
+const commentData = data.comment;
 
 router.get("/", (req, res) => {
     foodData.getAllFood().then((foodList) => {
@@ -17,7 +20,19 @@ router.get("/", (req, res) => {
 
 router.get("/foodId/:id", (req, res) => {
     foodData.getFoodById(req.params.id).then((food) => {
-        res.json(food);
+        imageData.getImageById(food.mainImage).then((foodMainImage) => {
+            commentData.getCommentByBelongToId(req.params.id).then((commentList) => {
+                let promises = [];
+                for (let i = 0, len = commentList.length; i < len; i++) {
+                    promises.push(userData.getUserById(commentList[i].userId).then((user) => {
+                       commentList[i].userId = user.username;
+                    }));
+                }
+                Promise.all(promises).then(() => {
+                    res.render("food/singleFood", {food: food, foodMainImage: foodMainImage, foodComments: commentList});
+                });
+            });
+        });
     }).catch(() => {
         res.status(404).json({error: "Food not found!"});
     });

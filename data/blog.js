@@ -7,6 +7,7 @@
 
 const mongoCollections = require("../config/mongoCollections");
 const blog = mongoCollections.blog;
+const imageData = require("./image")
 const uuid = require('node-uuid');
 
 /*
@@ -31,21 +32,80 @@ let exportedMethods = {
     getAllBlogs() {
         return blog().then((blogCollection) => {
             return blogCollection.find({}).toArray();
+        })
+        .catch(e=>{
+            console.log(e);
+            Promise.reject(e);
         });
     },
-
+    //get all sblog and its images if exist
+    getAllBlogsWithImage() {
+        return blog().then((blogCollection) => {
+            return blogCollection.find({}).toArray();
+        })
+        .then((blogList)=>{
+        var promises = [];
+        var imagesPath = []
+        for (let i = 0, len = blogList.length; i < len; i++) {
+            promises.push(imageData.getImageById(blogList[i].mainImage).then((image) => {
+                imagesPath[i] = image.path
+            }).catch(e=>{
+                console.log(e);
+                imagesPath[i] = null; //if not have image, set to null
+            }));
+        }
+        return Promise.all(promises)
+            .then(() => {
+                for (let i=0;i<blogList.length && imagesPath.length;i++){
+                    blogList[i]['imagePath']=imagesPath[i];
+                }
+                return blogList;
+            });
+        })
+        .catch(e=>{
+            console.log(e);
+            Promise.reject(e);
+        });
+    },
     getBlogById(id) {
         if (!id) return Promise.reject ("You must provide an id.");
-
         return blog().then((blogCollection) => {
+            console.log("get blog by id: "+id);
             return blogCollection.findOne({ _id: id }).then((blog) => {
                 if (!blog) return Promise.reject (`blog with id: ${id} is not found.`);
-
                 return blog;
             });
+        })
+        .catch(e=>{
+            console.log(e);
+            return Promise.reject(e);
         });
     },
-    
+    //get blog and its image if exist
+     getBlogByIdWithImage(id) {
+        if (!id) return Promise.reject ("You must provide an id.");
+        return blog().then((blogCollection) => {
+            console.log("get blog by id: "+id);
+            return blogCollection.findOne({ _id: id }).then((blog) => {
+                if (!blog) return Promise.reject (`blog with id: ${id} is not found.`);
+                return blog;
+            });
+        })
+        .then((blog)=>{
+            return imageData.getImageById(blog.mainImage).then((image)=>{
+                blog["imagePath"]=image.path;
+                return blog;
+            }).catch(e=>{
+                console.log(e);
+                blog["imagePath"]=null;
+                return blog;
+            })
+        })
+        .catch(e=>{
+            console.log(e);
+            return Promise.reject(e);
+        });
+    },
     getBlogByTitle(title) {
         if (!title) return Promise.reject ("You must provide a blog title.");
 
@@ -109,6 +169,7 @@ let exportedMethods = {
             return blogCollection.insertOne(newblog).then((newInsertInformation) => {
                 return newInsertInformation.insertedId;
             }).then((newId) => {
+                console.log("add blog!!!"+newId);
                 return this.getBlogById(newId);
             }).catch(function(e) {
                 console.log(e);  // "oh, no!"

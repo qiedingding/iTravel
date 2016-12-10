@@ -1,4 +1,5 @@
 (function($) {
+    $("#signupForm").validate();
     let signupForm = $("#signupForm");
     let formAlert = $("#form-alert");
     signupForm.submit(function(event){
@@ -7,6 +8,43 @@
         let email = $("#email").val();
         let password1 = $("#password1").val();
         let password2= $("#password2").val();
+        $("#signupForm").validate({
+            rules: {
+                username: {
+                    required: true,
+                    minlength: 8
+                },
+                password1: {
+                    required: true,
+                    minlength: 8
+                },
+                password2: {
+                    required: true,
+                    minlength: 8,
+                    equalTo: "#password1"
+                },
+                email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                username: {
+                    required: "Please enter a username",
+                    minlength: "Your username must consist of at least 2 characters"
+                },
+                password1: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long"
+                },
+                password2: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long",
+                    equalTo: "Please enter the same password as above"
+                },
+                email: "Please enter a valid email address"
+            }
+        });
         if (!username||username===undefined) {
             $("#username").focus();
             formAlert.html('<strong>Oh snap! Need a username</strong>').show().fadeOut( 2000 );

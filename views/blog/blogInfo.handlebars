@@ -18,7 +18,9 @@
     <div class="about-top">
         <div class="container">
             <div class="about-bottom">
-                <img class="wow fadeInUp animated" data-wow-delay=".5s" src="../../{{blog.mainImage}}" alt="blog image" />
+                {{#if blog.imagePath}}
+                <img class="wow fadeInUp animated" data-wow-delay=".5s" src="../..{{blog.imagePath}}" alt="blog image" />
+                {{/if}}
                 <br>
                 <br>
                 <br>
@@ -39,6 +41,7 @@
             <div class="media response-info">
                 {{#each siteComments}}
                     <div class="media-left response-text-left">
+                        
                         <img class="media-object" src="../../public/images/user.png" alt="Figure" style="width:50px; height:50px;">
                         <h5>{{userId}}</h5>
                     </div>

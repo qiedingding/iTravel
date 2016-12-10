@@ -84,7 +84,7 @@ router.get("/:name", (req, res) => {
 // get-4: Return the city information of the given city id.
 router.get("/id/:id", (req, res) => {
     let cityItem = {};
-    cityData.getCityById(parseInt(req.params.id)).then((city) => {
+    cityData.getCityById(req.params.id).then((city) => {
         cityItem.city = city;
     }).then(() => {
         imageData.getImageById(cityItem.city.mainImage).then((image) => {

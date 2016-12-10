@@ -30,13 +30,11 @@ let exportedMethods = {
     getAllImages() {
         return image().then((imageCollection) => {
             return imageCollection.find({}).toArray();
-            console.log(imageCollection)
         });
     },
 
     getImageById(id) {
         if (!id) return Promise.reject ("You must provide an id.");
-        console.log(id);
         return image().then((imageCollection) => {
             return imageCollection.findOne({ _id: id }).then((image) => {
 
@@ -124,15 +122,15 @@ let exportedMethods = {
         });
     },
 
-    addImage(name, address, createTime, type, userId, blogId, siteId, cityId) {
+    addImage(name, path, createTime, type, userId, blogId, siteId, cityId) {
         // check name
         if (!name) return Promise.reject ("You must provide a name of the image.");
-        if (!content) return Promise.reject("You must provide content of the image.")
-        return image().then((blogCollection) => {
+
+        return image().then((imageCollection) => {
             let newImage = {
                 _id: uuid.v4(),
                 name: name,
-                address: address,
+                path: path,
                 createTime: createTime,
                 type: type,
                 userId: userId,
@@ -143,10 +141,16 @@ let exportedMethods = {
 
             return imageCollection.insertOne(newImage).then((newInsertInformation) => {
                 return newInsertInformation.insertedId;
-            }).then((newId) => {
-                return this.getImageById(newId);
             });
-        });
+        })
+        .then((newId) => {
+                console.log("add new image with new id: ", newId)
+                return this.getImageById(newId);
+        })
+        .catch(e=>{
+            console.log(e);
+            Promise.reject(e);
+        })
     },
 
     removeImage(id) {

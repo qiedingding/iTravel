@@ -1,25 +1,27 @@
 (function($) {
     let loginForm = $("#loginForm");
-    let username = $("#username").val();
-    let password = $("#password").val();
     let formAlert = $("#form-alert");
-
-    loginForm.submit(function(event){
-
+    let submitBtn = $("#submitBtn");
+    submitBtn.click(function(e) {
+        btnClick(e);
+    });
+    function btnClick(e) {
+        let username = $("#username").val();
+        let password = $("#password").val();
         if (!username||username===undefined) {
-            event.preventDefault();
             formAlert.html('<strong>Oh snap! Need a username</strong>').show().fadeOut( 2000 );
             formAlert.removeClass('hidden');
-            return;
+            e.preventDefault();
+            return false;
         }
         if (!username||password===undefined) {
-            event.preventDefault();
             formAlert.html('<strong>Oh snap! Need a password</strong>').show().fadeOut( 2000 );
             formAlert.removeClass('hidden');
-            return;
+            e.preventDefault();
+            return false;
         }
-        $( "#loginForm" ).submit();
-    })      
+        loginForm.submit();
+    }
 
 })(window.jQuery);
 

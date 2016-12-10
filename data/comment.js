@@ -64,8 +64,8 @@ let exportedMethods = {
         });
     },
 
-    getCommentBySiteId(siteId) {
-        if (!siteId) return Promise.reject ("You must provide a siteId.");
+    getCommentByBelongToId(id) {
+        if (!id) return Promise.reject ("You must provide a belongToId.");
 
         return comment().then((commentCollection) => {
             return commentCollection.find({ siteId: siteId }).toArray().then((commentList) => {
@@ -74,19 +74,8 @@ let exportedMethods = {
             });
         });
     },
-    
-    getCommentByBlogId(blogId) {
-        if (!blogId) return Promise.reject ("You must provide a blogId.");
-        console.log(blogId);
-        return comment().then((commentCollection) => {
-            return commentCollection.find({ "blogId": blogId }).toArray().then((commentList) => {
-                if (!commentList) return Promise.reject ('comment with blogId of ${blogId} is not found.');
-                return commentList;
-            });
-        }); 
-    },   
 
-    addComment(content, createTime, stars, userId, target, blogId, siteId, cityId) {
+    addComment(content, createTime, stars, userId, belongToId) {
         // check content and userId
         if (!content) return Promise.reject ("You must provide content of the comment.");
         //if (!userId) return Promise.reject ("You must provide userId of the comment.");
@@ -98,10 +87,7 @@ let exportedMethods = {
                 createTime: createTime,
                 stars: stars,
                 userId: userId,
-                target: target,
-                blogId: blogId,
-                siteId: siteId,
-                cityId: cityId,
+                belongToId: belongToId
             };
 
             return commentCollection.insertOne(newComment).then((newInsertInformation) => {

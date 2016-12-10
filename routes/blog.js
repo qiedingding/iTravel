@@ -6,6 +6,7 @@ const express = require('express');
 const router = express.Router();
 const data = require("../data");
 const blogData = data.blog;
+const imageData = data.image;
 const uuid = require('node-uuid');
 const bodyParser = require("body-parser");
 var path = require('path'),fs = require('fs');
@@ -15,7 +16,7 @@ var multer  = require('multer')
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
       //console.log(__dirname);
-      cb(null, path.join(__dirname,'/..','/public/uploads')); // get the right path!
+      cb(null, path.join(__dirname,'/..','/public/images')); // get the right path!
   },
   filename: function (req, file, cb) {
     //console.log("file@@@",file);
@@ -23,7 +24,7 @@ var storage = multer.diskStorage({
     let type = file.mimetype.substring(idx+1);
     type = type.toLowerCase();
     
-    cb(null, uuid.v1()+ '.' + type);
+    cb(null,  uuid.v1()+ '.' + type);
   }
 })
 
@@ -40,12 +41,13 @@ function fileFilter (req,file,cb){
 var upload = multer({ storage: storage, dest:"public/uploads", fileFilter:fileFilter});
 
 router.get("/", (req, res) => {
-    blogData.getAllBlogs().then((blogList) => {
-        console.log(blogList);
+    blogData.getAllBlogsWithImage().then((blogList) => {
+        console.log("all blog: ",blogList);
         res.render('blog/blogList', { blogList: blogList });
-        // res.json(blogInfo);
-    }, () => {
-        res.sendStatus(500);
+    })
+    .catch(e=>{
+        console.log(e);
+        res.status(400).json({"error":e});
     });
 });
 
@@ -55,8 +57,8 @@ router.get("/new", (req,res)=>{
 
 router.post("/new",upload.single('images'),(req,res)=>{
     console.log("POST /blog/new!");
-    console.log(req.body); //get all text content
-    console.log(req.file); // get all files content
+    //console.log(req.body); //get all text content
+    //console.log(req.file); // get all files content
     let blogInfo = req.body;
     if (!blogInfo) {
         res.status(400).json({ error: "You must provide data to create a new blog." });
@@ -75,11 +77,22 @@ router.post("/new",upload.single('images'),(req,res)=>{
        
     blogData.addBlog(blogInfo)
         .then((newblog) => {
+            // console.log("add new blog ####",newblog);
             return newblog._id;
         })
         .then((id)=>{
-           let updatedblog = {}
-           updatedblog.mainImage = req.file.filename;
+            let path ='/public/images/'+req.file.filename;
+           return imageData.addImage(req.file.filename,path,new Date(),'blog',"userid",id,null,null).then(image => {
+               var info = [id,image];
+               return info;
+           });
+        })
+        .then(info => {
+            // console.log("info!!!!: ", info)
+            let updatedblog = {};
+            let id = info[0];
+            let imageId= info[1]._id;
+            updatedblog.mainImage = imageId;        
            return blogData.updateBlog(id,updatedblog);
         })
         .then((blogInfo)=>{
@@ -104,11 +117,12 @@ router.get("/:title", (req, res) => {
 });
 
 router.get("/id/:id", (req, res) => {
-    blogData.getBlogById(req.params.id).then((blog) => {
+    blogData.getBlogByIdWithImage(req.params.id).then((blog) => {
         console.log(blog);
         res.render('blog/blogInfo', { blog: blog });
-    }).catch(() => {
-        res.status(404).json({ error: "blog not found." });
+    }).catch((e) => {
+        console.log(e);
+        res.status(404).json({ error: e });
     });
 });
 
