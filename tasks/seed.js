@@ -181,6 +181,7 @@ dbConnection().then(db => {
                         
                         listOfImages.push(BeijingImage, ShanghaiImage, ShenzhenImage);
                         listOfImages.push(foodImage1, foodImage2, foodImage3);
+                        listOfImages.push(blogImage1, blogImage2, blogImage3);
                         return imageCollection.insertMany(listOfImages).then(() => {
                             console.log("Done seeding for image!");
                             return db.collection("city").drop().then(function () {

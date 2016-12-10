@@ -7,6 +7,7 @@
 
 const mongoCollections = require("../config/mongoCollections");
 const blog = mongoCollections.blog;
+const imageData = require("./image")
 const uuid = require('node-uuid');
 
 /*
@@ -31,6 +32,30 @@ let exportedMethods = {
     getAllBlogs() {
         return blog().then((blogCollection) => {
             return blogCollection.find({}).toArray();
+        })
+        .then((blogList)=>{
+        var promises = [];
+        var imagesPath = []
+        for (let i = 0, len = blogList.length; i < len; i++) {
+            promises.push(imageData.getImageById(blogList[i].mainImage).then((image) => {
+                imagesPath[i] = image.path
+            }));
+        }
+        return Promise.all(promises)
+            .then(() => {
+                for (let i=0;i<blogList.length && imagesPath.length;i++){
+                    blogList[i]['imagePath']=imagesPath[i];
+                }
+                return blogList;
+            });
+        })
+        .then(blogList=>{
+            //console.log(blogList)
+            return blogList
+        })
+        .catch(e=>{
+            console.log(e);
+            Promise.reject(e);
         });
     },
     getBlogById(id) {
@@ -41,6 +66,16 @@ let exportedMethods = {
                 if (!blog) return Promise.reject (`blog with id: ${id} is not found.`);
                 return blog;
             });
+        })
+        .then((blog)=>{
+            return imageData.getImageById(blog.mainImage).then((image)=>{
+                blog["imagePath"]=image.path;
+                return blog;
+            });
+        })
+        .catch(e=>{
+            console.log(e);
+            return Promise.reject(e);
         });
     },
     

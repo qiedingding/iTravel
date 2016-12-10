@@ -43,20 +43,12 @@ var upload = multer({ storage: storage, dest:"public/uploads", fileFilter:fileFi
 router.get("/", (req, res) => {
     blogData.getAllBlogs().then((blogList) => {
         console.log(blogList);
-        return (blogList);
-        //res.render('blog/blogList', { blogList: blogList });
-        // res.json(blogInfo);
+        res.render('blog/blogList', { blogList: blogList });
     })
-    .then((blogList)=>{
-        var promises = [];
-
-        for (let i = 0, len = blogList.length; i < len; i++) {
-            promises.push(imageData.getImageById(blogList[i].mainImage).then((image) => {
-                
-            }));
-        }
-            Promise.all(promises).then(() => returnValue.clist = clist).then(
-    })
+    .catch(e=>{
+        console.log(e);
+        res.status(400).json({"error":e});
+    });
 });
 
 router.get("/new", (req,res)=>{
