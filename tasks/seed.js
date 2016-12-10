@@ -167,7 +167,7 @@ dbConnection().then(db => {
                         // image_3 Shenzhen
 
 
-                        let ShenzhenImage = createImage("900003", "Shenzhen", "Shenzhen", "2016/12/03", "/public/images/shenszhen.jpg","200009", "landscape", "usr3", "blog3", "site3", "shenzhen", "food1");
+                        let ShenzhenImage = createImage("900003", "Shenzhen", "Shenzhen", "2016/12/03", "/public/images/shenzhen.jpg","200009", "landscape", "usr3", "blog3", "site3", "shenzhen", "food1");
 
                         // food1
                         let foodImage1 = createImage("900011", "food1", "Beijing", "2016/12/01", "/public/images/food1.jpg","200009", "food", "usr1", "blog1", "site1", "beijing", "food1");
@@ -361,18 +361,18 @@ dbConnection().then(db => {
                                                                 };
                                                                 
                                                                 let list = [];
-                                                                var blogContent =`Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit estibulum aliquam neque nibh, sed accumsan nulla ornare sit amet`;
+                                                                let blogContent =`Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit estibulum aliquam neque nibh, sed accumsan nulla ornare sit amet`;
 
                                                                 // blog_1 Beijing
-                                                                let blog1 = createBlog("50331", "blog1", blogContent, "900021","conclusions", "300001",["tag1", "tag2"],"5622121");
+                                                                let blog1 = createBlog("50331", "blog1", blogContent, "900021","conclusions", "300001",["tag1", "tag2"],"5622121","7771");
 
                                                                 // blog_2 Shanghai
-                                                                let blog2 = createBlog("50332", "blog2", blogContent, "900022", "conclusions", "300001",["tag1", "tag2"],"5622121");
+                                                                let blog2 = createBlog("50332", "blog2", blogContent, "900022", "conclusions", "300001",["tag1", "tag2"],"5622121","7772");
 
                                                                 // blod_3 Shenzhen
-                                                                let blog3 = createBlog("50333", "blog3", blogContent, "900023", "conclusions", "300001",["tag1", "tag2"],"5622121");
+                                                                let blog3 = createBlog("50333", "blog3", blogContent, "900023", "conclusions", "300001",["tag1", "tag2"],"5622121","7773");
                                                                 list.push(blog1, blog2, blog3);
-                                                                return blogCollection.insergtMany(list).then(() => {
+                                                                return blogCollection.insertMany(list).then(() => {
                                                                     console.log("Done seeding for blog!");
                                                                     console.log("Done seeding database!");
                                                         
