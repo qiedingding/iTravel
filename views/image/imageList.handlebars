@@ -1,0 +1,59 @@
+<!-- Bar -->
+<div class="container">
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/image/">All Cities</a></li>
+    </ol>
+</div>
+<!-- //Bar -->
+<!-- gallery -->
+    <div class="gallery">
+        <div class="container">
+            <div class="gallery-heading">
+                <h2>image Gallery</h2>
+                <p>The most featured images in our website!</p>
+            </div>
+            {{#if imageList.length}}
+            <ul>
+                {{#each imageList}}
+
+                <div class="gallery-grids">
+                    <div class="col-md-4 gallery-grid wow fadeInUp animated" data-wow-delay=".5s">
+                        <div class="grid">
+                            <figure class="effect-apollo">
+                                <a class="example-image-link" href="/image/{{this.name}}" data-lightbox="example-set" data-title="">
+                                    <img src="../..{{this.path}}" alt="" >
+                                    <figcaption>
+                                        <h3>{{this.name}}</h3>
+                                        <p>{{this.name}}, {{this.address}}, China</p>
+                                    </figcaption>	
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </ul>
+            {{/if}}
+            <div class="clearfix"> </div>
+            <script src="js/lightbox-plus-jquery.min.js"> </script>
+        </div>
+    </div>
+</div>
+<!-- //gallery -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

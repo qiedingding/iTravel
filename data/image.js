@@ -61,7 +61,7 @@ let exportedMethods = {
         if (!userId) return Promise.reject ("You must provide a userId.");
 
         return image().then((imageCollection) => {
-            return imageCollection.find({ "userId": userId }).toArray().then((imageList) => {
+            return imageCollection.find({ userId: userId }).toArray().then((imageList) => {
                 if (!imageList) return Promise.reject (`image with userId of ${userId} is not found.`);
                 return imageList;
             });
@@ -72,7 +72,7 @@ let exportedMethods = {
         if (!blogId) return Promise.reject ("You must provide a blogId.");
 
         return image().then((imageCollection) => {
-            return imageCollection.find({ "blogId": blogId }).toArray().then((imageList) => {
+            return imageCollection.find({ blogId: blogId }).toArray().then((imageList) => {
                 if (!imageList) return Promise.reject (`image with blogId of ${blogId} is not found.`);
                 return imageList;
             });
@@ -80,10 +80,12 @@ let exportedMethods = {
     },
 
     getImageBySiteId(siteId) {
+        console.log(siteId);
         if (!siteId) return Promise.reject ("You must provide a siteId.");
-
+        //console.log("1111111111111111");
         return image().then((imageCollection) => {
-            return imageCollection.find({ "siteId": siteId }).toArray().then((imageList) => {
+            return imageCollection.find({ siteId: siteId }).toArray().then((imageList) => {
+               //console.log(imageList);
                 if (!imageList) return Promise.reject (`image with siteId of ${siteId} is not found.`);
                 return imageList;
             });
@@ -92,9 +94,9 @@ let exportedMethods = {
 
     getImageByCityId(cityId) {
         if (!cityId) return Promise.reject ("You must provide a cityId.");
-
+        
         return image().then((imageCollection) => {
-            return imageCollection.find({ "cityId": cityId }).toArray().then((imageList) => {
+            return imageCollection.find({ cityId: cityId }).toArray().then((imageList) => {
                 if (!imageList) return Promise.reject (`image with cityId of ${cityId} is not found.`);
                 return imageList;
             });
@@ -103,9 +105,9 @@ let exportedMethods = {
 
     getImageByFoodId(foodId) {
         if (!foodId) return Promise.reject ("You must provide a foodId.");
-console.log("1111111111")
+    //console.log("1111111111")
         return image().then((imageCollection) => {
-            return imageCollection.find({ "foodId": foodId }).toArray().then((imageList) => {
+            return imageCollection.find({ foodId: foodId }).toArray().then((imageList) => {
                 if (!imageList) return Promise.reject (`image with foodId of ${foodId} is not found.`);
                 // console.log(imageList)
                 let blogImages = [];

@@ -51,12 +51,35 @@ router.get("/userId/:userId", (req, res) => {
     });
 });
 
-// get-5: Return all the comment information of the given blog id
+// get-5: Return all the comment information of the given site id
+router.get("/siteId/:siteId", (req, res) => {
+
+    commentData.getCommentBySiteId(req.params.siteId).then((commentList) => {
+        //res.render('comment/commentList', { list: commentList });
+        //console.log(commentList)
+        res.json(commentList);
+    }).catch(() => {
+        res.status(404).json({ error: "comment not found." });
+    });
+});
+// get-6: Return all the comment information of the given city id
+router.get("/cityId/:cityId", (req, res) => {
+
+    commentData.getCommentByCityId(req.params.cityId).then((commentList) => {
+        //res.render('comment/commentList', { list: commentList });
+        //console.log(commentList)
+        res.json(commentList);
+    }).catch(() => {
+        res.status(404).json({ error: "comment not found." });
+    });
+});
+
+// get-7: Return all the comment information of the given blog id
 router.get("/blogId/:blogId", (req, res) => {
 
     commentData.getCommentByBlogId(req.params.blogId).then((commentList) => {
         //res.render('comment/commentList', { list: commentList });
-        console.log(commentList)
+        //console.log(commentList)
         res.json(commentList);
     }).catch(() => {
         res.status(404).json({ error: "comment not found." });

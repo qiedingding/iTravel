@@ -54,6 +54,14 @@ router.get("/cityId/:id", (req, res) => {
     });
 });
 
+router.get("/photo/:siteId", (req, res) => {
+    imageData.getImageBySiteId(req.params.siteId).then((imageList) => {
+        res.render('image/imageList', { imageList: imageList });
+    }).catch((e) => {
+        res.status(500).json({error: e});
+    });
+});
+
 router.post("/", (req, res) => {
     let sitePostData = req.body;
     siteData.addSite(sitePostData.name, sitePostData.location, sitePostData.address, sitePostData.commute, sitePostData.price, sitePostData.closingTime, sitePostData.phone, sitePostData.website, sitePostData.description, sitePostData.mainImage, sitePostData.type, sitePostData.tips, sitePostData.tag, sitePostData.cityId).then((newSite) => {
