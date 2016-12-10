@@ -64,17 +64,14 @@ router.post("/new",upload.single('images'),(req,res)=>{
         res.status(400).json({ error: "You must provide data to create a new blog." });
         return;
     }
-
     if (!blogInfo.title) {
         res.status(400).json({ error: "You must at least provide title of the blog." });
         return;
     }
-
     if (!blogInfo.content) {
         res.status(400).json({ error: "You must at least provide content of the blog." });
         return;
-    }
-       
+    }  
     blogData.addBlog(blogInfo)
         .then((newblog) => {
             // console.log("add new blog ####",newblog);
@@ -96,7 +93,7 @@ router.post("/new",upload.single('images'),(req,res)=>{
            return blogData.updateBlog(id,updatedblog);
         })
         .then((blogInfo)=>{
-            console.log(blogInfo);
+            console.log("blogInfo::,,:", blogInfo);
             res.status(200).json(blogInfo);
         })
         .catch(function(e) {
@@ -118,7 +115,7 @@ router.get("/:title", (req, res) => {
 
 router.get("/id/:id", (req, res) => {
     blogData.getBlogByIdWithImage(req.params.id).then((blog) => {
-        console.log(blog);
+        console.log("blog/id/:id", blog);
         res.render('blog/blogInfo', { blog: blog });
     }).catch((e) => {
         console.log(e);
