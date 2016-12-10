@@ -10,7 +10,11 @@ const commentData = data.comment;
 const userData = data.user;
 // router get 顺序？
 
-
+function checkCommentContent(contents) {
+    if (contents.length < 10) return false;
+    if (contents.length > 100) return false;
+    return true;
+}
 
 // get-1: Return all the comments
 router.get("/", (req, res) => {
@@ -26,16 +30,12 @@ router.get("/", (req, res) => {
 router.post("/", isLoggedIn, (req, res) => {
     let commentInfo = req.body;
 
-    if (!commentInfo) {
-        res.status(400).json({ error: "You must provide data to create a new comment." });
+    if (!commentInfo.content || !checkCommentContent(commentInfo.content)) {
+        res.status(400).json({ error: "You must provide the correct content of the comment if the length is between 10 and 100 characters." });
         return;
     }
-    if (!commentInfo.content) {
-        res.status(400).json({ error: "You must at least provide content of the comment." });
-        return;
-    }
-   
-    commentData.addComment(commentInfo.content, commentInfo.createTime, commentInfo.stars, req.user.userId, commentInfo.target, commentInfo.blogId, commentInfo.siteId, commentInfo.cityId)
+
+    commentData.addComment(commentInfo.content, commentInfo.createTime, commentInfo.stars, req.user._id, commentInfo.target, commentInfo.blogId, commentInfo.siteId, commentInfo.cityId)
         .then((newComment) => {
             newComment.userId = req.user.username;
             res.json({success:true, message: newComment});
