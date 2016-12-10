@@ -101,29 +101,29 @@ dbConnection().then(db => {
                 // username admin_lx
                 let admin_lxTag = ["team member", "admin"];
                 let admin_lxPwd = bcrypt.hashSync("xuanli9939");
-                let admin_lx = createUser(5622121,"admin_lx", admin_lxPwd, "PenguingXuan", "male", "1993/09/21",
-                    "admin", "5512477786", "xli100@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100009, admin_lxTag);
+                let admin_lx = createUser("5622121","admin_lx", admin_lxPwd, "PenguingXuan", "male", "1993/09/21",
+                    "admin", "5512477786", "xli100@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", "100009", admin_lxTag);
 
                 // username admin_lyr
                 let admin_lyrTag = ["team member", "admin"];
                 let admin_lyrPwd = bcrypt.hashSync("yiranli6200");
-                let admin_lyr = createUser(5622122,"admin_lyr", admin_lyrPwd, "liyiran", "male", "1992/01/11",
-                    "admin", "5512477786", "yli@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100009, admin_lyrTag);
+                let admin_lyr = createUser("5622122","admin_lyr", admin_lyrPwd, "liyiran", "male", "1992/01/11",
+                    "admin", "5512477786", "yli@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", "100009", admin_lyrTag);
 
                 // username testUser
                 let testTag = ["test user", "test"];
                 let testPwd = bcrypt.hashSync("test12345");
-                let test1 = createUser(5622123,"test1", testPwd, "test1", "male", "1992/01/11",
-                    "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100001, testTag);
+                let test1 = createUser("5622123","test1", testPwd, "test1", "male", "1992/01/11",
+                    "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", "100001", testTag);
 
-                let test2 = createUser(5622124,"test2", testPwd, "test2", "male", "1992/01/11",
-                    "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100001, testTag);
+                let test2 = createUser("5622124","test2", testPwd, "test2", "male", "1992/01/11",
+                    "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", "100001", testTag);
 
-                let test3 = createUser(5622125,"test3", testPwd, "test3", "male", "1992/01/11",
-                    "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100001, testTag);
+                let test3 = createUser("5622125","test3", testPwd, "test3", "male", "1992/01/11",
+                    "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", "100001", testTag);
 
-                let test4 = createUser(5622126,"test4", testPwd, "test4", "male", "1992/01/11",
-                    "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", 100001, testTag);
+                let test4 = createUser("5622126","test4", testPwd, "test4", "male", "1992/01/11",
+                    "admin", "5512477786", "test@stevens.edu", "admin-default", "2016/12/1", "2016/12/1", "100001", testTag);
 
                 // add user into array
                 listOfUsers.push(admin_lx, admin_lyr);
@@ -157,19 +157,19 @@ dbConnection().then(db => {
 
                         // image_1 Beijing
 
-                        let BeijingImage = createImage(900001, "Beijing", "Beijing", "2016/12/01", "/public/images/beijing.jpg",200009, "landscape", "usr1", "blog1", "site1", "beijing", "food1");
+                        let BeijingImage = createImage("900001", "Beijing", "Beijing", "2016/12/01", "/public/images/beijing.jpg","200009", "landscape", "usr1", "blog1", "site1", "beijing", "food1");
 
                         // image_2 Shanghai
-                        let ShanghaiImage = createImage(900002, "Shanghai", "Shanghai", "2016/12/02", "/public/images/shanghai.jpg", 200009,"landscape", "usr2", "blog2", "site2", "shanghai", "food1");
+                        let ShanghaiImage = createImage("900002", "Shanghai", "Shanghai", "2016/12/02", "/public/images/shanghai.jpg", "200009","landscape", "usr2", "blog2", "site2", "shanghai", "food1");
 
                         // image_3 Shenzhen
-                        let ShenzhenImage = createImage(900003, "Shenzhen", "Shenzhen", "2016/12/03", "/public/images/shenzhen.jpg",200009, "landscape", "usr3", "blog3", "site3", "shenzhen", "food1");
+                        let ShenzhenImage = createImage("900003", "Shenzhen", "Shenzhen", "2016/12/03", "/public/images/shenzhen.jpg","200009", "landscape", "usr3", "blog3", "site3", "shenzhen", "food1");
                         // food1
-                        let foodImage1 = createImage(900011, "food1", "Beijing", "2016/12/01", "/public/images/food1.jpg",200009, "food", "usr1", "blog1", "site1", "beijing", "food1");
+                        let foodImage1 = createImage("900011", "food1", "Beijing", "2016/12/01", "/public/images/food1.jpg","200009", "food", "usr1", "blog1", "site1", "beijing", "food1");
                         // food2
-                        let foodImage2 = createImage(900012, "food2", "Shenzhen", "2016/12/01", "/public/images/food1.jpg",200009, "food", "usr1", "blog1", "site1", "beijing", "food1");
+                        let foodImage2 = createImage("900012", "food2", "Shenzhen", "2016/12/01", "/public/images/food1.jpg","200009", "food", "usr1", "blog1", "site1", "beijing", "food1");
                         // foo3
-                        let foodImage3 = createImage(900013, "food3", "Shenzhen", "2016/12/01", "/public/images/food1.jpg",200009, "food", "usr1", "blog1", "site1", "beijing", "food1");
+                        let foodImage3 = createImage("900013", "food3", "Shenzhen", "2016/12/01", "/public/images/food1.jpg","200009", "food", "usr1", "blog1", "site1", "beijing", "food1");
 
                         listOfImages.push(BeijingImage, ShanghaiImage, ShenzhenImage);
                         listOfImages.push(foodImage1, foodImage2, foodImage3);
@@ -202,15 +202,15 @@ dbConnection().then(db => {
 
                                 // city_1 Beijing
                                 let BeijingTag = ["capital", "tian'anmen"];
-                                let BeijingCity = createCity(60020, "Beijing", "Beijing", "Beijing Description", "Beijing Traffic", "Beijing Weather", "Beijing History", "Beijing Culture", "RMB", 900001, BeijingTag);
+                                let BeijingCity = createCity("60020", "Beijing", "Beijing", "Beijing Description", "Beijing Traffic", "Beijing Weather", "Beijing History", "Beijing Culture", "RMB", "900001", BeijingTag);
 
                                 // city_2 Shanghai
                                 let ShanghaiTag = ["Shanghai Shibohui", "Dofangmingzhu"];
-                                let ShanghaiCity = createCity(60021, "Shanghai", "Shanghai", "Shanghai Description", "Shanghai Traffic", "Shanghai Weather", "Shanghai History", "Shanghai Culture", "RMB", 900002, ShanghaiTag);
+                                let ShanghaiCity = createCity("60021", "Shanghai", "Shanghai", "Shanghai Description", "Shanghai Traffic", "Shanghai Weather", "Shanghai History", "Shanghai Culture", "RMB", "900002", ShanghaiTag);
 
                                 // city_3 Shenzhen
                                 let ShenzhenTag = ["guandong", "tequ"];
-                                let ShenzhenCity = createCity(60022, "Shenzhen", "Shenzhen", "Shenzhen Description", "Shenzhen Traffic", "Shenzhen Weather", "Shenzhen History", "Shenzhen Culture", "RMB", 900003, ShenzhenTag);
+                                let ShenzhenCity = createCity("60022", "Shenzhen", "Shenzhen", "Shenzhen Description", "Shenzhen Traffic", "Shenzhen Weather", "Shenzhen History", "Shenzhen Culture", "RMB", "900003", ShenzhenTag);
 
                                 //
                                 listOfCities.push(BeijingCity, ShanghaiCity, ShenzhenCity);
@@ -220,97 +220,151 @@ dbConnection().then(db => {
                                         return db;
                                     }, function () {
                                         return db;
-                                    }).then((addeddb) => {
-                                        return site.addSite("QianFoMountain", 36, 117, "JingShi road, JiNan, ShanDong", "Bus", "30￥", "6:00PM", "2016681367", "www.qianfoshan.com", "qianfoshan", 900011, 1, ["climb", "cable"], ["mountain", "famous", "JiNan"], 60020);
-                                    }).then((addedSite) => {
-                                        return site.addSite("DaMingLake", 35, 120, "MingHu road, JiNan, ShanDong", "Bus", "60￥", "6:00PM", "2016681367", "www.daminghu.com", "daminghu", 900012, 1, ["boat", "landscape"], ["lake", "famous", "JiNan", "XiaYuHe"], 60021);
-                                    }).then((addedSite) => {
-                                        return site.addSite("BaoTuFountain", 45, 116, "XiMen road, JiNan, ShanDong", "Bus", "50￥", "6:00PM", "2016681367", "www.baotuquan.com", "baotuquan", 900013, 1, ["seal", "tea"], ["fountain", "famous", "JiNan"], 60022);
-                                    }).then((added) => {
-                                        console.log("Done seeding for site!");
-                                        return db.collection("blog").drop().then(function () {
-                                            return db;
-                                        }, function (error) {
-                                            return db;
-                                        }).then((db) => {
-                                            return db.createCollection("blog");
-                                        }).then(function (blogCollection) {
-                                            let createBlog = function (id, title, content, mainImage, conclusions, type, tag, userId, siteId) {
-                                                return {
-                                                    _id: id,
-                                                    title: title,
-                                                    content: content,
-                                                    createTime: new Date("<YYYY-mm-dd>"),
-                                                    mainImage: mainImage,
-                                                    conclusions: conclusions,
-                                                    type: type,
-                                                    tag: tag,
-                                                    userId: userId,
-                                                    siteId: siteId
-                                                }
-                                            };
+                                    }).then((db) => {
+                                        return db.createCollection("site");
+                                    }).then(function (siteCollection) {
+                                        let createSite = (id, name, locationlat, locationlnt, address, commute, price, closingTime, phone, website, description, mainImage, type, tips, tag, cityId) => {
+                                            return {
+                                                _id: id,
+                                                name: name,
+                                                locationlat: locationlat,
+                                                locationlnt: locationlnt,
+                                                address: address,
+                                                commute: commute,
+                                                price: price,
+                                                closingTime: closingTime,
+                                                phone: phone,
+                                                website: website,
+                                                description: description,
+                                                mainImage: mainImage,
+                                                type: type,
+                                                tips: tips,
+                                                tag: tag,
+                                                cityId: cityId
+                                            }
+                                        };
 
-                                            let list = [];
-                                            // blog_1 Beijing
-                                            let blog1 = createBlog(50331, "blog1", "content1", 900001,"conclusions", 300001,["tag1", "tag2"],5622121);
+                                        let listOfSites = [];
 
-                                            // blog_2 Shanghai
-                                            let blog2 = createBlog(50332, "blog2", "content2", 900001, "conclusions", 300001,["tag1", "tag2"],5622121);
+                                        let QianFoMountainSite = createSite("7771", "QianFoMountain", 36, 117, "JingShi road, JiNan, ShanDong", "Bus", "30￥", "6:00PM", "2016681367", "www.qianfoshan.com", "qianfoshan", "900001", "500001", ["climb", "cable"], ["mountain", "famous", "JiNan"], "60020");
+                                        let DaMingLakeSite = createSite("7772", "DaMingLake", 35, 120, "MingHu road, JiNan, ShanDong", "Bus", "60￥", "6:00PM", "2016681367", "www.daminghu.com", "daminghuDescription", "900002", "500002", ["boat", "landscape"], ["lake", "JiNan", "XiaYuHe"], "60021");
+                                        let BaoTuFountainSite = createSite("7773", "BaoTuFountain", 45, 116, "XiMen road, JiNan, ShanDong", "Bus", "50￥", "6:00PM", "2016681367", "www.baotuquan.com", "baotuquan", "900003", "500003", ["seal", "tea"], ["fountain", "famous", "JiNan"], "60022");
 
-                                            // blod_3 Shenzhen
-                                            let blog3 = createBlog(50333, "blog3", "content3", 900001, "conclusions", 300001,["tag1", "tag2"],5622121);
+                                        listOfSites.push(QianFoMountainSite, DaMingLakeSite, BaoTuFountainSite);
+                                        return siteCollection.insertMany(listOfSites).then(() => {
+                                            console.log("Done seeding for site!");
+                                            return db.collection("food").drop().then(function () {
+                                                return db;
+                                            }, function () {
+                                                return db;
+                                            }).then((db) => {
+                                                return db.createCollection("food");
+                                            }).then(function (foodCollection) {
+                                                let createFood = (id, name, description, locationlat, locationlnt, address, price, closingTime, phone, website, mainImage, type, cityId) => {
+                                                    return {
+                                                        _id: id,
+                                                        name: name,
+                                                        description: description,
+                                                        locationlat: locationlat,
+                                                        locationlnt: locationlnt,
+                                                        address: address,
+                                                        price: price,
+                                                        closingTime: closingTime,
+                                                        phone: phone,
+                                                        website: website,
+                                                        mainImage: mainImage,
+                                                        type: type,
+                                                        cityId: cityId
+                                                    }
+                                                };
 
-                                            list.push(blog1, blog2, blog3);
-                                            return blogCollection.insertMany(list).then(() => {
-                                                console.log("Done seeding for blog!");
-                                                return db.collection("comment").drop().then(function () {
+                                                let listOfFood = [];
 
-                                                    return db;
-                                                }, function () {
-                                                    return db;
-                                                }).then((db) => {
-                                                    return db.createCollection("comment");
-                                                }).then(function (commentCollection) {
-                                                    let createComment = (content, createTime, stars, userId, target, blogId, siteId, cityId) => {
-                                                        return {
-                                                            _id: uuid.v4(),
-                                                            content: content,
-                                                            createTime: createTime,
-                                                            stars: stars,
-                                                            userId: userId,
-                                                            target: target,
-                                                            blogId: blogId,
-                                                            siteId: siteId,
-                                                            cityId: cityId,
-                                                        }
-                                                    };
+                                                let BaZiRouFood = createFood("8881", "BaZiRou", "bengrouganfan", 36, 117, "YaoShan", "20￥", "9:30PM", "18615213327", "www.bazirou.com", "900011", "400001", "60020");
+                                                let TianMoFood = createFood("8882", "TianMo", "salty vegetable porridge", 36, 117, "XiaoTan", "1.5￥", "10:00AM", "18615213327", "www.tianmo.com", "900012", "400002", "60021");
+                                                let YouXuanFood = createFood("8883", "YouXuan", "fried dough", 36, 117, "FuRongJie", "0.5￥", "10:30PM", "18615213327", "www.youxuan.com", "900013", "400003", "60022");
 
-                                                    let listOfComments = [];
+                                                listOfFood.push(BaZiRouFood, TianMoFood, YouXuanFood);
+                                                return foodCollection.insertMany(listOfFood).then(() => { 
+                                                    console.log("Done seeding for food!");
+                                                    return db.collection("comment").drop().then(function () {
+                                                        return db;
+                                                    }, function () {
+                                                        return db;
+                                                    }).then((db) => {
+                                                        return db.createCollection("comment");
+                                                    }).then(function (commentCollection) {
+                                                        let createComment = (id, content, createTime, stars, userId, belongToId) => {
+                                                            return {
+                                                                _id: id,
+                                                                content: content,
+                                                                createTime: createTime,
+                                                                stars: stars,
+                                                                userId: userId,
+                                                                belongToId: belongToId
+                                                            }
+                                                        };    
 
-                                                    let BeijingComment = createComment("good", "2016/12/01", "5", "usr1", "target1", 50331, "site1", "city1");
+                                                        let listOfComments = [];                                   
 
-                                                    let ShanghaiComment = createComment("just soo", "2016/12/02", "3", "usr2", "target2", 50332, "site2", "city2");
+                                                        let BeiJingCityComment = createComment("5551", "Capital of China, history of culture.", "2016/12/01", "5", "5622121", "60020");
+                                                        let ShangHaiCityComment = createComment("5552", "Economic Center.", "2016/12/02", "5", "5622121", "60021");
+                                                        let ShenZhenCityComment = createComment("5553", "Open to the World.", "2016/12/03", "5", "5622122", "60022");
+                                                        let QianFoMountainSiteComment = createComment("5554", "Height is moderate, religious mountain.", "2016/12/04", "5", "5622122", "7771");
+                                                        let DaMingLakeSiteComment = createComment("5555", "HuanZhu GeGe", "2016/12/05", "5", "5622122", "7772");
+                                                        let BaoTuFountainSiteComment = createComment("5556", "The Big Brother of the 72 Springs", "2016/12/06", "5", "5622121", "7773");
+                                                        let BaZiRouFoodComment = createComment("5557", "BengRouGanFan", "2016/12/07", "5", "5622121", "8881");
+                                                        let TianMoFoodComment = createComment("5558", "BreakFast Delicious Porridge", "2016/12/08", "5", "5622122", "8882");
+                                                        let YouXuanFoodComment = createComment("5559", "Fried Dogh", "2016/12/09", "5", "5622122", "8883");
+                                                        let blog1Comment = createComment("55510", "Make Sense!", "2016/12/10", "5", "5622121", "50331");
+                                                        let blog2Comment = createComment("55511", "Nonsense", "2016/12/11", "5", "5622121", "50332");
+                                                        let blog3Comment = createComment("55512", "Not bad", "2016/12/12", "5", "5622122", "50333");
 
-                                                    let ShenzhenComment = createComment("boring", "2016/12/03", "1", "usr3", "target3", 50333, "site3", "city3");
+                                                        listOfComments.push(BeiJingCityComment, ShangHaiCityComment, ShenZhenCityComment, QianFoMountainSiteComment, DaMingLakeSiteComment, BaoTuFountainSiteComment, BaZiRouFoodComment, TianMoFoodComment, YouXuanFoodComment, blog1Comment, blog2Comment, blog3Comment);
+                                                        return commentCollection.insertMany(listOfComments).then(() => { 
+                                                            console.log("Done seeding for comments!");
+                                                            return db.collection("blog").drop().then(function () {
+                                                                return db;
+                                                            }, function () {
+                                                                return db;
+                                                            }).then((db) => {
+                                                                return db.createCollection("blog");
+                                                            }).then(function (blogCollection) {
+                                                                let createBlog = (id, title, content, mainImage, conclusions, type, tag, userId, siteId) => {
+                                                                    return {
+                                                                        _id: id,
+                                                                        title: title,
+                                                                        content: content,
+                                                                        createTime: new Date("<YYYY-mm-dd>"),
+                                                                        mainImage: mainImage,
+                                                                        conclusions: conclusions,
+                                                                        type: type,
+                                                                        tag: tag,
+                                                                        userId: userId,
+                                                                        siteId: siteId
+                                                                    }
+                                                                };
+                                                                
+                                                                let list = [];
+                                                                
+                                                                // blog_1 Beijing
+                                                                let blog1 = createBlog("50331", "blog1", "content1", "900001","conclusions", "300001",["tag1", "tag2"],"5622121");
 
-                                                    //
-                                                    listOfComments.push(BeijingComment, ShanghaiComment, ShenzhenComment);
-                                                    return commentCollection.insertMany(listOfComments).then(() => {
-                                                        console.log("Done seeding for comment!");
-                                                        return db.collection("food").drop().then(function () {
-                                                            return db;
-                                                        }, function () {
-                                                            return db;
-                                                        }).then((addeddb) => {
-                                                            return food.addFood("BaZiRou", "bengrouganfan", "N36°E117°", "YaoShan", "20￥", "9:30PM", "18615213327", "www.bazirou.com", 900011, 400001, 60020);
-                                                        }).then((addedFood) => {
-                                                            return food.addFood("TianMo", "salty vegetable porridge", "N36°E117°", "XiaoTan", "1.5￥", "10:00AM", "18615213327", "www.tianmo.com", 900012, 400001 ,60021);
-                                                        }).then((addedFood) => {
-                                                            return food.addFood("YouXuan", "fried dough", "N36°E117°", "FuRongJie", "0.5￥", "10:30PM", "18615213327", "www.youxuan.com", 900013, 400001,60021);
-                                                        }).then((added) => {
-                                                            console.log("Done seeding for food!");
-                                                            console.log("Done seeding database!");
-                                                            db.close();
+                                                                // blog_2 Shanghai
+                                                                let blog2 = createBlog("50332", "blog2", "content2", "900001", "conclusions", "300001",["tag1", "tag2"],"5622121");
+
+                                                                // blod_3 Shenzhen
+                                                                let blog3 = createBlog("50333", "blog3", "content3", "900001", "conclusions", "300001",["tag1", "tag2"],"5622122");
+                                        
+                                                                list.push(blog1, blog2, blog3);
+                                                                return blogCollection.insertMany(list).then(() => {
+                                                                    console.log("Done seeding for blog!");
+                                                                    console.log("Done seeding database!");
+                                                        
+                                                                }).then((addedAll) => {    
+                                                                    db.close();
+                                                                });
+                                                            });
                                                         });
                                                     });
                                                 });

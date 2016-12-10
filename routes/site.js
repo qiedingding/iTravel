@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
 router.get("/siteId/:id", (req, res) => {
     siteData.getSiteById(req.params.id).then((site) => {
         imageData.getImageById(site.mainImage).then((siteMainImage) => {
-            commentData.getCommentBySiteId(req.params.id).then((commentList) => {
+            commentData.getCommentByBelongToId(req.params.id).then((commentList) => {
                 let promises = [];
                 for (let i = 0, len = commentList.length; i < len; i++) {
                     promises.push(userData.getUserById(commentList[i].userId).then((user) => {

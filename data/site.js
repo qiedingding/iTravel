@@ -39,7 +39,7 @@ let exportedMethods = {
 	getSitesByCityId(cityId) {
 		if(!cityId) reject("You must provide a correct id to search for!");
 		return sites().then((siteCollection) => {
-			return siteCollection.find({cityId: parseInt(cityId)}).toArray().then((siteArr) => {
+			return siteCollection.find({cityId: cityId}).toArray().then((siteArr) => {
 				return siteArr;
 			});
 		});

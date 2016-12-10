@@ -1,7 +1,7 @@
 (function ($) {
 	var commentForm = $("#comment-Form");
 	var formAlert = $("#form-alert");
-	var siteCommentContent = $("#siteComment");
+	var foodCommentContent = $("#foodComment");
 	var idHidden = $("#idHidden");
 	var currentTime = new Date().toLocaleDateString();
 
@@ -16,10 +16,10 @@
 	commentForm.submit(function (event) {
 		event.preventDefault();
 
-		var newCommentContent = siteCommentContent.val();
+		var newCommentContent = foodCommentContent.val();
 
 		if (checkCommentContent(newCommentContent)) {
-			var currentSiteId = idHidden.text().trim();
+			var currentFoodId = idHidden.text().trim();
 			
 			formAlert.addClass('hidden');
 	    	formAlert.text('');
@@ -33,28 +33,28 @@
 					createTime: currentTime,
 					stars: "5",
 					userId: null,
-					belongToId: currentSiteId
+					belongToId: currentFoodId
 				})
 			};
 
 			$.ajax(requestConfig).then((responseMessege) => {
-				let newSiteComment = responseMessege.message;
+				let newFoodComment = responseMessege.message;
 
 				if (responseMessege.success == true) {
 					$("#commentContainer div:last").append(
 							"<div class='media-left response-text-left'>" +
 	                        	"<img class='media-object' src='../../public/images/user.png' alt='Figure' style='width:50px; height:50px;'>" +
-	                        	"<h5>" + newSiteComment.userId + "</h5>" +
+	                        	"<h5>" + newFoodComment.userId + "</h5>" +
 	                    	"</div>" +
 
 	                    	"<div class='media-body response-text-right'>" +
-	                        	"<p class='well'>" + newSiteComment.content + "</p>" +
+	                        	"<p class='well'>" + newFoodComment.content + "</p>" +
 	                        	"<ul>" +
-	                            	"<li>" + newSiteComment.createTime + "</li>" +
+	                            	"<li>" + newFoodComment.createTime + "</li>" +
 	                        	"</ul>" +
 	                    	"</div>" +
 	                    	"<div class='clearfix'> </div>");
-					siteCommentContent.val("");
+					foodCommentContent.val("");
 				} else {
 					location.href="/user/login";
 				}

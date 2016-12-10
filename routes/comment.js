@@ -35,7 +35,7 @@ router.post("/", isLoggedIn, (req, res) => {
         return;
     }
 
-    commentData.addComment(commentInfo.content, commentInfo.createTime, commentInfo.stars, req.user._id, commentInfo.target, commentInfo.blogId, commentInfo.siteId, commentInfo.cityId)
+    commentData.addComment(commentInfo.content, commentInfo.createTime, commentInfo.stars, req.user._id, commentInfo.belongToId)
         .then((newComment) => {
             newComment.userId = req.user.username;
             res.json({success:true, message: newComment});

@@ -39,7 +39,7 @@ let exportedMethods = {
 	getFoodByCityId(cityId) {
 		if(!cityId) reject("You must provide a correct id to search for!");
 		return food().then((foodCollection) => {
-			return foodCollection.find({cityId: parseInt(cityId)}).toArray().then((foodArr) => {
+			return foodCollection.find({cityId: cityId}).toArray().then((foodArr) => {
 				return foodArr;
 			});
 		});

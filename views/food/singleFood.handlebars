@@ -1,0 +1,128 @@
+<div class="container">
+    <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li><a href="/city/id/{{food.cityId}}">City</a></li>
+            <li class="active">Site</li>
+    </ol>
+</div>
+
+<div class="about">
+    <div class="about-heading">
+        <div class="container">
+            <h2 class="wow fadeInDown animated" data-wow-delay=".5s">{{food.name}}</h2>
+            <p class="wow fadeInUp animated" data-wow-delay=".5s">{{food.description}}</p>
+        </div>
+    </div>
+
+     <div class="about-top">
+        <div class="container">
+            <div class="about-bottom">
+                <div class="col-md-6 gallery-grid wow fadeInUp animated" data-wow-delay=".5s">
+                    <div class="grid">
+                        <figure class="effect-apollo">
+                            <a class="example-image-link" href="../..{{foodMainImage.path}}" data-lightbox="example-set" data-title="">
+                                <img src="../..{{foodMainImage.path}}" alt="Main Image" />
+                                <figcaption>
+                                    <h3>Australia</h3>
+                                    <p>Proin vitae luctus dui, sit amet ultricies leo</p>
+                                </figcaption>   
+                            </a>
+                        </figure>
+                    </div>
+                </div>
+
+                <div>
+                    <p>Address:<span>{{food.address}}</span></p>
+                    <p>Location:</p>
+                    <p id="map"></p>
+                    <script>
+                      function initMap() {
+                        var uluru = {lat: {{food.locationlat}}, lng: {{food.locationlnt}} };
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                          zoom: 4,
+                          center: uluru
+                        });
+                        var marker = new google.maps.Marker({
+                          position: uluru,
+                          map: map
+                        });
+                      }
+                    </script>
+                    <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeLcZ63IBMrSqJlZ2umjdSnfi7AfwHirw&callback=initMap">
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid_3 grid_5 wow fadeInUp animated" data-wow-delay=".5s">
+        <div class="container">
+            <h3 class="hdg">Food Location Detail Information: </h3>
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#price" id="price-tab" role="tab" data-toggle="tab" aria-controls="price" aria-expanded="true">Price</a></li>
+                    <li role="presentation"><a href="#closingTime" role="tab" id="closingTime-tab" data-toggle="tab" aria-controls="closingTime">ClosingTime</a></li>
+                    <li role="presentation"><a href="#phone" role="tab" id="phone-tab" data-toggle="tab" aria-controls="phone">Phone</a></li>
+                    <li role="presentation"><a href="#website" role="tab" id="website-tab" data-toggle="tab" aria-controls="website">Website</a></li>
+                </ul>
+
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="price" aria-labelledby="price-tab">
+                        <p>{{food.price}}</p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="closingTime" aria-labelledby="closingTime-tab">
+                        <p>{{food.closingTime}}</p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="phone" aria-labelledby="phone-tab">
+                        <p>{{food.phone}}</p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="website" aria-labelledby="website-tab">
+                        <p>{{food.website}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="response wow fadeInUp animated" data-wow-delay=".5s">
+        <div class="container">
+            <h3>Comments</h3>
+            <div id="commentContainer" class="media response-info">
+                {{#each foodComments}}
+                    <div class="media-left response-text-left">
+                        <img class="media-object" src="../../public/images/user.png" alt="Figure" style="width:50px; height:50px;">
+                        <h5>{{userId}}</h5>
+                    </div>
+
+                    <div class="media-body response-text-right">
+                        <p class="well">{{content}}</p>
+                        <ul>
+                            <li>{{createTime}}</li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                {{/each}}
+            </div>
+        </div>
+        
+        <div class="opinion">
+            <div class="container">
+                <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Leave Your Comment</h2>
+
+                <div id="idHidden">
+                    {{food._id}}
+                </div>
+
+                <form id="comment-Form">
+                    <textarea id="foodComment" class="wow fadeInLeft animated" data-wow-delay=".5s" placeholder="Message" required=""></textarea>
+                    <input class="wow fadeInRight animated" data-wow-delay=".5s" type="submit" value="Submit">
+                </form>
+
+                <div class="alert alert-danger hidden" id="form-alert">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../public/js/food.js"></script>
+</div>
