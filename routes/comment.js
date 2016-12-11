@@ -8,6 +8,8 @@ const router = express.Router();
 const data = require("../data");
 const commentData = data.comment;
 const userData = data.user;
+const path = require("path");
+let notFound = path.resolve("../static/404.html");
 
 function checkCommentContent(contents) {
     if(contents.length < 10||contents.length > 100) return false;
@@ -39,7 +41,7 @@ router.post("/", isLoggedIn, (req, res) => {
             res.json({success:true, message: newComment});
         }).catch((e) => {
             res.json({success:false, message: e});
-            //response.send("<div>" + e + "</div>");
+
     });
 });
 
@@ -50,7 +52,7 @@ router.get("/:name", (req, res) => {
         //res.render('comment/commentList', { list: commentList });
          res.json(comment);
     }).catch(() => {
-        res.status(404).json({ error: "comment not found." });
+        res.sendFile(notFound);
     });
 });
 
@@ -60,7 +62,7 @@ router.get("/id/:id", (req, res) => {
         //res.render('comment/commentInfo', { comment: comment });
          res.json(comment);
     }).catch(() => {
-        res.status(404).json({ error: "comment not found." });
+        res.sendFile(notFound);
     });
 });
 
@@ -70,7 +72,7 @@ router.get("/userId/:userId", (req, res) => {
         //res.render('comment/commentList', { list: commentList });
          res.json(commentList);
     }, (error) => {
-        res.sendStatus(404);
+        res.sendFile(notFound);
     });
 });
 
@@ -82,7 +84,7 @@ router.get("/siteId/:siteId", (req, res) => {
         //console.log(commentList)
         res.json(commentList);
     }).catch(() => {
-        res.status(404).json({ error: "comment not found." });
+        res.sendFile(notFound);
     });
 });
 // get-6: Return all the comment information of the given city id
@@ -93,7 +95,7 @@ router.get("/cityId/:cityId", (req, res) => {
         //console.log(commentList)
         res.json(commentList);
     }).catch(() => {
-        res.status(404).json({ error: "comment not found." });
+        res.sendFile(notFound);
     });
 });
 
@@ -104,7 +106,7 @@ router.get("/blogId/:blogId", (req, res) => {
         //console.log(commentList)
         res.json(commentList);
     }).catch(() => {
-        res.status(404).json({ error: "comment not found." });
+        res.sendFile(notFound);
     });
 });
 

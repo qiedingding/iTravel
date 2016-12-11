@@ -10,13 +10,13 @@ const imageData = data.image;
 const uuid = require('node-uuid');
 const bodyParser = require("body-parser");
 const path = require('path'), fs = require('fs');
-const multer = require('multer')
+const multer = require('multer');
 const userData = data.user;
 const commentData = data.comment;
+let notFound = path.resolve("../static/404.html");
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        //console.log(__dirname);
         cb(null, path.join(__dirname, '/..', '/public/images')); // get the right path!
     },
     filename: function (req, file, cb) {
@@ -46,16 +46,15 @@ router.get("/", (req, res) => {
         res.render('blog/blogList', {blogList: blogList});
     })
         .catch(e => {
-            console.log(e);
-            res.status(400).json({"error": e});
+            res.sendFile(notFound);
         });
 });
 
-router.get("/new", (req, res) => {
+router.get("/new",isLoggedIn, (req, res) => {
     res.render('blog/blogNew', {});
 });
 
-router.post("/new", upload.single('images'), (req, res) => {
+router.post("/new", isLoggedIn, upload.single('images'), (req, res) => {
     console.log("POST /blog/new!");
     //console.log(req.body); //get all text content
     //console.log(req.file); // get all files content
@@ -72,13 +71,14 @@ router.post("/new", upload.single('images'), (req, res) => {
         res.status(400).json({error: "You must at least provide content of the blog."});
         return;
     }
+    blogInfo.userId= req.user._id;
     blogData.addBlog(blogInfo)
         .then((newblog) => {
             return newblog._id;
         })
         .then((id) => {
             let path = '/public/images/' + req.file.filename;
-            return imageData.addImage(req.file.filename, path, new Date(), 'blog', "userid", id, null, null).then(image => {
+            return imageData.addImage(req.file.filename, path, new Date(), 'blog',req.user._id, id, null, null).then(image => {
                 var info = [id, image];
                 return info;
             });
@@ -91,7 +91,6 @@ router.post("/new", upload.single('images'), (req, res) => {
             return blogData.updateBlog(id, updatedblog);
         })
         .then((blogInfo) => {
-            console.log("blogInfo::,,:", blogInfo);
             res.status(200).json(blogInfo);
         })
         .catch(function (e) {
@@ -104,7 +103,7 @@ router.get("/:title", (req, res) => {
     blogData.getBlogByTitle(req.params.title).then((blog) => {
         res.render('blog/blogInfo', {blog: blog});
     }).catch(() => {
-        res.status(404).json({error: "blog not found."});
+        res.sendFile(notFound);
     });
 });
 
@@ -123,7 +122,7 @@ router.get("/id/:id", (req, res) => {
         })
     }).catch((e) => {
         console.log(e);
-        res.status(404).json({error: e});
+        res.sendFile(notFound);
     });
 });
 
@@ -131,7 +130,7 @@ router.get("/userId/:userId", (req, res) => {
     blogData.getBlogByUserId(req.params.userId).then((blogList) => {
         res.render('blog/blogList', {blogList: blogList});
     }, (error) => {
-        res.sendStatus(404);
+        res.sendFile(notFound);
     });
 });
 
@@ -140,11 +139,11 @@ router.get("/type/:type", (req, res) => {
         res.render('blog/blogList', {blogList: blogList});
         // res.json(blogInfo);
     }).catch(() => {
-        res.status(404).json({error: "blog not found."});
+        res.sendFile(notFound);
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/",isLoggedIn, (req, res) => {
     let blogInfo = req.body;
 
     if (!blogInfo) {
@@ -163,7 +162,7 @@ router.post("/", (req, res) => {
         .then((newblog) => {
             res.json(newblog);
         }, () => {
-            res.sendStatus(500);
+            res.sendFile(notFound);
         });
 });
 /*
@@ -182,7 +181,7 @@ router.put("/:id", (req, res) => {
                 res.sendStatus(500);
             });
     }).catch(() => {
-        res.status(404).json({error: "blog not found."});
+ res.sendFile(notFound);
     });
 
 });
@@ -206,7 +205,7 @@ router.put("/tag/:id", (req, res) => {
                 });
         });
     }).catch(() => {
-        res.status(404).json({error: "blog not found."});
+ res.sendFile(notFound);
     });
 
 });
@@ -243,6 +242,16 @@ router.delete("/tag/:id", (req, res) => {
         res.status(404).json({error: "blog not found."});
     });
 });*/
+function isLoggedIn(req, res, next) {
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated()) {
+        console.log("authenticated success");
+        return next();
+    }
+    // if they aren't redirect them  the home page
+    console.log("authenticated fail go to login page");
+    res.redirect('/user/login');
+}
 
 module.exports = router;
 

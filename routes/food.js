@@ -9,6 +9,8 @@ const foodData = data.food;
 const imageData = data.image;
 const userData = data.user;
 const commentData = data.comment;
+const path = require("path");
+let notFound = path.resolve("../static/404.html");
 
 router.get("/", (req, res) => {
     foodData.getAllFood().then((foodList) => {
@@ -34,7 +36,7 @@ router.get("/foodId/:id", (req, res) => {
             });
         });
     }).catch(() => {
-        res.status(404).json({error: "Food not found!"});
+        res.sendFile(notFound);
     });
 });
 
