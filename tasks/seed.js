@@ -205,7 +205,7 @@ dbConnection().then(db => {
                         //images_BeijingSites
                         let BadalingChangchengImage = createImage("9000028", "Great Wall", "Beijing", "2016/12/04", "/public/images/Beijing_Site1_Changcheng.jpeg", "200002", "usr4", "blog4", "7771", "60020", "food4");
                         let GugongImage = createImage("9000029", "Forbidden City", "Beijing", "2016/12/04", "/public/images/Beijing_Site2_Gugong.jpeg", "200002", "usr4", "blog4", "7772", "60020", "food4");
-                        let NiaoChaoImage = createImage("9000030", "National Stadium", "Beijing", "2016/12/04", "/public/images/Beijing_Site3_Niaochao.jpeg", "200002", "usr4", "blog4", "7773", "60020", "food4");
+                        let NiaoChaoImage = createImage("9000030", "National Stadium", "Beijing", "2016/12/04", "/public/images/Beijing_Site3_Niaochao.jpg", "200002", "usr4", "blog4", "7773", "60020", "food4");
                         //images_BeijingFood
                         let KaoyaImage = createImage("9000031", "Kaoya", "Beijing", "2016/12/05", "/public/images/Beijing_Food1_Kaoya.jpeg", "200002", "usr5", "blog5", "site5", "60020", "8881");
                         let ZhajiangmianImage = createImage("9000032", "Zhajiangmian", "Beijing", "2016/12/05", "/public/images/Beijing_Food2_Zhajiangmian.jpeg", "200002", "usr5", "blog5", "site5", "60020", "8882");

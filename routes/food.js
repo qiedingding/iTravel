@@ -10,6 +10,8 @@ const imageData = data.image;
 const userData = data.user;
 const commentData = data.comment;
 const path = require("path");
+const cityData = data.city;
+
 let notFound = path.resolve("../static/404.html");
 
 router.get("/", (req, res) => {
@@ -24,14 +26,16 @@ router.get("/foodId/:id", (req, res) => {
     foodData.getFoodById(req.params.id).then((food) => {
         imageData.getImageById(food.mainImage).then((foodMainImage) => {
             commentData.getCommentByBelongToId(req.params.id).then((commentList) => {
-                let promises = [];
-                for (let i = 0, len = commentList.length; i < len; i++) {
-                    promises.push(userData.getUserById(commentList[i].userId).then((user) => {
-                       commentList[i].userId = user.username;
-                    }));
-                }
-                Promise.all(promises).then(() => {
-                    res.render("food/singleFood", {food: food, foodMainImage: foodMainImage, foodComments: commentList});
+                cityData.getCityById(food.cityId).then((city) => {
+                    let promises = [];
+                    for (let i = 0, len = commentList.length; i < len; i++) {
+                        promises.push(userData.getUserById(commentList[i].userId).then((user) => {
+                           commentList[i].userId = user.username;
+                        }));
+                    }
+                    Promise.all(promises).then(() => {
+                        res.render("food/singleFood", {food: food, foodMainImage: foodMainImage, foodComments: commentList, city: city});
+                    });
                 });
             });
         });

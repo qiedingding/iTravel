@@ -9,6 +9,8 @@ const siteData = data.site;
 const imageData = data.image;
 const userData = data.user;
 const commentData =  data.comment;
+const cityData = data.city;
+
 const path = require("path");
 let notFound = path.resolve("../static/404.html");
 router.get("/", (req, res) => {
@@ -23,14 +25,16 @@ router.get("/siteId/:id", (req, res) => {
     siteData.getSiteById(req.params.id).then((site) => {
         imageData.getImageById(site.mainImage).then((siteMainImage) => {
             commentData.getCommentByBelongToId(req.params.id).then((commentList) => {
-                let promises = [];
-                for (let i = 0, len = commentList.length; i < len; i++) {
-                    promises.push(userData.getUserById(commentList[i].userId).then((user) => {
-                       commentList[i].userId = user.username;
-                    }));
-                }
-                Promise.all(promises).then(() => {
-                    res.render("site/singleSite", {site: site, siteMainImage: siteMainImage, siteComments: commentList});
+                cityData.getCityById(site.cityId).then((city) => {
+                    let promises = [];
+                    for (let i = 0, len = commentList.length; i < len; i++) {
+                        promises.push(userData.getUserById(commentList[i].userId).then((user) => {
+                           commentList[i].userId = user.username;
+                        }));
+                    }
+                    Promise.all(promises).then(() => {
+                        res.render("site/singleSite", {site: site, siteMainImage: siteMainImage, siteComments: commentList, city: city});
+                    });
                 });
             });
         });
