@@ -1049,6 +1049,135 @@ h2.typoh2{
     }
 }
 /*--//Shortcodes--*/
+
+/*Xinyu's all cities*/
+.citygallery {
+    padding: 4em 0;
+}
+.citygallery-heading{
+    text-align:center;
+}
+.citygallery-grids {
+    margin: 2em 0 0 0;
+}
+.citygrid {
+    position: relative;
+    clear: both;
+    margin: 0 auto;
+    max-width: 1000px;
+    list-style: none;
+    text-align: center;
+}
+.citygrid figure {
+    position: relative;
+    overflow: hidden;
+    margin: 10px 0;
+    /*height: auto;*/
+    max-width: 500px;
+    max-height: 200px;
+    text-align: left;
+    /*above center to left*/
+    cursor: pointer;
+}
+
+.citygrid figure img {
+    position: relative;
+    display: block;
+    /*min-height: 100%;
+    width: 100%;*/
+    max-width: 500px;
+    max-height: 200px;
+    opacity: 0.8;
+}
+
+.citygrid figure figcaption {
+    padding: 2em;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.citygrid figure figcaption::before,
+.citygrid figure figcaption::after {
+    pointer-events: none;
+}
+
+.citygrid figure figcaption,
+.citygrid figure figcaption > a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+/*Xinyu's all cities end*/
+
+/*Xinyu's change to photowall*/
+.photowallgallery {
+    padding: 4em 0;
+}
+.photowallgallery-heading{
+    text-align:center;
+}
+.photowallgallery-grids {
+    margin: 2em 0 0 0;
+}
+.photowallgrid {
+    position: relative;
+    clear: both;
+    margin: 0 auto;
+    max-width: 1000px;
+    list-style: none;
+    text-align: center;
+}
+.photowallgrid figure {
+    position: relative;
+    overflow: hidden;
+    margin: 10px 0;
+    /*height: auto;*/
+    max-width: 500px;
+    max-height: 250px;
+    text-align: left;
+    /*above center to left*/
+    cursor: pointer;
+}
+
+.photowallgrid figure img {
+    position: relative;
+    display: block;
+    /*min-height: 100%;
+    width: 100%;*/
+    max-width: 500px;
+    max-height: 250px;
+    opacity: 0.8;
+}
+
+.photowallgrid figure figcaption {
+    padding: 2em;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.photowallgrid figure figcaption::before,
+.photowallgrid figure figcaption::after {
+    pointer-events: none;
+}
+
+.photowallgrid figure figcaption,
+.photowallgrid figure figcaption > a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+/*Xinyu's change to photowall end*/
+
 /*-- gallery --*/
 .gallery {
     padding: 4em 0;
