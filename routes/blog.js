@@ -105,13 +105,13 @@ router.post("/new", isLoggedIn, upload.single('images'), (req, res) => {
         });
 });
 
-router.get("/:title", (req, res) => {
-    blogData.getBlogByTitle(req.params.title).then((blog) => {
-        res.render('blog/blogInfo', {blog: blog});
-    }).catch(() => {
-        res.sendFile(notFound);
-    });
-});
+// router.get("/:title", (req, res) => {
+//     blogData.getBlogByTitle(req.params.title).then((blog) => {
+//         res.render('blog/blogInfo', {blog: blog});
+//     }).catch(() => {
+//         res.sendFile(notFound);
+//     });
+// });
 
 router.get("/id/:id", (req, res) => {
     blogData.getBlogByIdWithImage(req.params.id).then((blog) => {

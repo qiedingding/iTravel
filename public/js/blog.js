@@ -6,10 +6,18 @@
     uploadBlogPicture.change(function(){
             var fileList = this.files; 
             console.log("pictureChanged: ",fileList)
-        });
+    });
+    if(typeof(String.prototype.trim) === "undefined")
+    {
+        String.prototype.trim = function() 
+        {
+            return String(this).replace(/^\s+|\s+$/g, '');
+        };
+    }
     NewBlogForm.submit(function(event){
         console.group("blog form submit!!!!!! ");
         event.preventDefault();  
+        uploadAlert.addClass('hidden');
         let pic=uploadBlogPicture.get(0).files[0]; 
         var xhr = new XMLHttpRequest();
         var data = new FormData();
@@ -18,6 +26,10 @@
         var fields= $(this).serializeArray()
         $.each(fields, function(i, fields){
             //console.log(fields.name,fields.value);
+            if(fields.value.trim()==""){
+                 uploadAlert.removeClass('hidden');
+                 return false;
+            }
             data.append(fields.name,fields.value);
         })
         xhr.open('POST', '/blog/new',true) //open(method,url,async,uname,pswd)
