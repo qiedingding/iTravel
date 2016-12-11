@@ -435,16 +435,42 @@ dbConnection().then(db => {
                                                                 };
                                                                 
                                                                 let list = [];
-                                                                let blogContent =`Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit estibulum aliquam neque nibh, sed accumsan nulla ornare sit amet`;
+                                                                let blogContent1 = `The big three things to do in Beijing are Tian’an’men Square, the Forbidden Palace, and Temple of Heaven.
 
+                                                                                    These are all reasonably close and can be visited in a long day, ending with a trip to DongHuaMen night market to sample the unusual foods on a stick, such as seahorses and scorpions.
+
+                                                                                    Other Beijing attractions are the ornate but busy Lama (YongHe) Temple or the nearby Confucius Temple that is generally much more serene.
+
+                                                                                    798 Art District is an artist’s haven created in a Bauhaus-designed ex-military factory. It’s peppered with some fine works of art, but it’s worth noting that up and coming artists are rapidly being ousted by rent increases, leaving it mostly inhabited by artists that are more established.
+
+                                                                                    Cheaper and more adventurous art is still being created in Ai Weiwei’s Caochangdi Art District or Songzhuan Artist’s Village.
+
+                                                                                    In the north of Beijing city is the National Stadium, or Birds Nest. Used in the 2008 Olympics this stadium is best visited at dusk, just before the stadium and nearby Water Cube are colourfully illuminated at night.
+
+                                                                                    The adjacent Olympic Forest Park is a good place to catch a break from the crowds and traffic.
+
+                                                                                    For a break from the crowds head west. Haidian district is home to the tranquil Summer Palace (once a holiday home for the imperial family), Fragrant Hills walking trails and the Beijing Botanical Gardens.
+
+                                                                                    Keep an eye out for the CCTV Tower – an angular arch sometimes called ‘The Underpants’ – you’ll know it when you see it!`
+                                                                
+                                                                let blogContent2 =`Did you know that Lumpia traces its roots from China? And rightfully so because in the Philippines, Lumpiang Shanghai next to pancit is a common dish during celebrations.
+
+                                                                                    And I'm so happy because finally, I was able to set foot, not in Lumpia, but in Shanghai, China.
+
+                                                                                    Compared to Manila, Shanghai is an advanced metropolitan city. Not only meaning the fidelity of Wifi connection everywhere. The financial district of the communist country is also a hot pot of different cultures. For one, parts of the city were once conquered by different nations, and today foreigners are everywhere because of business.
+
+                                                                                    The city of Shanghai is subdivided into the "old" and "new", as they say. On the WEST side of the Huangpu River is Puxi, the old side where historical architecture can be admired. Pudong, on the EAST, is the cosmopolitan version. It's the home to Shanghai's famous backdrop: Oriental Pearl Tower, Shanghai World Financial Center and Shanghai Tower.`;
+
+                                                                let blogContent3 = `Shenzhen Nanshan mountain, also known as Nanshan Park, is one of the most popular mountains in Shenzhen. It is popular because of its remote and quiet location, its beautiful ocean bay sightseeing, its medium difficulty for people to climb, it is exotic street style and so on.
+                                                                Of all the Shenzhen mountains, Nanshan could be the first choice for mountaineering to do some exercise while relaxing oneself by being disposed inside the green hill. As one who has been in Shenzhen for more than a decade, Nanshan mountain is always my first choice when I want to climb mountain. `
                                                                 // blog_1 Beijing
-                                                                let blog1 = createBlog("50331", "blog1", blogContent, "9000046","conclusions", "300001",["tag1", "tag2"],"5622121","7771");
+                                                                let blog1 = createBlog("50331", "What to Do in Beijing, China", blogContent1, "9000046","conclusions", "300001",["tag1", "tag2"],"5622121","7771");
 
                                                                 // blog_2 Shanghai
-                                                                let blog2 = createBlog("50332", "blog2", blogContent, "9000047", "conclusions", "300001",["tag1", "tag2"],"5622122","7772");
+                                                                let blog2 = createBlog("50332", "Hi, Shanghai!", blogContent2, "9000047", "conclusions", "300001",["tag1", "tag2"],"5622122","7772");
 
                                                                 // blod_3 Shenzhen
-                                                                let blog3 = createBlog("50333", "blog3", blogContent, "9000048", "conclusions", "300001",["tag1", "tag2"],"5622123","7773");
+                                                                let blog3 = createBlog("50333", "Shenzhen Nanshan", blogContent3, "9000048", "conclusions", "300001",["tag1", "tag2"],"5622123","7773");
                                                                 list.push(blog1, blog2, blog3);
                                                                 return blogCollection.insertMany(list).then(() => {
                                                                     console.log("Done seeding for blog!");
