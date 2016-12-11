@@ -2,7 +2,7 @@
 <div class="container">
     <ol class="breadcrumb">
         <li><a href="/">Home</a></li>
-        <li><a href="/city/">All Cities</a></li>
+        <li><a href="/city">All Cities</a></li>
         <li><a href="/city/{{cityItem.city.name}}">City</a></li>
     </ol>
 </div>
@@ -12,13 +12,14 @@
     <div class="about-heading">
         <div class="container">
             <h2 class="wow fadeInDown animated" data-wow-delay=".5s">{{cityItem.city.name}}</h2>
-            <h3 class="wow fadeInUp animated" data-wow-delay=".5s">{{cityItem.city.name}}, {{cityItem.city.province}}, China</h3>
+            <h3 class="wow fadeInUp animated" data-wow-delay=".5s">{{cityItem.city.name}}, {{cityItem.city.province}},
+                China</h3>
         </div>
     </div>
     <div class="about-top">
         <div class="container">
             <div class="about-bottom">
-                <img class="wow fadeInUp animated" data-wow-delay=".5s" src="../..{{cityItem.city.image.path}}" alt="" />
+                <img class="wow fadeInUp animated" data-wow-delay=".5s" src="../..{{cityItem.city.image.path}}" alt=""/>
                 <br>
                 <br>
                 <br>
@@ -33,26 +34,26 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Sites -->
     {{#if cityItem.site.length}}
-    <ul>
-    <div class="team">
-        <div class="container">
-            <div class="popular-heading team-heading">
-                <h3 class="wow fadeInUp animated" data-wow-delay=".5s">Sites in {{cityItem.city.name}}</h3>
-                <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Welcome to {{cityItem.city.name}}</h2>
+        <ul>
+            <div class="team">
+                <div class="container">
+                    <div class="popular-heading team-heading">
+                        <h3 class="wow fadeInUp animated" data-wow-delay=".5s">Sites in {{cityItem.city.name}}</h3>
+                        <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Welcome to {{cityItem.city.name}}</h2>
+                    </div>
+                    {{#each cityItem.site}}
+                        <div class="col-md-4 team-grid wow fadeInLeft animated" data-wow-delay=".5s">
+                            <img src="../..{{this.image.path}}" alt=""/>
+                            <h4><a href="/site/siteId/{{this._id}}">{{this.name}}</a></h4>
+                            <p>{{this.address}}</p>
+                        </div>
+                    {{/each}}
+                </div>
             </div>
-            {{#each cityItem.site}}
-            <div class="col-md-4 team-grid wow fadeInLeft animated" data-wow-delay=".5s">
-                <img src="../..{{this.image.path}}" alt="" />
-                <h4><a href="/site/siteId/{{this._id}}">{{this.name}}</a></h4>
-                <p>{{this.address}}</p>
-            </div>
-            {{/each}}
-        </div>
-    </div>
-    </ul>
+        </ul>
     {{/if}}
     <!-- //Sites -->
     <br>
@@ -60,23 +61,21 @@
     <br>
     <!-- Food -->
     {{#if cityItem.food.length}}
-    <ul>
-    <div class="team">
-        <div class="container">
-            <div class="popular-heading team-heading">
-                <h3 class="wow fadeInUp animated" data-wow-delay=".5s">Food in {{cityItem.city.name}}</h3>
-                <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Welcome to {{cityItem.city.name}}</h2>
+        <div class="team">
+            <div class="container">
+                <div class="popular-heading team-heading">
+                    <h3 class="wow fadeInUp animated" data-wow-delay=".5s">Food in {{cityItem.city.name}}</h3>
+                    <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Welcome to {{cityItem.city.name}}</h2>
+                </div>
+                {{#each cityItem.food}}
+                    <div class="col-md-4 team-grid wow fadeInLeft animated" data-wow-delay=".5s">
+                        <img src="../..{{this.image.path}}" alt=""/>
+                        <h4><a href="/food/foodId/{{this._id}}">{{this.name}}</a></h4>
+                        <p>{{this.address}}</p>
+                    </div>
+                {{/each}}
             </div>
-            {{#each cityItem.food}}
-            <div class="col-md-4 team-grid wow fadeInLeft animated" data-wow-delay=".5s">
-                    <img src="../..{{this.image.path}}" alt="" />
-                    <h4><a href="/food/foodId/{{this._id}}">{{this.name}}</a></h4>
-                    <p>{{this.address}}</p>
-            </div>
-            {{/each}}
         </div>
-    </ul>
-    </div>
     {{/if}}
     <!-- //Food -->
     <br>
@@ -85,10 +84,11 @@
     <div class="response wow fadeInUp animated" data-wow-delay=".5s">
         <div class="container">
             <h3>Comments</h3>
-            <div class="media response-info">
-                {{#each siteComments}}
+            <div id="commentContainer" class="media response-info">
+                {{#each cityComments}}
                     <div class="media-left response-text-left">
-                        <img class="media-object" src="../../public/images/user.png" alt="Figure" style="width:50px; height:50px;">
+                        <img class="media-object" src="../../public/images/user.png" alt="Figure"
+                             style="width:50px; height:50px;">
                         <h5>{{userId}}</h5>
                     </div>
 
@@ -98,21 +98,30 @@
                             <li>{{createTime}}</li>
                         </ul>
                     </div>
-                    <div class="clearfix"> </div>
+                    <div class="clearfix"></div>
                 {{/each}}
             </div>
         </div>
         <div class="opinion">
             <div class="container">
                 <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Leave Your Comment</h2>
-                <form>
-                    <input class="wow fadeInLeft animated" data-wow-delay=".5s" type="text" placeholder="Name" required="">
-                    <textarea class="wow fadeInLeft animated" data-wow-delay=".5s" placeholder="Message" required=""></textarea>
-                    <input class="wow fadeInRight animated" data-wow-delay=".5s" type="submit" value="SEND">
+
+                <div id="idHidden">
+                    {{cityItem.city._id}}
+                </div>
+
+                <form id="comment-Form">
+                <textarea id="comment" class="wow fadeInLeft animated" data-wow-delay=".5s" placeholder="Message"
+                          required=""></textarea>
+                    <input class="wow fadeInRight animated" data-wow-delay=".5s" type="submit" value="Submit">
                 </form>
+
+                <div class="alert alert-danger hidden" id="form-alert">
+                </div>
             </div>
         </div>
     </div>
     <!-- //Comments -->
+    <script src="../../public/js/city.js"></script>
 </div>
 <!-- // Main -->
