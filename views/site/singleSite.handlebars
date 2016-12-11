@@ -1,6 +1,6 @@
 <div class="container">
     <ol class="breadcrumb">
-            <li><a href="/">Home</a></li>
+            <li><a href="/"><h4>Home</h4></a></li>
             <li><a href="/city/id/{{site.cityId}}">{{city.name}}</a></li>
             <li class="active">{{site.name}}</li>
     </ol>
@@ -18,8 +18,9 @@
                     <span class="label label-warning">{{site.tag.[2]}}</span>
                 </h3>
             </div>
-
-            <p class="wow fadeInUp animated" data-wow-delay=".5s">{{site.description}}</p>
+            <div class="alert alert-success" role="alert">
+                <p class="wow fadeInUp animated" data-wow-delay=".5s">{{site.description}}</p>
+            </div>
         </div>
     </div>
 
@@ -33,7 +34,7 @@
                                 <img src="../..{{siteMainImage.path}}" alt="Main Image" style="height:400px;"/>
                                 <figcaption>
                                     <h3>{{site.name}}</h3>
-                                    <p>Posted by the Admin</p>
+                                    <p>{{city.name}}, China</p>
                                 </figcaption>   
                             </a>
                         </figure>
@@ -41,8 +42,7 @@
                 </div>
 
                 <div>
-                    <p>Address:<span>{{site.address}}</span></p>
-                    <p>Location:</p>
+                    <p style="color: blue;">Address:<span>{{site.address}}</span></p>
                     <p id="map"></p>
                     <script>
                       function initMap() {
@@ -66,79 +66,90 @@
     </div>
 
     <div class="bs-docs-example wow fadeInUp animated" data-wow-delay=".5s">
-        <div class="container">    
-            <table>
-                <tbody>
-                    <tr>
-                        <td>Commute: </td>
-                        <td>{{site.commute}}</td>
-                    </tr>
-                    <tr>
-                        <td>Price: </td>
-                        <td>{{site.price}}</td>
-                    </tr>
-                    <tr>
-                        <td>ClosingTime: </td>
-                        <td>{{site.closingTime}}</td>
-                    </tr>
-                    <tr>
-                        <td>Phone: </td>
-                        <td>{{site.phone}}</td>
-                    </tr>
-                    <tr>
-                        <td>Website: </td>
-                        <td><a href="{{site.website}}">{{site.website}}</a></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="container">
+            <div class="alert alert-warning" role="alert">    
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><h4>Commute:</h4>&nbsp</td>
+                            <td>&nbsp<------>&nbsp</td>
+                            <td>&nbsp<h4>{{site.commute}}</h4></td>
+                        </tr>
+                        <tr>
+                            <td><h4>Price:</h4>&nbsp</td>
+                            <td>&nbsp<------>&nbsp</td>
+                            <td>&nbsp<h4>{{site.price}}</h4></td>
+                        </tr>
+                        <tr>
+                            <td><h4>ClosingTime:</h4>&nbsp</td>
+                            <td>&nbsp<------>&nbsp</td>
+                            <td>&nbsp<h4>{{site.closingTime}}s</h4></td>
+                        </tr>
+                        <tr>
+                            <td><h4>Phone:</h4>&nbsp</td>
+                            <td>&nbsp<------>&nbsp</td>
+                            <td><h4>&nbsp{{site.phone}}</h4></td>
+                        </tr>
+                        <tr>
+                            <td><h4>Website:</h4>&nbsp</td>
+                            <td>&nbsp<------>&nbsp</td>
+                            <td>&nbsp<h4><a href="{{site.website}}">{{site.website}}</a></h4></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>    
     </div>
 
     <div class="bs-docs-example wow fadeInUp animated" data-wow-delay=".5s">
         <div class="container">
-            <div class="alert alert-warning" role="alert">           
-                <strong>Tips!</strong>
-                <h5>{{site.tips}}</h5>
+            <div class="alert alert-success" role="alert">           
+                <strong><h4>Tips!</h4></strong>
+                <h4>{{site.tips}}</h4>
             </div>
         </div>
     </div>
 
     <div class="response wow fadeInUp animated" data-wow-delay=".5s">
         <div class="container">
-            <h3>Comments</h3>
-            <div id="commentContainer" class="media response-info">
-                {{#each siteComments}}
-                    <div class="media-left response-text-left">
-                        <img class="media-object" src="../../public/images/user.png" alt="Figure" style="width:50px; height:50px;">
-                        <h5>{{userId}}</h5>
-                    </div>
+            <div class="alert alert-warning" role="alert">
+                <h3>Comments</h3>
+                <div id="commentContainer" class="media response-info">
+                    {{#each siteComments}}
+                        <div class="media-left response-text-left">
+                            <img class="media-object" src="../../public/images/user.png" alt="Figure" style="width:50px; height:50px;">
+                            <h5>{{userId}}</h5>
+                        </div>
 
-                    <div class="media-body response-text-right">
-                        <p class="well">{{content}}</p>
-                        <ul>
-                            <li>{{createTime}}</li>
-                        </ul>
-                    </div>
+                        <div class="media-body response-text-right">
+                            <p class="well">{{content}}</p>
+                            <ul>
+                                <li>{{createTime}}</li>
+                            </ul>
+                        </div>
 
-                    <div class="clearfix"> </div>
-                {{/each}}
+                        <div class="clearfix"> </div>
+                    {{/each}}
+                </div>
             </div>
         </div>
         
         <div class="opinion">
             <div class="container">
-                <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Leave Your Comment</h2>
+                <div class="alert alert-warning" role="alert">
+                    <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Leave Your Comment</h2>
 
-                <div id="idHidden">
-                    {{site._id}}
-                </div>
+                    <div id="idHidden">
+                        {{site._id}}
+                    </div>
 
-                <form id="comment-Form">
-                    <textarea id="siteComment" class="wow fadeInLeft animated" data-wow-delay=".5s" placeholder="Message" required=""></textarea>
-                    <input class="wow fadeInRight animated" data-wow-delay=".5s" type="submit" value="Submit">
-                </form>
+                    <form id="comment-Form">
+                        <textarea id="siteComment" class="wow fadeInLeft animated" data-wow-delay=".5s" placeholder="Message" required=""></textarea>
+                        <input class="wow fadeInRight animated" data-wow-delay=".5s" type="submit" value="Submit">
+                    </form>
 
-                <div class="alert alert-danger hidden" id="form-alert">
+                    <div class="alert alert-danger hidden" id="form-alert">
+                    </div>
                 </div>
             </div>
         </div>
