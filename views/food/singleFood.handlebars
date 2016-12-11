@@ -1,6 +1,6 @@
 <div class="container">
     <ol class="breadcrumb">
-            <li><a href="/"><h4>Home</h4></a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="/city/id/{{food.cityId}}">{{city.name}}</a></li>
             <li class="active">{{food.name}}</li>
     </ol>
@@ -9,11 +9,8 @@
 <div class="about">
     <div class="about-heading">
         <div class="container">
-            <h2 class="wow fadeInDown animated" data-wow-delay=".5s" style="margin-bottom: 20px;">{{food.name}}</h2>
-
-            <div class="alert alert-warning" role="alert">
-                <p class="wow fadeInUp animated" data-wow-delay=".5s"><h4>{{food.description}}</h4></p>
-            </div>
+            <h2 class="wow fadeInDown animated" data-wow-delay=".5s">{{food.name}}</h2>
+            <p class="wow fadeInUp animated" data-wow-delay=".5s">{{food.description}}</p>
         </div>
     </div>
 
@@ -27,7 +24,7 @@
                                 <img src="../..{{foodMainImage.path}}" alt="Main Image" style="height:400px;"/>
                                 <figcaption>
                                     <h3>{{food.name}}</h3>
-                                    <p>{{city.name}}, China</p>
+                                    <p>Posted by the Admin</p>
                                 </figcaption>   
                             </a>
                         </figure>
@@ -35,7 +32,8 @@
                 </div>
 
                 <div>
-                    <p style="color: blue;">Address:<span>{{food.address}}</span></p>
+                    <p>Address:<span>{{food.address}}</span></p>
+                    <p>Location:</p>
                     <p id="map"></p>
                     <script>
                       function initMap() {
@@ -60,29 +58,27 @@
 
     <div class="grid_3 grid_5 wow fadeInUp animated" data-wow-delay=".5s">
         <div class="container">
-            <div class="alert alert-success" role="alert">
-                <h3 class="hdg">Food Related Detail Information: </h3>
-                <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-                    <ul id="myTab" class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#price" id="price-tab" role="tab" data-toggle="tab" aria-controls="price" aria-expanded="true">Price</a></li>
-                        <li role="presentation"><a href="#closingTime" role="tab" id="closingTime-tab" data-toggle="tab" aria-controls="closingTime">ClosingTime</a></li>
-                        <li role="presentation"><a href="#phone" role="tab" id="phone-tab" data-toggle="tab" aria-controls="phone">Phone</a></li>
-                        <li role="presentation"><a href="#website" role="tab" id="website-tab" data-toggle="tab" aria-controls="website">Website</a></li>
-                    </ul>
+            <h3 class="hdg">Food Detail Information: </h3>
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#price" id="price-tab" role="tab" data-toggle="tab" aria-controls="price" aria-expanded="true">Price</a></li>
+                    <li role="presentation"><a href="#closingTime" role="tab" id="closingTime-tab" data-toggle="tab" aria-controls="closingTime">ClosingTime</a></li>
+                    <li role="presentation"><a href="#phone" role="tab" id="phone-tab" data-toggle="tab" aria-controls="phone">Phone</a></li>
+                    <li role="presentation"><a href="#website" role="tab" id="website-tab" data-toggle="tab" aria-controls="website">Website</a></li>
+                </ul>
 
-                    <div id="myTabContent" class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade in active" id="price" aria-labelledby="price-tab">
-                            <p><h4>{{food.price}}</h4></p>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="closingTime" aria-labelledby="closingTime-tab">
-                            <p><h4>{{food.closingTime}}</h4></p>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="phone" aria-labelledby="phone-tab">
-                            <p><h4>{{food.phone}}</h4></p>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="website" aria-labelledby="website-tab">
-                            <p><h4><a href="{{food.website}}">{{food.website}}</a></h4></p>
-                        </div>
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="price" aria-labelledby="price-tab">
+                        <p>{{food.price}}</p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="closingTime" aria-labelledby="closingTime-tab">
+                        <p>{{food.closingTime}}</p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="phone" aria-labelledby="phone-tab">
+                        <p>{{food.phone}}</p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="website" aria-labelledby="website-tab">
+                        <p><a href="{{food.website}}">{{food.website}}</a></p>
                     </div>
                 </div>
             </div>
@@ -91,43 +87,39 @@
 
     <div class="response wow fadeInUp animated" data-wow-delay=".5s">
         <div class="container">
-            <div class="alert alert-warning" role="alert">
-                <h3>Comments</h3>
-                <div id="commentContainer" class="media response-info">
-                    {{#each foodComments}}
-                        <div class="media-left response-text-left">
-                            <img class="media-object" src="../../public/images/user.png" alt="Figure" style="width:50px; height:50px;">
-                            <h5>{{userId}}</h5>
-                        </div>
+            <h3>Comments</h3>
+            <div id="commentContainer" class="media response-info">
+                {{#each foodComments}}
+                    <div class="media-left response-text-left">
+                        <img class="media-object" src="../../public/images/user.png" alt="Figure" style="width:50px; height:50px;">
+                        <h5>{{userId}}</h5>
+                    </div>
 
-                        <div class="media-body response-text-right">
-                            <p class="well">{{content}}</p>
-                            <ul>
-                                <li>{{createTime}}</li>
-                            </ul>
-                        </div>
-                        <div class="clearfix"> </div>
-                    {{/each}}
-                </div>
+                    <div class="media-body response-text-right">
+                        <p class="well">{{content}}</p>
+                        <ul>
+                            <li>{{createTime}}</li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                {{/each}}
             </div>
         </div>
         
         <div class="opinion">
             <div class="container">
-                <div class="alert alert-warning" role="alert">
-                    <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Leave Your Comment</h2>
+                <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Leave Your Comment</h2>
 
-                    <div id="idHidden">
-                        {{food._id}}
-                    </div>
+                <div id="idHidden">
+                    {{food._id}}
+                </div>
 
-                    <form id="comment-Form">
-                        <textarea id="foodComment" class="wow fadeInLeft animated" data-wow-delay=".5s" placeholder="Message" required=""></textarea>
-                        <input class="wow fadeInRight animated" data-wow-delay=".5s" type="submit" value="Submit">
-                    </form>
+                <form id="comment-Form">
+                    <textarea id="foodComment" class="wow fadeInLeft animated" data-wow-delay=".5s" placeholder="Message" required=""></textarea>
+                    <input class="wow fadeInRight animated" data-wow-delay=".5s" type="submit" value="Submit">
+                </form>
 
-                    <div class="alert alert-danger hidden" id="form-alert">
-                    </div>
+                <div class="alert alert-danger hidden" id="form-alert">
                 </div>
             </div>
         </div>

@@ -380,36 +380,21 @@ dbConnection().then(db => {
                                                         };    
 
                                                         let listOfComments = [];                                   
-                                                        //cityComments
-                                                        let BeijingCityComment = createComment("5551", "Capital of China, history of culture.", "2016/12/01", "5", "5622121", "60020");
-                                                        let ShanghaiCityComment = createComment("5552", "Economic Center.", "2016/12/01", "5", "5622121", "60021");
-                                                        let XianCityComment = createComment("5553", "Old Dynasty. Delicious food.", "2016/12/01", "5", "5622122", "60022");
-                                                        //siteComments
-                                                        let ChangchengSiteComment = createComment("5554", "Not a real man until climbing the Great Wall.", "2016/12/01", "5", "5622121", "7771");
-                                                        let GugongSiteComment = createComment("5555", "So splendid, long history.", "2016/12/01", "5", "5622121", "7772");
-                                                        let NiaochaoSiteComment = createComment("5556", "Feel the 2008 Beijing Olympics", "2016/12/02", "5", "5622122", "7773");
-                                                        let DongfangzhizhuSiteComment = createComment("5557", "Shanghai landmark, beautiful in the night.", "2016/12/02", "5", "5622122", "7774");
-                                                        let WaitanSiteComment = createComment("5558", "Unbelievable night landscape", "2016/12/02", "5", "5622122", "7775");
-                                                        let ChenghuangmiaoSiteComment = createComment("5559", "Countless delicious food.", "2016/12/02", "5", "5622122", "7776");
-                                                        let BingmayongSiteComment = createComment("55510", "Can not imagine how smart the ancient China people.", "2016/12/02", "5", "5622122", "7777");
-                                                        let DayantaSiteComment = createComment("55511", "So beautiful and meaningful.", "2016/12/03", "5", "5622123", "7778");
-                                                        let HuaqingchiSiteComment = createComment("55512", "The beautiful view", "2016/12/03", "5", "5622123", "7779");
-                                                        //foodComments
-                                                        let KaoyaFoodComment = createComment("55513", "The most famous China food", "2016/12/03", "5", "5622123", "8881");
-                                                        let ZhajiangmianFoodComment = createComment("55514", "Delicious noodles with the great sauces", "2016/12/03", "5", "5622123", "8882");
-                                                        let BaoduFoodComment = createComment("55515", "Nice try.", "2016/12/03", "5", "5622123", "8883");
-                                                        let ShengjianFoodComment = createComment("55516", "So delicious.", "2016/12/04", "5", "5622124", "8884");
-                                                        let XiaolongbaoFoodComment = createComment("55517", "So delicious.", "2016/12/04", "5", "5622124", "8885");
-                                                        let WontonFoodComment = createComment("55518", "So delicious", "2016/12/04", "5", "5622124", "8886");
-                                                        let YangroupaomoFoodComment = createComment("55519", "So delicious.", "2016/12/04", "5", "5622124", "8887");
-                                                        let RoujiamoFoodComment = createComment("55520", "Xian Famous Food in New York", "2016/12/04", "5", "5622124", "8888");
-                                                        let LiangpiFoodComment = createComment("55521", "So delicious", "2016/12/05", "5", "5622125", "8889");
-                                                        //blogComments
-                                                        let blog1Comment = createComment("55522", "Make Sense!", "2016/12/05", "5", "5622125", "50331");
-                                                        let blog2Comment = createComment("55523", "Nonsense", "2016/12/05", "5", "5622125", "50332");
-                                                        let blog3Comment = createComment("55524", "Not bad", "2016/12/05", "5", "5622125", "50333");
 
-                                                        listOfComments.push(BeijingCityComment, ShanghaiCityComment, XianCityComment, ChangchengSiteComment, GugongSiteComment, NiaochaoSiteComment, DongfangzhizhuSiteComment, WaitanSiteComment, ChenghuangmiaoSiteComment, BingmayongSiteComment, DayantaSiteComment, HuaqingchiSiteComment, KaoyaFoodComment, ZhajiangmianFoodComment, BaoduFoodComment, ShengjianFoodComment, XiaolongbaoFoodComment, WontonFoodComment, YangroupaomoFoodComment, RoujiamoFoodComment, LiangpiFoodComment, blog1Comment, blog2Comment, blog3Comment);
+                                                        let BeiJingCityComment = createComment("5551", "Capital of China, history of culture.", "2016/12/01", "5", "5622121", "60020");
+                                                        let ShangHaiCityComment = createComment("5552", "Economic Center.", "2016/12/02", "5", "5622121", "60021");
+                                                        let ShenZhenCityComment = createComment("5553", "Open to the World.", "2016/12/03", "5", "5622122", "60022");
+                                                        let QianFoMountainSiteComment = createComment("5554", "Height is moderate, religious mountain.", "2016/12/04", "5", "5622122", "7771");
+                                                        let DaMingLakeSiteComment = createComment("5555", "HuanZhu GeGe", "2016/12/05", "5", "5622122", "7772");
+                                                        let BaoTuFountainSiteComment = createComment("5556", "The Big Brother of the 72 Springs", "2016/12/06", "5", "5622121", "7773");
+                                                        let BaZiRouFoodComment = createComment("5557", "BengRouGanFan", "2016/12/07", "5", "5622121", "8881");
+                                                        let TianMoFoodComment = createComment("5558", "BreakFast Delicious Porridge", "2016/12/08", "5", "5622122", "8882");
+                                                        let YouXuanFoodComment = createComment("5559", "Fried Dogh", "2016/12/09", "5", "5622122", "8883");
+                                                        let blog1Comment = createComment("55510", "Make Sense!", "2016/12/10", "5", "5622121", "50331");
+                                                        let blog2Comment = createComment("55511", "Nonsense", "2016/12/11", "5", "5622121", "50332");
+                                                        let blog3Comment = createComment("55512", "Not bad", "2016/12/12", "5", "5622122", "50333");
+
+                                                        listOfComments.push(BeiJingCityComment, ShangHaiCityComment, ShenZhenCityComment, QianFoMountainSiteComment, DaMingLakeSiteComment, BaoTuFountainSiteComment, BaZiRouFoodComment, TianMoFoodComment, YouXuanFoodComment, blog1Comment, blog2Comment, blog3Comment);
                                                         return commentCollection.insertMany(listOfComments).then(() => { 
                                                             console.log("Done seeding for comments!");
                                                             return db.collection("blog").drop().then(function () {
