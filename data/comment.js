@@ -24,12 +24,14 @@ const uuid = require('node-uuid');
  */
 
 let exportedMethods = {
+// getAllComments    
     getAllComments() {
         return comment().then((commentCollection) => {
             return commentCollection.find({}).toArray();
         });
     },
-
+    
+// getCommentById
     getCommentById(id) {
         if (!id) return Promise.reject ("You must provide a comment id.");
 
@@ -41,7 +43,8 @@ let exportedMethods = {
             });
         });
     },
-
+    
+// getCommentByUserId
     getCommentByUserId(userId) {
         if (!userId) return Promise.reject ("You must provide a userId.");
 
@@ -53,6 +56,7 @@ let exportedMethods = {
         });
     },
     
+// getCommentByCityId    
     getCommentByCityId(cityId) {
         if (!cityId) return Promise.reject ("You must provide a cityId.");
 
@@ -63,7 +67,8 @@ let exportedMethods = {
             });
         });
     },
-
+    
+// getCommentByBelongToId
     getCommentByBelongToId(id) {
         if (!id) return Promise.reject ("You must provide a belongToId.");
 
@@ -75,6 +80,7 @@ let exportedMethods = {
         });
     },
 
+// addComment    
     addComment(content, createTime, stars, userId, belongToId) {
         // check content and userId
         if (!content) return Promise.reject ("You must provide content of the comment.");
@@ -98,7 +104,7 @@ let exportedMethods = {
         });
     },
 
-
+// removeComment
     removeComment(id) {
         if (!id) return Promise.reject ("You must provide an comment id.");
 
@@ -110,7 +116,8 @@ let exportedMethods = {
             });
         });
     },
-
+    
+// removeCommentStars
     removeCommentStars(id, StarsToRemove) {
         if (!id) return Promise.reject("You must provide a comment id.");
         if (!StarsToRemove) return Promise.reject("You must provide star to remove.");
@@ -121,7 +128,8 @@ let exportedMethods = {
             });
         });
     },
-
+    
+// updateComment
     updateComment(id, updatedComment) {
         if (!id) return Promise.reject ("You must provide an id.");
 
