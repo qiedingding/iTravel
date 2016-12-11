@@ -4,10 +4,6 @@
     let formAlert = $("#form-alert");
     signupForm.submit(function(event){
         event.preventDefault();
-        let username = $("#username").val();
-        let email = $("#email").val();
-        let password1 = $("#password1").val();
-        let password2= $("#password2").val();
         $("#signupForm").validate({
             rules: {
                 username: {
@@ -45,19 +41,23 @@
                 email: "Please enter a valid email address"
             }
         });
-        if (!username||username===undefined) {
+        let username = $("#username").val().trim();
+        let email = $("#email").val().trim();
+        let password1 = $("#password1").val().trim();
+        let password2= $("#password2").val().trim();
+        if (!username||username===undefined||username.length<8) {
             $("#username").focus();
             formAlert.html('<strong>Oh snap! Need a username</strong>').show().fadeOut( 2000 );
             formAlert.removeClass('hidden');
             return;
         }
-        if (!email||email===undefined) {
+        if (!email||email===undefined||email.length<8) {
             $("#email").focus();
             formAlert.html('<strong>Oh snap! Need a email</strong>').show().fadeOut( 2000 );
             formAlert.removeClass('hidden');
             return;
         }
-        if (!password1||password1===undefined) {
+        if (!password1||password1===undefined||password1.length<8) {
             $("#password1").focus();
             formAlert.html('<strong>Oh snap! Need a password</strong>').show().fadeOut( 2000 );
             formAlert.removeClass('hidden');
@@ -80,15 +80,15 @@
             url: "/user/register",
             contentType: 'application/json',
             data: JSON.stringify({
-                username: username,
-                password: password1,
-                email: email
+                username: $("#username").val(),
+                password: $("#password1").val(),
+                email:  $("#email").val()
             })
         };
 
         $.ajax(requestConfig).then(function (responseMessage) {
             if(responseMessage.status==="success"){
-                window.location.href = '/user/profile';
+                window.location.href = '/user/login';
             }else{
                 formAlert.text(responseMessage);
                 formAlert.removeClass('hidden');

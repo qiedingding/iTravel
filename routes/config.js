@@ -18,8 +18,12 @@ module.exports = function (passport) {
             passReqToCallback: true // allows us to pass back the entire request to the callback
         },
         function (req, username, password, done) {
-            console.log("username = " + username);
-            console.log("password = " + password);
+            if(username.length<8||username.length>20){
+                return done(null, false, req.flash('error', 'The username length is too long or short.'));
+            }
+            if(password.length<8||password.length>20){
+                return done(null, false, req.flash('error', 'The password length is too long or short.'));
+            }
             UserData.getUserByName(username).then((user) => {
                 if (user != null) {
                     return done(null, false, req.flash('error', 'That username is already taken.'));

@@ -8,8 +8,11 @@
             </div>
             <div class="login-info">
                 <form id="signupForm" name="signupForm">
+                    <label for="username">Name (required, at least 8 characters)</label>
                     <input type="text" class="user" name="username" minlength="8" id="username" placeholder="Name" required>
+                    <label for="email">Email (required)</label>
                     <input type="text" class="email" name="email" id="email" placeholder="Email" required>
+                    <label for="password">Password (required, at least 8 characters)</label>
                     <input type="password" name="password1" minlength="8" id="password1" class="lock" placeholder="Password" required>
                     <input type="password" name="password2" minlength="8" id="password2"  class="lock" placeholder="Confirm Password" required>
                     {{#if message }}

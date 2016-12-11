@@ -65,7 +65,7 @@ const constructorMethod = (app) => {
                 }
             };
             let promises = [];
-            for (let i = 0, len = citylist.length; i < len; i++) {
+            for (let i = 0, len = citylist.length; i < len && i<3; i++) {
                 promises.push(imageData.getImageById(citylist[i].mainImage).then((image) => {
                     let c = null;
                     if(!image){
@@ -82,8 +82,12 @@ const constructorMethod = (app) => {
             })
         })
         .then(() => {
+            let blist = [];
             blogData.getAllBlogsWithImage().then((bloglist) => {
-                returnValue.blist = bloglist;
+                for (let i = 0, len = bloglist.length; i < len && i<3; i++) {
+                    blist.push(bloglist[i]);
+                }
+                returnValue.blist = blist;
             })
         })
         .then(()=>{
