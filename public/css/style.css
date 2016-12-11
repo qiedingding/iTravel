@@ -787,10 +787,16 @@ ul.callbacks_tabs.callbacks2_tabs a:after {
     padding: 4em 0;
     background: #DBAC76;
 }
+/*Xinyu Single city*/
 .teamCity{
     padding: 4em 0;
     background:#FFC31E;
     margin: 0;
+}
+/*Xinyu Food Site*/
+.teamCity img{
+    max-width: 400px;
+    max-height: 190px;
 }
 .team-heading{
     text-align:center;
