@@ -23,7 +23,7 @@
                             <a class="example-image-link" href="../..{{foodMainImage.path}}" data-lightbox="example-set" data-title="">
                                 <img src="../..{{foodMainImage.path}}" alt="Main Image" style="height:400px;"/>
                                 <figcaption>
-                                    <h3>Food</h3>
+                                    <h3>{{food.name}}</h3>
                                     <p>Posted by the Admin</p>
                                 </figcaption>   
                             </a>
@@ -58,7 +58,7 @@
 
     <div class="grid_3 grid_5 wow fadeInUp animated" data-wow-delay=".5s">
         <div class="container">
-            <h3 class="hdg">Food Location Detail Information: </h3>
+            <h3 class="hdg">Food Detail Information: </h3>
             <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab" class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#price" id="price-tab" role="tab" data-toggle="tab" aria-controls="price" aria-expanded="true">Price</a></li>
@@ -78,7 +78,7 @@
                         <p>{{food.phone}}</p>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="website" aria-labelledby="website-tab">
-                        <p>{{food.website}}</p>
+                        <p><a href="{{food.website}}">{{food.website}}</a></p>
                     </div>
                 </div>
             </div>

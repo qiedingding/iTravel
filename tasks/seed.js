@@ -423,13 +423,13 @@ dbConnection().then(db => {
                                                                 let blogContent =`Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit estibulum aliquam neque nibh, sed accumsan nulla ornare sit amet`;
 
                                                                 // blog_1 Beijing
-                                                                let blog1 = createBlog("50331", "blog1", blogContent, "900021","conclusions", "300001",["tag1", "tag2"],"5622121","7771");
+                                                                let blog1 = createBlog("50331", "blog1", blogContent, "9000046","conclusions", "300001",["tag1", "tag2"],"5622121","7771");
 
                                                                 // blog_2 Shanghai
-                                                                let blog2 = createBlog("50332", "blog2", blogContent, "900022", "conclusions", "300001",["tag1", "tag2"],"5622121","7772");
+                                                                let blog2 = createBlog("50332", "blog2", blogContent, "9000047", "conclusions", "300001",["tag1", "tag2"],"5622122","7772");
 
                                                                 // blod_3 Shenzhen
-                                                                let blog3 = createBlog("50333", "blog3", blogContent, "900023", "conclusions", "300001",["tag1", "tag2"],"5622121","7773");
+                                                                let blog3 = createBlog("50333", "blog3", blogContent, "9000048", "conclusions", "300001",["tag1", "tag2"],"5622123","7773");
                                                                 list.push(blog1, blog2, blog3);
                                                                 return blogCollection.insertMany(list).then(() => {
                                                                     console.log("Done seeding for blog!");
