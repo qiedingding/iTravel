@@ -2,8 +2,8 @@
 <div class="container">
     <ol class="breadcrumb">
         <li><a href="/">Home</a></li>
-        <li><a href="/city">All Cities</a></li>
-        <li><a href="/city/{{cityItem.city.name}}">City</a></li>
+        <li><a href="/city/">All Cities</a></li>
+        <li><a href="/city/{{cityItem.city.name}}">{{cityItem.city.name}}</a></li>
     </ol>
 </div>
 <!-- //Bar -->
@@ -12,48 +12,80 @@
     <div class="about-heading">
         <div class="container">
             <h2 class="wow fadeInDown animated" data-wow-delay=".5s">{{cityItem.city.name}}</h2>
-            <h3 class="wow fadeInUp animated" data-wow-delay=".5s">{{cityItem.city.name}}, {{cityItem.city.province}},
-                China</h3>
+            <h3 class="wow fadeInUp animated" data-wow-delay=".5s">{{cityItem.city.name}}, {{cityItem.city.province}}, China</h3>
         </div>
     </div>
     <div class="about-top">
         <div class="container">
             <div class="about-bottom">
-                <img class="wow fadeInUp animated" data-wow-delay=".5s" src="../..{{cityItem.city.image.path}}" alt=""/>
-                <br>
-                <br>
-                <br>
-                <ul class="wow fadeInUp animated" data-wow-delay=".5s">
-                    <li> Description: {{cityItem.city.description}} </li>
-                    <li> Traffic: {{cityItem.city.traffic}} </li>
-                    <li> Weather: {{cityItem.city.weather}} </li>
-                    <li> History: {{cityItem.city.history}} </li>
-                    <li> Culture: {{cityItem.city.culture}} </li>
-                    <li> Currency: {{cityItem.city.currency}} </li>
-                </ul>
+                <img class="wow fadeInUp animated" data-wow-delay=".5s" src="../..{{cityItem.city.image.path}}" alt="" />
+                <div class="grid_3 grid_5 wow fadeInUp animated" data-wow-delay=".5s">
+                    <h3 class="hdg">About {{cityItem.city.name}}</h3>
+                    <h4 class="hdg"> Description: </h4>
+                    <div class="well">
+                        {{cityItem.city.description}}
+                    </div>
+                    <h4 class="hdg"> History: </h4>
+                    <div class="well">
+                        {{cityItem.city.history}}
+                    </div>
+                    <h4 class="hdg"> Culture: </h4>
+                    <div class="well">
+                        {{cityItem.city.culture}}
+                    </div>
+                    {{!--Traffic/Weather/Currency--}}
+                    <h3 class="hdg">Other Info:</h3>
+                    <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#traffic" id="traffic-tab" role="tab" data-toggle="tab" aria-controls="traffic" aria-expanded="true">Traffic</a></li>
+                            <li role="presentation"><a href="#weather" role="tab" id="weather-tab" data-toggle="tab" aria-controls="weather">Weather</a></li>
+                            <li role="presentation"><a href="#currency" role="tab" id="currency-tab" data-toggle="tab" aria-controls="currency">Currency</a></li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="traffic" aria-labelledby="traffic-tab">
+                                <p>{{cityItem.city.traffic}}</p>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="weather" aria-labelledby="weather-tab">
+                                <p>{{cityItem.city.weather}}</p>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="currency" aria-labelledby="currency-tab">
+                                <p>{{cityItem.city.currency}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {{!--Tags--}}
+                    {{#if cityItem.city.tag.length}}
+                        {{#each cityItem.city.tag}}
+                            <h3 class="col-sm-1">
+                                <span class="label label-success">{{this}}</span>
+                            </h3>
+                        {{/each}}
+                    {{/if}}
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Sites -->
     {{#if cityItem.site.length}}
-        <ul>
-            <div class="team">
-                <div class="container">
-                    <div class="popular-heading team-heading">
-                        <h3 class="wow fadeInUp animated" data-wow-delay=".5s">Sites in {{cityItem.city.name}}</h3>
-                        <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Welcome to {{cityItem.city.name}}</h2>
-                    </div>
-                    {{#each cityItem.site}}
-                        <div class="col-md-4 team-grid wow fadeInLeft animated" data-wow-delay=".5s">
-                            <img src="../..{{this.image.path}}" alt=""/>
-                            <h4><a href="/site/siteId/{{this._id}}">{{this.name}}</a></h4>
-                            <p>{{this.address}}</p>
-                        </div>
-                    {{/each}}
-                </div>
+    <ul>
+    <div class="teamCity">
+    {{!--<div class="grid_3 grid_5 wow fadeInUp animated" data-wow-delay=".5s">--}}
+        <div class="container">
+            <div class="popular-heading team-heading">
+                <h3 class="wow fadeInUp animated" data-wow-delay=".5s">Sites in {{cityItem.city.name}}</h3>
+                <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Welcome to {{cityItem.city.name}}</h2>
             </div>
-        </ul>
+            {{#each cityItem.site}}
+            <div class="col-md-4 team-grid wow fadeInLeft animated" data-wow-delay=".5s">
+                <img src="../..{{this.image.path}}" alt="" />
+                <h4><a href="/site/siteId/{{this._id}}">{{this.name}}</a></h4>
+                <p>{{this.address}}</p>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    </ul>
     {{/if}}
     <!-- //Sites -->
     <br>
@@ -61,21 +93,23 @@
     <br>
     <!-- Food -->
     {{#if cityItem.food.length}}
-        <div class="team">
-            <div class="container">
-                <div class="popular-heading team-heading">
-                    <h3 class="wow fadeInUp animated" data-wow-delay=".5s">Food in {{cityItem.city.name}}</h3>
-                    <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Welcome to {{cityItem.city.name}}</h2>
-                </div>
-                {{#each cityItem.food}}
-                    <div class="col-md-4 team-grid wow fadeInLeft animated" data-wow-delay=".5s">
-                        <img src="../..{{this.image.path}}" alt=""/>
-                        <h4><a href="/food/foodId/{{this._id}}">{{this.name}}</a></h4>
-                        <p>{{this.address}}</p>
-                    </div>
-                {{/each}}
+    <ul>
+    <div class="teamCity">
+        <div class="container">
+            <div class="popular-heading team-heading">
+                <h3 class="wow fadeInUp animated" data-wow-delay=".5s">Food in {{cityItem.city.name}}</h3>
+                <h2 class="wow fadeInUp animated" data-wow-delay=".5s">Welcome to {{cityItem.city.name}}</h2>
             </div>
+            {{#each cityItem.food}}
+            <div class="col-md-4 team-grid wow fadeInLeft animated" data-wow-delay=".5s">
+                    <img src="../..{{this.image.path}}" alt="" />
+                    <h4><a href="/food/foodId/{{this._id}}">{{this.name}}</a></h4>
+                    <p>{{this.address}}</p>
+            </div>
+            {{/each}}
         </div>
+    </ul>
+    </div>
     {{/if}}
     <!-- //Food -->
     <br>
