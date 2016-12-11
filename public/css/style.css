@@ -580,8 +580,11 @@ ul.callbacks_tabs.callbacks2_tabs a:after {
 .information-grids {
     margin: 5em 0 0 0;
 }
+/*Xinyu*/
 .information-grid-img img{
     width:100%;
+    max-width: 500px;
+    max-height: 150px;
 }
 .information-grid-info {
     padding: 2em;
@@ -1135,13 +1138,15 @@ h2.typoh2{
 /***** Apollo *****/
 /*-----------------*/
 
-
+/*Xinyu*/
 figure.effect-apollo img {
     opacity: 0.95;
     -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, transform 0.35s;
     -webkit-transform: scale3d(1.05,1.05,1);
     transform: scale3d(1.05,1.05,1);
+    max-width: 500px;
+    max-height: 300px;
 }
 
 figure.effect-apollo figcaption::before {
