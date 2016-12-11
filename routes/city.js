@@ -144,7 +144,7 @@ router.get("/tag/:tag", (req, res) => {
     });
 });
 
-// post-1: Add a city(at least provide a city name).
+/*// post-1: Add a city(at least provide a city name).
 router.post("/", (req, res) => {
     let cityInfo = req.body;
 
@@ -162,8 +162,8 @@ router.post("/", (req, res) => {
         }, () => {
             res.sendStatus(500);
         });
-});
-
+});*/
+/*
 // put-1: Update city with the given city id.
 router.put("/:id", (req, res) => {
     let cityInfo = req.body;
@@ -242,6 +242,6 @@ router.delete("/tag/:id", (req, res) => {
     }).catch(() => {
         res.status(404).json({error: "City not found."});
     });
-});
+});*/
 
 module.exports = router;

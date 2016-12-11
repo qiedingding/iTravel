@@ -51,13 +51,13 @@ router.get('/logout', function(req, res){
     res.redirect('/');
 });
 // show user information, need check if user has login
-router.get("/profile", isLoggedIn, function (req, res, next) {
+/*router.get("/profile", isLoggedIn, function (req, res, next) {
     console.log("login success, go to the private page");
     let user = req.user;
     res.render("user/profile", {"user": user});
-});
+});*/
+/* ajax using for check user is login every page  !important */
 router.get('/isLoggedIn', function(req, res){
-
     if (req.isAuthenticated()) {
         console.log("login");
         res.json({user:req.user});

@@ -38,23 +38,23 @@ router.get("/foodId/:id", (req, res) => {
     });
 });
 
-router.get("/foodName/:name", (req, res) => {
+/*router.get("/foodName/:name", (req, res) => {
     foodData.getFoodByName(req.params.name).then((food) => {
         res.json(food);
     }).catch(() => {
         res.status(404).json({error: "Food not found!"});
     });
-});
+});*/
 
-router.get("/cityId/:id", (req, res) => {
+/*router.get("/cityId/:id", (req, res) => {
     foodData.getFoodByCityId(req.params.id).then((foodList) => {
         res.json(foodList);
     }).catch((e) => {
         res.status(500).json({error: e});
     });
-});
+});*/
 
-router.post("/", (req, res) => {
+/*router.post("/", (req, res) => {
     let foodPostData = req.body;
     foodData.addFood(foodPostData.name, foodPostData.description, foodPostData.location, foodPostData.address, foodPostData.price, foodPostData.closingTime, foodPostData.phone, foodPostData.website, foodPostData.mainImage, foodPostData.type, foodPostData.cityId).then((newFood) => {
         res.json(newFood);
@@ -90,6 +90,6 @@ router.delete("/:id", (req, res) => {
     }).catch(() => {
         res.status(404).json({error: "Food not found!"});
     });
-});
+});*/
 
 module.exports = router;

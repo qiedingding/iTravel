@@ -11,6 +11,7 @@ const UserData = require('../data/users');
 const bcrypt = require("bcrypt-nodejs");
 
 module.exports = function (passport) {
+    // signup Strategy logic
     passport.use('local-register', new LocalStrategy({
             usernameField: 'username',
             passwordField: 'password',
@@ -30,7 +31,7 @@ module.exports = function (passport) {
                 }
             });
         }));
-
+    // local Strategy logic
     passport.use('local-login', new LocalStrategy({
             usernameField: 'username',
             passwordField: 'password',
@@ -48,12 +49,7 @@ module.exports = function (passport) {
                         return done(null, false, {message: 'Incorrect password.'});
                     }
                 });
-
-
             });
-
         })
     );
-
-
 };

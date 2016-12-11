@@ -74,7 +74,6 @@ router.post("/new", upload.single('images'), (req, res) => {
     }
     blogData.addBlog(blogInfo)
         .then((newblog) => {
-            // console.log("add new blog ####",newblog);
             return newblog._id;
         })
         .then((id) => {
@@ -85,7 +84,6 @@ router.post("/new", upload.single('images'), (req, res) => {
             });
         })
         .then(info => {
-            // console.log("info!!!!: ", info)
             let updatedblog = {};
             let id = info[0];
             let imageId = info[1]._id;
@@ -100,13 +98,10 @@ router.post("/new", upload.single('images'), (req, res) => {
             console.log(e); // "oh, no!"
             res.status(400).json(e);
         });
-    // res.status(200).json({"success":"success!"});
 });
 
 router.get("/:title", (req, res) => {
-    //console.log("title: ",req.params.title);
     blogData.getBlogByTitle(req.params.title).then((blog) => {
-        //console.log(blog);
         res.render('blog/blogInfo', {blog: blog});
     }).catch(() => {
         res.status(404).json({error: "blog not found."});
@@ -135,7 +130,6 @@ router.get("/id/:id", (req, res) => {
 router.get("/userId/:userId", (req, res) => {
     blogData.getBlogByUserId(req.params.userId).then((blogList) => {
         res.render('blog/blogList', {blogList: blogList});
-        // res.json(blogInfo);
     }, (error) => {
         res.sendStatus(404);
     });
@@ -172,7 +166,7 @@ router.post("/", (req, res) => {
             res.sendStatus(500);
         });
 });
-
+/*
 router.put("/:id", (req, res) => {
     let blogInfo = req.body;
 
@@ -248,7 +242,7 @@ router.delete("/tag/:id", (req, res) => {
     }).catch(() => {
         res.status(404).json({error: "blog not found."});
     });
-});
+});*/
 
 module.exports = router;
 

@@ -36,7 +36,6 @@ const constructorMethod = (app) => {
     });
     /* ***************** user *****************     */
     app.use("/user", userRoutes);
-
     /* ***************** city *****************     */
     app.use("/city", cityRoutes);
     /* ***************** site *****************     */

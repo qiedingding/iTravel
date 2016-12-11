@@ -112,6 +112,7 @@ router.post("/", (req, res) => {
         });
 });
 
+/*
 // put-1: Update image with the given image id.
 router.put("/:id", (req, res) => {
     let imageInfo = req.body;
@@ -147,6 +148,7 @@ router.delete("/:id", (req, res) => {
         res.status(404).json({ error: "image not found." });
     });
 });
+*/
 
 
 

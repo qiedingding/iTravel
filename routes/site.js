@@ -38,14 +38,6 @@ router.get("/siteId/:id", (req, res) => {
     });
 });
 
-router.get("/siteName/:name", (req, res) => {
-    siteData.getSiteByName(req.params.name).then((site) => {
-        res.json(site);
-    }).catch(() => {
-        res.status(404).json({error: "Site not found!"});
-    });
-});
-
 router.get("/cityId/:id", (req, res) => {
     siteData.getSitesByCityId(req.params.id).then((siteList) => {
         res.json(siteList);
@@ -61,16 +53,7 @@ router.get("/photo/:siteId", (req, res) => {
         res.status(500).json({error: e});
     });
 });
-
-router.post("/", (req, res) => {
-    let sitePostData = req.body;
-    siteData.addSite(sitePostData.name, sitePostData.location, sitePostData.address, sitePostData.commute, sitePostData.price, sitePostData.closingTime, sitePostData.phone, sitePostData.website, sitePostData.description, sitePostData.mainImage, sitePostData.type, sitePostData.tips, sitePostData.tag, sitePostData.cityId).then((newSite) => {
-        res.json(newSite);
-    }).catch((e) => {
-        res.status(500).json({error: e});
-    });
-});
-
+/*
 router.put("/:id", (req, res) => {
     let updatedData = req.body;
     let getSite = siteData.getSiteById(req.params.id);
@@ -98,6 +81,6 @@ router.delete("/:id", (req, res) => {
     }).catch(() => {
         res.status(404).json({error: "Site not found!"});
     });
-});
+});*/
 
 module.exports = router;

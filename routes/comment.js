@@ -8,12 +8,10 @@ const router = express.Router();
 const data = require("../data");
 const commentData = data.comment;
 const userData = data.user;
-// router get 顺序？
 
 function checkCommentContent(contents) {
-    if (contents.length < 10) return false;
-    if (contents.length > 100) return false;
-    return true;
+    if(contents.length < 10||contents.length > 100) return false;
+    else return true;
 }
 
 // get-1: Return all the comments
@@ -110,7 +108,7 @@ router.get("/blogId/:blogId", (req, res) => {
     });
 });
 
-// put-1: Update comment with the given comment id.
+/*// put-1: Update comment with the given comment id.
 router.put("/:id", (req, res) => {
     let commentInfo = req.body;
 
@@ -129,9 +127,10 @@ router.put("/:id", (req, res) => {
         res.status(404).json({ error: "comment not found." });
     });
 
-});
+});*/
 
 
+/*
 // delete-1: Delete comment with the given comment id.
 router.delete("/:id", (req, res) => {
     let comment = commentData.getCommentById(req.params.id).then(() => {
@@ -145,8 +144,9 @@ router.delete("/:id", (req, res) => {
         res.status(404).json({ error: "comment not found." });
     });
 });
+*/
 
-// delete-2: Delete stars of comment with the given comment id.
+/*// delete-2: Delete stars of comment with the given comment id.
 router.delete("/stars/:id", (req, res) => {
     let starsInfo = req.body.stars;
 
@@ -164,7 +164,7 @@ router.delete("/stars/:id", (req, res) => {
     }).catch(() => {
         res.status(404).json({ error: "comment not found." });
     });
-});
+});*/
 
 function isLoggedIn(req, res, next) {
     console.log("isLoggedIn function begin");
