@@ -12,7 +12,7 @@ const commentData =  data.comment;
 const cityData = data.city;
 
 const path = require("path");
-let notFound = path.resolve("./static/404.html");
+let notFound = path.resolve("../static/404.html");
 router.get("/", (req, res) => {
     siteData.getAllSites().then((siteList) => {
         res.json(siteList);

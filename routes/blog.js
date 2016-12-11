@@ -14,7 +14,7 @@ const path = require('path'), fs = require('fs');
 const multer = require('multer');
 const userData = data.user;
 const commentData = data.comment;
-let notFound = path.resolve("./static/404.html");
+let notFound = path.resolve("../static/404.html");
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {

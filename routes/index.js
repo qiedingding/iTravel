@@ -22,7 +22,7 @@ const data = require("../data");
 const cityData = data.city;
 const blogData = data.blog;
 const imageData = data.image;
-let notFound = path.resolve("./static/404.html");
+let notFound = path.resolve("../static/404.html");
 //
 const constructorMethod = (app) => {
     passport.serializeUser(function (user, done) {
