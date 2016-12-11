@@ -6,6 +6,7 @@
 const express = require('express');
 const router = express.Router();
 const data = require("../data");
+const xss = require('xss');
 const commentData = data.comment;
 const userData = data.user;
 const path = require("path");
@@ -29,13 +30,13 @@ router.get("/", (req, res) => {
 // post-1: Add a comment(at least provide a comment content ).
 router.post("/", isLoggedIn, (req, res) => {
     let commentInfo = req.body;
-
+    
     if (!commentInfo.content || !checkCommentContent(commentInfo.content)) {
         res.status(400).json({ error: "You must provide the correct content of the comment if the length is between 10 and 100 characters." });
         return;
     }
 
-    commentData.addComment(commentInfo.content, commentInfo.createTime, commentInfo.stars, req.user._id, commentInfo.belongToId)
+    commentData.addComment(xss(commentInfo.content), xss(commentInfo.createTime), xss(commentInfo.stars), xss(req.user._id),xss(commentInfo.belongToId))
         .then((newComment) => {
             newComment.userId = req.user.username;
             res.json({success:true, message: newComment});

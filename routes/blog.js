@@ -9,6 +9,7 @@ const blogData = data.blog;
 const imageData = data.image;
 const uuid = require('node-uuid');
 const bodyParser = require("body-parser");
+const xss = require('xss');
 const path = require('path'), fs = require('fs');
 const multer = require('multer');
 const userData = data.user;
@@ -58,8 +59,12 @@ router.post("/new", isLoggedIn, upload.single('images'), (req, res) => {
     console.log("POST /blog/new!");
     //console.log(req.body); //get all text content
     //console.log(req.file); // get all files content
-    let blogInfo = req.body;
-    if (!blogInfo) {
+    let body = req.body;
+    let blogInfo = {
+        title: xss(body.title),
+        content: xss(body.content)
+    }
+    if (!body) {
         res.status(400).json({error: "You must provide data to create a new blog."});
         return;
     }
