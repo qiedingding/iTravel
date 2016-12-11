@@ -132,45 +132,45 @@ router.get("/id/:id", (req, res) => {
     });
 });
 
-router.get("/userId/:userId", (req, res) => {
-    blogData.getBlogByUserId(req.params.userId).then((blogList) => {
-        res.render('blog/blogList', {blogList: blogList});
-    }, (error) => {
-        res.sendFile(notFound);
-    });
-});
+// router.get("/userId/:userId", (req, res) => {
+//     blogData.getBlogByUserId(req.params.userId).then((blogList) => {
+//         res.render('blog/blogList', {blogList: blogList});
+//     }, (error) => {
+//         res.sendFile(notFound);
+//     });
+// });
 
-router.get("/type/:type", (req, res) => {
-    blogData.getBlogByType(req.params.tag).then((blogList) => {
-        res.render('blog/blogList', {blogList: blogList});
-        // res.json(blogInfo);
-    }).catch(() => {
-        res.sendFile(notFound);
-    });
-});
+// router.get("/type/:type", (req, res) => {
+//     blogData.getBlogByType(req.params.tag).then((blogList) => {
+//         res.render('blog/blogList', {blogList: blogList});
+//         // res.json(blogInfo);
+//     }).catch(() => {
+//         res.sendFile(notFound);
+//     });
+// });
 
-router.post("/",isLoggedIn, (req, res) => {
-    let blogInfo = req.body;
+// router.post("/",isLoggedIn, (req, res) => {
+//     let blogInfo = req.body;
 
-    if (!blogInfo) {
-        res.status(400).json({error: "You must provide data to create a new blog."});
-        return;
-    }
-    if (!blogInfo.title) {
-        res.status(400).json({error: "You must at least provide title of the blog."});
-        return;
-    }
-    if (!blogInfo.contnet) {
-        res.status(400).json({error: "You must at least provide content of the blog."});
-        return;
-    }
-    blogData.addBlog(blogInfo.title, blogInfo.content, blogInfo.mainImage, blogInfo.conclusions, blogInfo.type, blogInfo.tag, blogInfo.userId, blogInfo.siteId)
-        .then((newblog) => {
-            res.json(newblog);
-        }, () => {
-            res.sendFile(notFound);
-        });
-});
+//     if (!blogInfo) {
+//         res.status(400).json({error: "You must provide data to create a new blog."});
+//         return;
+//     }
+//     if (!blogInfo.title) {
+//         res.status(400).json({error: "You must at least provide title of the blog."});
+//         return;
+//     }
+//     if (!blogInfo.contnet) {
+//         res.status(400).json({error: "You must at least provide content of the blog."});
+//         return;
+//     }
+//     blogData.addBlog(blogInfo.title, blogInfo.content, blogInfo.mainImage, blogInfo.conclusions, blogInfo.type, blogInfo.tag, blogInfo.userId, blogInfo.siteId)
+//         .then((newblog) => {
+//             res.json(newblog);
+//         }, () => {
+//             res.sendFile(notFound);
+//         });
+// });
 /*
 router.put("/:id", (req, res) => {
     let blogInfo = req.body;
