@@ -12,7 +12,8 @@ const commentData = data.comment;
 const path = require("path");
 const cityData = data.city;
 
-let notFound = path.resolve("../static/404.html");
+let notFound = path.resolve("./static/404.html");
+
 
 router.get("/", (req, res) => {
     foodData.getAllFood().then((foodList) => {

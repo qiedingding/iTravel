@@ -22,7 +22,8 @@ const data = require("../data");
 const cityData = data.city;
 const blogData = data.blog;
 const imageData = data.image;
-let notFound = path.resolve("../static/404.html");
+let notFound = path.resolve("./static/404.html");
+
 //
 const constructorMethod = (app) => {
     passport.serializeUser(function (user, done) {
@@ -85,7 +86,9 @@ const constructorMethod = (app) => {
             let blist = [];
             blogData.getAllBlogsWithImage().then((bloglist) => {
                 for (let i = 0, len = bloglist.length; i < len && i<3; i++) {
+
                     blist.push(bloglist[i]);
+                    blist[i].content =  blist[i].content.substring(0,150);
                 }
                 returnValue.blist = blist;
             })

@@ -8,7 +8,8 @@ const router = express.Router();
 const data = require("../data");
 const imageData = data.image;
 const path = require("path");
-let notFound = path.resolve("../static/404.html");
+let notFound = path.resolve("./static/404.html");
+
 // get-1: Return all the images
 router.get("/", (req, res) => {
     imageData.getAllImages().then((imageList) => {
