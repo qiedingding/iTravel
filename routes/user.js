@@ -12,7 +12,7 @@ const data = require("../data");
 const userData = data.user;
 const passport = require('passport');
 const path = require("path");
-let notFound = path.resolve("../static/404.html");
+let notFound = path.resolve("./static/404.html");
 
 /* ***************** user *****************     */
 // private page

@@ -14,7 +14,7 @@ const userData = data.user;
 const commentData = data.comment;
 
 const path = require("path");
-let notFound = path.resolve("../static/404.html");
+let notFound = path.resolve("./static/404.html");
 // get-2: Return all the cities(name, province, country), such as "Wuhan, Hubei, China".
 router.get("/", (req, res) => {
     cityData.getAllCities().then((cityList) => {

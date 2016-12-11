@@ -10,7 +10,7 @@ const xss = require('xss');
 const commentData = data.comment;
 const userData = data.user;
 const path = require("path");
-let notFound = path.resolve("../static/404.html");
+let notFound = path.resolve("./static/404.html");
 
 function checkCommentContent(contents) {
     if(contents.length < 10||contents.length > 100) return false;
