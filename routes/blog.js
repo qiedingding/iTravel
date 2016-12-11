@@ -74,12 +74,18 @@ router.post("/new", isLoggedIn, upload.single('images'), (req, res) => {
     blogInfo.userId= req.user._id;
     blogData.addBlog(blogInfo)
         .then((newblog) => {
-            return newblog._id;
+            return newblog;
         })
-        .then((id) => {
-            let path = '/public/images/' + req.file.filename;
-            return imageData.addImage(req.file.filename, path, new Date(), 'blog',req.user._id, id, null, null).then(image => {
-                var info = [id, image];
+        .then((newblog) => {
+            let imageInfo ={
+                name: newblog.title,
+                path: '/public/images/' + req.file.filename,
+                type: "blog",
+                userId: req.user._id,
+                blogId: newblog._id
+            }
+            return imageData.addImage(imageInfo).then(image => {
+                var info = [newblog._id, image];
                 return info;
             });
         })
@@ -261,8 +267,8 @@ module.exports = router;
 //   encoding: '7bit',
 //   mimetype: 'image/jpeg',
 //   destination: 'public/uploads/',
-//   filename: 'f22de968cc5fef6c9593fae541755704',
-//   path: 'public/uploads/f22de968cc5fef6c9593fae541755704',
+//   filename: 'f22de968cc5fef6c9593fae541755704.jpg',
+//   path: 'public/uploads/f22de968cc5fef6c9593fae541755704.jpg',
 //   size: 8054 }
 // router.post('/upload', upload.single('images'), function (req, res) {
 //     console.log("/blog/upload!")

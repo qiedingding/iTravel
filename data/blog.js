@@ -156,7 +156,7 @@ let exportedMethods = {
                 _id: uuid.v4(),
                 title: blogInfo.title,
                 content: blogInfo.content,
-                createTime: new Date(),
+                createTime: new Date("<YYYY-mm-dd>"),
                 mainImage: blogInfo.mainImage,
                 conclusions: blogInfo.conclusions,
                 type: blogInfo.type,

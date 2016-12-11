@@ -122,23 +122,33 @@ let exportedMethods = {
         });
     },
 
-    addImage(name, path, createTime, type, userId, blogId, siteId, cityId) {
+    addImage(imageInfo) {
         // check name
-        if (!name) return Promise.reject ("You must provide a name of the image.");
+        if (!imageInfo.name) return Promise.reject ("You must provide a name of the image.");
+        if (!imageInfo.path) return Promise.reject("You must provide a path of the image.")
+        if (!imageInfo.address)  imageInfo.mainImage =null;
+        if (!imageInfo.createTime)  imageInfo.createTime =new Date("<YYYY-mm-dd>");
+        if (!imageInfo.type)  imageInfo.type =null;
+        if (!imageInfo.userId)  imageInfo.userId =null;
+        if (!imageInfo.blogId)  imageInfo.blogId =null;
+        if (!imageInfo.siteId)  imageInfo.siteId =null;
+        if (!imageInfo.cityId)  imageInfo.cityId =null;
+        if (!imageInfo.foodId)  imageInfo.foodId =null;
 
         return image().then((imageCollection) => {
             let newImage = {
                 _id: uuid.v4(),
-                name: name,
-                path: path,
-                createTime: createTime,
-                type: type,
-                userId: userId,
-                blogId: blogId,
-                siteId: siteId,
-                cityId: cityId
-            };
-                
+                name: imageInfo.name,
+                path: imageInfo.path,
+                address: imageInfo.address,
+                createTime: imageInfo.createTime,
+                type: imageInfo.type,
+                userId: imageInfo.userId,
+                blogId: imageInfo.blogId,
+                siteId: imageInfo.siteId,
+                cityId: imageInfo.cityId,
+                foodId: imageInfo.foodId
+            };   
             return imageCollection.insertOne(newImage).then((newInsertInformation) => {
                 return newInsertInformation.insertedId;
             });
