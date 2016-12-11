@@ -41,19 +41,36 @@
 				let newFoodComment = responseMessege.message;
 
 				if (responseMessege.success == true) {
-					$("#commentContainer div:last").append(
-							"<div class='media-left response-text-left'>" +
-	                        	"<img class='media-object' src='../../public/images/user.png' alt='Figure' style='width:50px; height:50px;'>" +
-	                        	"<h5>" + newFoodComment.userId + "</h5>" +
-	                    	"</div>" +
+                    let count = $("#commentContainer div").length;
+                    if (count == 0) {
+                        $("#commentContainer").html(
+                            "<div class='media-left response-text-left'>" +
+                            "<img class='media-object' src='../../public/images/user.png' alt='Figure' style='width:50px; height:50px;'>" +
+                            "<h5>" + newFoodComment.userId + "</h5>" +
+                            "</div>" +
 
-	                    	"<div class='media-body response-text-right'>" +
-	                        	"<p class='well'>" + newFoodComment.content + "</p>" +
-	                        	"<ul>" +
-	                            	"<li>" + newFoodComment.createTime + "</li>" +
-	                        	"</ul>" +
-	                    	"</div>" +
-	                    	"<div class='clearfix'> </div>");
+                            "<div class='media-body response-text-right'>" +
+                            "<p class='well'>" + newFoodComment.content + "</p>" +
+                            "<ul>" +
+                            "<li>" + newFoodComment.createTime + "</li>" +
+                            "</ul>" +
+                            "</div>" +
+                            "<div class='clearfix'> </div>");
+                    } else {
+                        $("#commentContainer div:last").append(
+                            "<div class='media-left response-text-left'>" +
+                            "<img class='media-object' src='../../public/images/user.png' alt='Figure' style='width:50px; height:50px;'>" +
+                            "<h5>" + newFoodComment.userId + "</h5>" +
+                            "</div>" +
+
+                            "<div class='media-body response-text-right'>" +
+                            "<p class='well'>" + newFoodComment.content + "</p>" +
+                            "<ul>" +
+                            "<li>" + newFoodComment.createTime + "</li>" +
+                            "</ul>" +
+                            "</div>" +
+                            "<div class='clearfix'> </div>");
+                    }
 					foodCommentContent.val("");
 				} else {
 					location.href="/user/login";

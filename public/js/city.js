@@ -40,19 +40,36 @@
 			$.ajax(requestConfig).then((responseMessege) => {
 				let newcomment = responseMessege.message;
 				if (responseMessege.success == true) {
-					$("#commentContainer div:last").append(
-							"<div class='media-left response-text-left'>" +
-	                        	"<img class='media-object' src='../../public/images/user.png' alt='Figure' style='width:50px; height:50px;'>" +
-	                        	"<h5>" + newcomment.userId + "</h5>" +
-	                    	"</div>" +
+                    let count = $("#commentContainer div").length;
+                    if (count == 0) {
+                        $("#commentContainer").html(
+                            "<div class='media-left response-text-left'>" +
+                            "<img class='media-object' src='../../public/images/user.png' alt='Figure' style='width:50px; height:50px;'>" +
+                            "<h5>" + newcomment.userId + "</h5>" +
+                            "</div>" +
 
-	                    	"<div class='media-body response-text-right'>" +
-	                        	"<p class='well'>" + newcomment.content + "</p>" +
-	                        	"<ul>" +
-	                            	"<li>" + newcomment.createTime + "</li>" +
-	                        	"</ul>" +
-	                    	"</div>" +
-	                    	"<div class='clearfix'> </div>");
+                            "<div class='media-body response-text-right'>" +
+                            "<p class='well'>" + newcomment.content + "</p>" +
+                            "<ul>" +
+                            "<li>" + newcomment.createTime + "</li>" +
+                            "</ul>" +
+                            "</div>" +
+                            "<div class='clearfix'> </div>");
+                    } else {
+                        $("#commentContainer div:last").append(
+                            "<div class='media-left response-text-left'>" +
+                            "<img class='media-object' src='../../public/images/user.png' alt='Figure' style='width:50px; height:50px;'>" +
+                            "<h5>" + newcomment.userId + "</h5>" +
+                            "</div>" +
+
+                            "<div class='media-body response-text-right'>" +
+                            "<p class='well'>" + newcomment.content + "</p>" +
+                            "<ul>" +
+                            "<li>" + newcomment.createTime + "</li>" +
+                            "</ul>" +
+                            "</div>" +
+                            "<div class='clearfix'> </div>");
+                    }
 					siteCommentContent.val("");
 				} else {
 					location.href="/user/login";
