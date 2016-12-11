@@ -27,12 +27,14 @@ const uuid = require('node-uuid');
  */
 
 let exportedMethods = {
+// getAllImages    
     getAllImages() {
         return image().then((imageCollection) => {
             return imageCollection.find({}).toArray();
         });
     },
-
+    
+// getImageById
     getImageById(id) {
         if (!id) return Promise.reject ("You must provide an id.");
         return image().then((imageCollection) => {
@@ -44,6 +46,7 @@ let exportedMethods = {
         });
     },    
     
+// getImageByUserId
     getImageByName(name) {
         if (!name) return Promise.reject ("You must provide a image name.");
 
@@ -54,7 +57,7 @@ let exportedMethods = {
             });
         });
     },
-
+// getImageByUserId
     getImageByUserId(userId) {
         if (!userId) return Promise.reject ("You must provide a userId.");
 
@@ -65,7 +68,8 @@ let exportedMethods = {
             });
         }); 
     },
-
+    
+// getImageByBlogId
     getImageByBlogId(blogId) {
         if (!blogId) return Promise.reject ("You must provide a blogId.");
 
@@ -77,6 +81,7 @@ let exportedMethods = {
         }); 
     },
 
+// getImageBySiteId    
     getImageBySiteId(siteId) {
         console.log(siteId);
         if (!siteId) return Promise.reject ("You must provide a siteId.");
@@ -100,7 +105,8 @@ let exportedMethods = {
             });
         });
     },
-
+    
+// getImageByFoodId
     getImageByFoodId(foodId) {
         if (!foodId) return Promise.reject ("You must provide a foodId.");
     //console.log("1111111111")
@@ -121,6 +127,7 @@ let exportedMethods = {
             });
         });
     },
+
 
     addImage(imageInfo) {
         // check name
@@ -162,7 +169,8 @@ let exportedMethods = {
             Promise.reject(e);
         })
     },
-
+    
+//remove Image
     removeImage(id) {
         if (!id) return Promise.reject ("You must provide an image id.");
 
@@ -177,6 +185,7 @@ let exportedMethods = {
         });
     },
 
+// updateImage    
     updateImage(id, updatedImage) {
         if (!id) return Promise.reject ("You must provide an id.");
 
