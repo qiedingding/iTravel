@@ -13,6 +13,8 @@ const foodData = data.food;
 const userData = data.user;
 const commentData = data.comment;
 
+const path = require("path");
+let notFound = path.resolve("../static/404.html");
 // get-2: Return all the cities(name, province, country), such as "Wuhan, Hubei, China".
 router.get("/", (req, res) => {
     cityData.getAllCities().then((cityList) => {
@@ -24,7 +26,7 @@ router.get("/", (req, res) => {
         res.render('city/listCity', {cityList: cityList});
         // res.json(cityList);
     }, () => {
-        res.sendStatus(500);
+        res.sendFile(notFound);
     });
 });
 
@@ -72,7 +74,7 @@ router.get("/:name", (req, res) => {
         });
         // res.json(cityList);
     }).catch(() => {
-        res.status(404).json({error: "City not found."});
+        res.sendFile(notFound);
     });
 });
 
@@ -119,7 +121,7 @@ router.get("/id/:id", (req, res) => {
             });
         });
     }).catch(() => {
-        res.status(404).json({error: "City not found."});
+        res.sendFile(notFound);
     });
 })
 ;
@@ -130,7 +132,7 @@ router.get("/province/:province", (req, res) => {
         res.render('city/cityList', {list: cityList});
         // res.json(cityInfo);
     }, (error) => {
-        res.sendStatus(404);
+        res.sendFile(notFound);
     });
 });
 
@@ -140,7 +142,7 @@ router.get("/tag/:tag", (req, res) => {
         res.render('city/cityList', {list: cityList});
         // res.json(cityInfo);
     }).catch(() => {
-        res.status(404).json({error: "City not found."});
+        res.sendFile(notFound);
     });
 });
 

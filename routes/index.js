@@ -17,11 +17,13 @@ const blogRoutes = require("./blog");
 const imageRoutes = require("./image");
 const commentRoutes = require("./comment");
 const xss = require('xss');
+const path = require("path");
 const data = require("../data");
 const cityData = data.city;
 const blogData = data.blog;
 const imageData = data.image;
-
+let notFound = path.resolve("../static/404.html");
+//
 const constructorMethod = (app) => {
     passport.serializeUser(function (user, done) {
         done(null, user);
@@ -32,8 +34,9 @@ const constructorMethod = (app) => {
     });
     /* ***************** about *****************     */
     app.use("/about", (req, res) => {
-        res.render("about")
+       res.render("about");
     });
+    // res.sendFile(notFound);
     /* ***************** user *****************     */
     app.use("/user", userRoutes);
     /* ***************** city *****************     */
@@ -87,14 +90,24 @@ const constructorMethod = (app) => {
               res.render('index',{returnValue:returnValue});
         })
         .catch(e=>{
-            res.status(400).json({"error":e});
+            res.sendFile(notFound);
         });
     });
     /* ***************** not found *****************     */
-    app.use("*", (req, res) => {
-        res.sendStatus(404);
+    app.use("/*", (req, res,next) => {
+        res.sendFile(notFound);
+    });
+    // Handle 404
+    app.use(function(req, res) {
+        res.status(404);
+        res.sendFile(notFound);
     });
 
+    // Handle 500
+    app.use(function(error, req, res, next) {
+        res.status(500);
+        res.sendFile(notFound);
+    });
     /* ***************** passport *****************     */
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated()) {

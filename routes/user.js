@@ -11,7 +11,8 @@ const router = express.Router();
 const data = require("../data");
 const userData = data.user;
 const passport = require('passport');
-
+const path = require("path");
+let notFound = path.resolve("../static/404.html");
 
 /* ***************** user *****************     */
 // private page
@@ -33,39 +34,42 @@ router.post('/login', passport.authenticate('local-login', {
     failureFlash: true // allow flash messages
 }));
 //user send register request
-router.post('/register', function(req, res){
+router.post('/register', function (req, res) {
     userData.getUserByName(req.body.username).then((user) => {
         if (user != null) {
-           res.json({message:"username has been token"});
+            res.json({message: "username has been token"});
         } else {
-            let newUser = userData.register(req.body.username, req.body.password,req.body.email);
+            let newUser = userData.register(req.body.username, req.body.password, req.body.email);
             return newUser.then((newUser) => {
-                res.json({status:"success"});
+                res.json({status: "success"});
+            }).catch((e) => {
+                res.sendFile(notFound);
             });
         }
+    }).catch((e) => {
+        res.sendFile(notFound);
     });
 });
 
-router.get('/logout', function(req, res){
+router.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
 });
 // show user information, need check if user has login
 /*router.get("/profile", isLoggedIn, function (req, res, next) {
-    console.log("login success, go to the private page");
-    let user = req.user;
-    res.render("user/profile", {"user": user});
-});*/
+ console.log("login success, go to the private page");
+ let user = req.user;
+ res.render("user/profile", {"user": user});
+ });*/
+
 /* ajax using for check user is login every page  !important */
-router.get('/isLoggedIn', function(req, res){
+router.get('/isLoggedIn', function (req, res) {
     if (req.isAuthenticated()) {
-        console.log("login");
-        res.json({user:req.user});
+        res.json({user: req.user});
     }
 });
 // middleware, to check if user has login
 function isLoggedIn(req, res, next) {
-    console.log("isLoggedIn function begin");
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated()) {
         console.log("authenticated success");

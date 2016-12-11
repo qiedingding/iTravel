@@ -7,14 +7,15 @@ const express = require('express');
 const router = express.Router();
 const data = require("../data");
 const imageData = data.image;
-
+const path = require("path");
+let notFound = path.resolve("../static/404.html");
 // get-1: Return all the images
 router.get("/", (req, res) => {
     imageData.getAllImages().then((imageList) => {
          //res.render("",imageList);
          res.render('image/imageList', { imageList: imageList });
     }).catch((e) => {
-        res.status(500).json({error: e});
+        res.sendFile(notFound);
     });
 });
 
@@ -25,7 +26,7 @@ router.get("/:name", (req, res) => {
          //res.json(image);
     }).catch((err) => {
         console.log(err);
-        res.status(404).json({ error: "image not found." });
+        res.sendFile(notFound);
     });
 });
 
@@ -36,9 +37,9 @@ router.get("/id/:id", (req, res) => {
         //console.log("1111111111111111111111")
         res.render('image/imageList', { list: imageList });
          res.json(image);
-    }).catch(() => {
+    }).catch((err) => {
         console.log(err);
-        res.status(404).json({ error: "image not found." });
+        res.sendFile(notFound);
     });
 });
 
@@ -48,7 +49,7 @@ router.get("/userId/:userId", (req, res) => {
         res.render('image/imageList', { list: imageList });
        //res.json(imageList);
     }, (error) => {
-        res.sendStatus(404);
+        res.sendFile(notFound);
     });
 });
 
@@ -58,7 +59,7 @@ router.get("/blogId/:blogId", (req, res) => {
         res.render('image/imageList', { list: imageList });
         //res.json(imageList);
     }).catch(() => {
-        res.status(404).json({ error: "image not found." });
+        res.sendFile(notFound);
     });
 });
 
@@ -68,7 +69,7 @@ router.get("/siteId/:siteId", (req, res) => {
         res.render('image/imageList', { imageList: imageList });
         //res.json(imageList);
     }).catch(() => {
-        res.status(404).json({ error: "image not found." });
+        res.sendFile(notFound);
     });
 });
 
@@ -78,7 +79,7 @@ router.get("/cityId/:cityId", (req, res) => {
         res.render('image/imageList', { list: imageList });
         //res.json(imageList);
     }).catch(() => {
-        res.status(404).json({ error: "image not found." });
+        res.sendFile(notFound);
     });
 });
 
@@ -88,7 +89,7 @@ router.get("/foodId/:foodId", (req, res) => {
         //res.render('image/imageList', { list: imageList });
         res.json(imageList);
     }).catch(() => {
-        res.status(404).json({ error: "image not found." });
+        res.sendFile(notFound);
     });
 });
 

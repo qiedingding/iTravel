@@ -9,12 +9,13 @@ const siteData = data.site;
 const imageData = data.image;
 const userData = data.user;
 const commentData =  data.comment;
-
+const path = require("path");
+let notFound = path.resolve("../static/404.html");
 router.get("/", (req, res) => {
     siteData.getAllSites().then((siteList) => {
         res.json(siteList);
     }).catch((e) => {
-        res.status(500).json({error: e});
+        res.sendFile(notFound);
     });
 });
 
@@ -34,7 +35,7 @@ router.get("/siteId/:id", (req, res) => {
             });
         });
     }).catch(() => {
-        res.status(404).json({error: "Site not found!"});
+        res.sendFile(notFound);
     });
 });
 
