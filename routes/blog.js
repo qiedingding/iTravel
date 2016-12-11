@@ -9,123 +9,132 @@ const blogData = data.blog;
 const imageData = data.image;
 const uuid = require('node-uuid');
 const bodyParser = require("body-parser");
-var path = require('path'),fs = require('fs');
-var multer  = require('multer')
-
+const path = require('path'), fs = require('fs');
+const multer = require('multer')
+const userData = data.user;
+const commentData = data.comment;
 
 var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-      //console.log(__dirname);
-      cb(null, path.join(__dirname,'/..','/public/images')); // get the right path!
-  },
-  filename: function (req, file, cb) {
-    //console.log("file@@@",file);
-    let idx =file.mimetype.indexOf('/')
-    let type = file.mimetype.substring(idx+1);
-    type = type.toLowerCase();
-    
-    cb(null,  uuid.v1()+ '.' + type);
-  }
+    destination: function (req, file, cb) {
+        //console.log(__dirname);
+        cb(null, path.join(__dirname, '/..', '/public/images')); // get the right path!
+    },
+    filename: function (req, file, cb) {
+        let idx = file.mimetype.indexOf('/')
+        let type = file.mimetype.substring(idx + 1);
+        type = type.toLowerCase();
+
+        cb(null, uuid.v1() + '.' + type);
+    }
 })
 
-function fileFilter (req,file,cb){
+function fileFilter(req, file, cb) {
     var type = file.mimetype;
     var typeArray = type.split("/");
     if (typeArray[0] == "video" || typeArray[0] == "image") {
         cb(null, true);
-    }else {
+    } else {
         cb(null, false);
     }
 }
 
-var upload = multer({ storage: storage, dest:"public/uploads", fileFilter:fileFilter});
+var upload = multer({storage: storage, dest: "public/uploads", fileFilter: fileFilter});
 
 router.get("/", (req, res) => {
     blogData.getAllBlogsWithImage().then((blogList) => {
-        console.log("all blog: ",blogList);
-        res.render('blog/blogList', { blogList: blogList });
+        console.log("all blog: ", blogList);
+        res.render('blog/blogList', {blogList: blogList});
     })
-    .catch(e=>{
-        console.log(e);
-        res.status(400).json({"error":e});
-    });
+        .catch(e => {
+            console.log(e);
+            res.status(400).json({"error": e});
+        });
 });
 
-router.get("/new", (req,res)=>{
+router.get("/new", (req, res) => {
     res.render('blog/blogNew', {});
 });
 
-router.post("/new",upload.single('images'),(req,res)=>{
+router.post("/new", upload.single('images'), (req, res) => {
     console.log("POST /blog/new!");
     //console.log(req.body); //get all text content
     //console.log(req.file); // get all files content
     let blogInfo = req.body;
     if (!blogInfo) {
-        res.status(400).json({ error: "You must provide data to create a new blog." });
+        res.status(400).json({error: "You must provide data to create a new blog."});
         return;
     }
     if (!blogInfo.title) {
-        res.status(400).json({ error: "You must at least provide title of the blog." });
+        res.status(400).json({error: "You must at least provide title of the blog."});
         return;
     }
     if (!blogInfo.content) {
-        res.status(400).json({ error: "You must at least provide content of the blog." });
+        res.status(400).json({error: "You must at least provide content of the blog."});
         return;
-    }  
+    }
     blogData.addBlog(blogInfo)
         .then((newblog) => {
             // console.log("add new blog ####",newblog);
             return newblog._id;
         })
-        .then((id)=>{
-            let path ='/public/images/'+req.file.filename;
-           return imageData.addImage(req.file.filename,path,new Date(),'blog',"userid",id,null,null).then(image => {
-               var info = [id,image];
-               return info;
-           });
+        .then((id) => {
+            let path = '/public/images/' + req.file.filename;
+            return imageData.addImage(req.file.filename, path, new Date(), 'blog', "userid", id, null, null).then(image => {
+                var info = [id, image];
+                return info;
+            });
         })
         .then(info => {
             // console.log("info!!!!: ", info)
             let updatedblog = {};
             let id = info[0];
-            let imageId= info[1]._id;
-            updatedblog.mainImage = imageId;        
-           return blogData.updateBlog(id,updatedblog);
+            let imageId = info[1]._id;
+            updatedblog.mainImage = imageId;
+            return blogData.updateBlog(id, updatedblog);
         })
-        .then((blogInfo)=>{
+        .then((blogInfo) => {
             console.log("blogInfo::,,:", blogInfo);
             res.status(200).json(blogInfo);
         })
-        .catch(function(e) {
+        .catch(function (e) {
             console.log(e); // "oh, no!"
             res.status(400).json(e);
         });
-   // res.status(200).json({"success":"success!"});
+    // res.status(200).json({"success":"success!"});
 });
 
 router.get("/:title", (req, res) => {
     //console.log("title: ",req.params.title);
     blogData.getBlogByTitle(req.params.title).then((blog) => {
         //console.log(blog);
-        res.render('blog/blogInfo', { blog: blog });
+        res.render('blog/blogInfo', {blog: blog});
     }).catch(() => {
-        res.status(404).json({ error: "blog not found." });
+        res.status(404).json({error: "blog not found."});
     });
 });
 
 router.get("/id/:id", (req, res) => {
     blogData.getBlogByIdWithImage(req.params.id).then((blog) => {
-        console.log("blog/id/:id", blog);
-        res.render('blog/blogInfo', { blog: blog });
+        commentData.getCommentByBelongToId(req.params.id).then((commentList) => {
+            let promises = [];
+            for (let i = 0, len = commentList.length; i < len; i++) {
+                promises.push(userData.getUserById(commentList[i].userId).then((user) => {
+                    commentList[i].userId = user.username;
+                }));
+            }
+            Promise.all(promises).then(() => {
+                res.render('blog/blogInfo', {blog: blog, blogComments: commentList});
+            });
+        })
     }).catch((e) => {
         console.log(e);
-        res.status(404).json({ error: e });
+        res.status(404).json({error: e});
     });
 });
 
 router.get("/userId/:userId", (req, res) => {
     blogData.getBlogByUserId(req.params.userId).then((blogList) => {
-        res.render('blog/blogList', { blogList: blogList });
+        res.render('blog/blogList', {blogList: blogList});
         // res.json(blogInfo);
     }, (error) => {
         res.sendStatus(404);
@@ -134,10 +143,10 @@ router.get("/userId/:userId", (req, res) => {
 
 router.get("/type/:type", (req, res) => {
     blogData.getBlogByType(req.params.tag).then((blogList) => {
-        res.render('blog/blogList', { blogList: blogList });
+        res.render('blog/blogList', {blogList: blogList});
         // res.json(blogInfo);
     }).catch(() => {
-        res.status(404).json({ error: "blog not found." });
+        res.status(404).json({error: "blog not found."});
     });
 });
 
@@ -145,15 +154,15 @@ router.post("/", (req, res) => {
     let blogInfo = req.body;
 
     if (!blogInfo) {
-        res.status(400).json({ error: "You must provide data to create a new blog." });
+        res.status(400).json({error: "You must provide data to create a new blog."});
         return;
     }
     if (!blogInfo.title) {
-        res.status(400).json({ error: "You must at least provide title of the blog." });
+        res.status(400).json({error: "You must at least provide title of the blog."});
         return;
     }
     if (!blogInfo.contnet) {
-        res.status(400).json({ error: "You must at least provide content of the blog." });
+        res.status(400).json({error: "You must at least provide content of the blog."});
         return;
     }
     blogData.addBlog(blogInfo.title, blogInfo.content, blogInfo.mainImage, blogInfo.conclusions, blogInfo.type, blogInfo.tag, blogInfo.userId, blogInfo.siteId)
@@ -168,7 +177,7 @@ router.put("/:id", (req, res) => {
     let blogInfo = req.body;
 
     if (!blogInfo) {
-        res.status(400).json({ error: "You must provide data to update a blog." });
+        res.status(400).json({error: "You must provide data to update a blog."});
         return;
     }
     let getblog = blogData.getBlogById(req.params.id).then(() => {
@@ -179,7 +188,7 @@ router.put("/:id", (req, res) => {
                 res.sendStatus(500);
             });
     }).catch(() => {
-        res.status(404).json({ error: "blog not found." });
+        res.status(404).json({error: "blog not found."});
     });
 
 });
@@ -188,7 +197,7 @@ router.put("/tag/:id", (req, res) => {
     let tagInfo = req.body.tag;
 
     if (!tagInfo) {
-        res.status(400).json({ error: "You must provide tag data to post." });
+        res.status(400).json({error: "You must provide tag data to post."});
         return;
     }
 
@@ -203,7 +212,7 @@ router.put("/tag/:id", (req, res) => {
                 });
         });
     }).catch(() => {
-        res.status(404).json({ error: "blog not found." });
+        res.status(404).json({error: "blog not found."});
     });
 
 });
@@ -218,7 +227,7 @@ router.delete("/:id", (req, res) => {
                 res.sendStatus(500);
             });
     }).catch(() => {
-        res.status(404).json({ error: "blog not found." });
+        res.status(404).json({error: "blog not found."});
     });
 });
 
@@ -226,7 +235,7 @@ router.delete("/tag/:id", (req, res) => {
     let tagInfo = req.body.tag;
 
     if (!tagInfo) {
-        res.status(400).json({ error: "You must provide tag to delete." });
+        res.status(400).json({error: "You must provide tag to delete."});
         return;
     }
     let blog = blogData.getblogById(req.params.id).then(() => {
@@ -237,7 +246,7 @@ router.delete("/tag/:id", (req, res) => {
                 res.sendStatus(500);
             });
     }).catch(() => {
-        res.status(404).json({ error: "blog not found." });
+        res.status(404).json({error: "blog not found."});
     });
 });
 
