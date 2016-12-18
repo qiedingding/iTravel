@@ -11,11 +11,11 @@ cover the information that users may be interested in as much as possible.
 Note: In order to simplify this project, the target travel country is now limited to China.
 
 # 1. Preparation work:
-1) Connect the mongodb service.
-2) Enter the corresponding iTravel folder.
-3) Update the npm modules to load all dependencies (npm update).
-4) Enter the “tasks” folder and run the seed.js (node seed.js) to insert all the data into the mongodb.
-.6) Run the project (node app.js or npm start)
+⋅⋅1. Connect the mongodb service.
+⋅⋅2. Enter the corresponding iTravel folder.
+⋅⋅3. Update the npm modules to load all dependencies (npm update).
+⋅⋅4. Enter the “tasks” folder and run the seed.js (node seed.js) to insert all the data into the mongodb.
+⋅⋅5. Run the project (node app.js or npm start).
 2. How to use the Function Modules:
 Note: Wherever you are, you can return to the Home Page by clicking the iTravel
 logo above the navigation bar.
