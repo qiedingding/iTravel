@@ -10,7 +10,7 @@ scenic spot manuals, gourmet food recommendations, etc. In a word, we are aimed 
 cover the information that users may be interested in as much as possible.
 Note: In order to simplify this project, the target travel country is now limited to China.
 
-# 1. Preparation work:
+1. Preparation work:
 ⋅⋅1. Connect the mongodb service.
 ⋅⋅2. Enter the corresponding iTravel folder.
 ⋅⋅3. Update the npm modules to load all dependencies (npm update).
