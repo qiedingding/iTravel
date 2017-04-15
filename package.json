@@ -19,12 +19,13 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.14.2",
     "forEachAsync": "^3.0.0",
+    "forever": "^0.15.3",
     "handlebars": "^4.0.6",
     "mongodb": "^2.2.12",
+    "multer": "^1.2.0",
     "node-uuid": "^1.4.7",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "xss": "^0.3.1",
-    "multer": "^1.2.0"
+    "xss": "^0.3.1"
   }
 }
